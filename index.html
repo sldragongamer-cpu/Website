@@ -35,6 +35,32 @@
         .navbar-left a:hover {
          color: blue;
         }
+        .dropdown {
+         position:relative;
+         display: inline-block
+        }
+        .dropdown >a {
+         cursor:pointer;
+        }
+        .dropdown-content {
+         display:none;
+         position:absolute;
+         background-color:white;
+         min-width:160px;
+         box-shadow:0px 8px 16 px rgba(0,0,0,0.2);
+         z-index: 1;
+        }
+        .dropdown-content a {
+         color:white
+         padding:12px 17px;
+         display:block;
+        }
+        .dropdown-content a:hover {
+         background-color: White
+        }
+        .dropdown:hover .dropdown-content {
+         display:block;
+        }
         .navbar-right {
          display:flex;
          align-items:center;
@@ -57,9 +83,14 @@
   <div class="navbar-left">
     <img src="logo.png" alt="Logo">
     <a href="#home">Home</a>
+      <div class="dropdown">
     <a href="#categories">Categories</a>
-    <a href="#contact">Contact</a>
+     <div class="dropdown-content">
+         <a href="#laptops">Laptops</a>
+         <a href="#peripherals">Peripherals</a>
+         <a href="#Gaming">Gaming</a>
   </div>
+</div>
     <div class="navbar-right">
       <span>🔍</span>
       <span>👤</span>
