@@ -88,17 +88,20 @@
          }
         .slides {
          display:flex;
-         width:330;
-         animation: slide 30s infinite;
+         width:600;
+         animation: slide 15s infinite;
+         gap:10px;
          }
         .slides img {
-         width:100%;
+         width: calc(100% - 10px);
+         height: 600px;
+         object-fit: cover;
          flex-shrink:0;
          }
       @keyframes slide {
       0%   { transform: translateX(0); }
-      33%  { transform: translateX(-100%); }
-      66%  { transform: translateX(-200%); }
+      33%  { transform: translateX(calc(-100% - 20px)); }
+      66%  { transform: translateX(calc(-200% - 20px)); }
       100% { transform: translateX(0); }
     }
     </style>
