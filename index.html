@@ -5,37 +5,42 @@
     <title>Unet Solutions</title>
     <style>
         body {
-      margin: 0;
-      height: 100vh;
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      font-family: Arial, sans-serif;
-      background-color: lightblue;
-        }
-      .navbar {
-        background-color: #333;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 10px 20px;
+          margin: 0;
+          font-family:Arial,sans-serif;
+          background-color: lightblue;
          }
-       .navbar-left{
+        .navbar {
+          background-color: #333;
+          color: white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 10px 20px;
+         }
+        .navbar-left{
           display:flex;
           align-items:center;
         }
         .navbar-left img {
-          height: 20px;
+          height: 40px;
           margin-right: 15px;
     }
        .navbar-left a {
          color: White;
+         text-decoration: none;
          margin-right:15px;
         }
         .navbar-left a:hover {
-         background-color: blue;
+         color: blue;
         }
+        .navbar-right {
+         display:flex;
+         align-items:center;
+        }
+        .navbar-right span {
+         margin-left: 15px;
+         cursor:pointer;
+         }
         h1 {
           font-size:60px;
           font-Family:Arial, sans-serif;
@@ -53,12 +58,10 @@
     <a href="#contact">Contact</a>
 </div>
     <div class="navbar-right">
-      <!-- Replace with icons (SVGs or images) -->
       <span>🔍</span>
       <span>👤</span>
       <span>🛒</span>
       <span>📄</span>
-      <span>📞 HOTLINE 070 6100 100</span>
     </div>
   </div>
 </body>
