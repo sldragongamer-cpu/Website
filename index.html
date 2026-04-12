@@ -100,13 +100,17 @@
          flex-shrink:0;
          }
         .image-row {
-         gap:80px;
-         justify-content:flex-start;
-         margin-left:90px;
+         flex-wrap: wrap;
+         justify-content:center;
+         align-items: center;
+         gap: clamp(16px, 2vw, 40px);
          display:flex;
          }
         .image-row img {
-         flex-shrink:0;
+         width: 400px;
+         height: auto;
+         border-radius: 14px;
+         object-fit:cover;
          }
 @keyframes slide {
   0%   { transform: translateX(0); }
