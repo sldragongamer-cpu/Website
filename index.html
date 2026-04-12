@@ -11,12 +11,14 @@
           background-color: lightblue;
          }
         .navbar {
+          width:100%;
+          height:80px;
+          margin:0 auto;
           background-color: white;
           color: Black;
           display: flex;
           align-items: center;
           justify-content: space-between;
-          padding: 10px 15px;
          }
         .navbar-left{
           display:flex;
@@ -73,12 +75,11 @@
          gap:20px;
         }
         .navbar-right span {
-         font-size: 22px;
+         font-size: 20px;
          cursor:pointer;
          }
         .slider {
-         width:100%;
-         max-width:1500px;
+         width:1000;
          height:500px;
          margin:30px auto;
          overflow: hidden;
@@ -88,23 +89,37 @@
          }
         .slides {
          display:flex;
-         width:10;
-         animation: slide 15s infinite;
+         width:400%;
+         animation: slide 20s infinite;
          gap:8px;
          }
         .slides img {
-         width: calc(100% - 10px);
+         width:25%;
          height: 500px;
          object-fit: cover;
          flex-shrink:0;
          }
+        .button-image {
+         margin-left:70px;
+         border-radius:20px;
+         }
+        .button-image {
+         width:400px;
+         height:300px;
+         border-radius:20px;
+}
 @keyframes slide {
   0%   { transform: translateX(0); }
-  25%  { transform: translateX(calc(-100% - 8px)); }
-  50%  { transform: translateX(calc(-200% - 16px)); }
-  75%  { transform: translateX(calc(-300% - 24px)); }
+  20%  { transform: translateX(0); }       /* hold first image */
+  25%  { transform: translateX(-25%); }
+  45%  { transform: translateX(-25%); }    /* hold second image */
+  50%  { transform: translateX(-50%); }
+  70%  { transform: translateX(-50%); }    /* hold third image */
+  75%  { transform: translateX(-75%); }
+  95%  { transform: translateX(-75%); }    /* hold fourth image */
   100% { transform: translateX(0); }
 }
+
     </style>
 </head>
 <body>
@@ -136,7 +151,11 @@
     <img src="images/slide3.jpg" alt="Slide 3">
     <img src="images/slide4.jpg" alt="Slide 4">
     </div>
-  </div>
+</div>
+<div class="button-image">
+  <a href="gaming">
+    <img src="buttons/button1.jpg" alt="peripherals" width="400" height="300" style="border-radius: 20px; cursor: pointer;">
+  </a>
 </div>
 </body>
 </html>
