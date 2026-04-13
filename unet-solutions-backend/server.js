@@ -2,6 +2,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const cors = require('cors');
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../Website")));
+
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "../Website/home/index.html"));
+});
 
 const app = express();
 app.use(cors());
@@ -71,7 +77,6 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-const path = require("path");
 app.use(express.static(path.join(__dirname, "../Website")));
 
 app.listen(5000, () => {
