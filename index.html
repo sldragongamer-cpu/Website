@@ -2,157 +2,190 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unet Solutions</title>
+  <title>Unet Solutions</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: lightblue;
-        }
+          margin: 0;
+          font-family:Arial,sans-serif;
+          background-color: lightblue;
+         }
         .navbar {
-            width: 100%;
-            height: 80px;
-            margin: 0 auto;
-            background-color: white;
-            color: black;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 24px;
-            box-sizing: border-box;
-        }
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 32px;
+          width:100%;
+          height:80px;
+          margin:0 auto;
+          background-color: white;
+          color: Black;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+         }
+        .navbar-left{
+          display:flex;
+          align-items:center;
+          gap:40px
         }
         .navbar-left img {
-            height: 70px;
+          height: 70px;
+    }
+       .navbar-left a {
+         color: Black;
+         text-decoration: none;
+         font-size: 20px;
+         font-weight: bold;
         }
-        .navbar-left a,
-        .navbar-right a {
-            color: black;
-            text-decoration: none;
-            font-size: 20px;
-            font-weight: bold;
+        .navbar-left a:hover {
+         color: black;
         }
         .dropdown {
-            position: relative;
-            display: inline-block;
+         position:relative;
+         display: inline-block
+        }
+        .dropdown >a {
+         cursor:pointer;
         }
         .dropdown-content {
-            display: none;
-            position: absolute;
-            background-color: white;
-            min-width: 180px;
-            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
-            z-index: 1;
+         display:none;
+         position:absolute;
+         background-color:white;
+         min-width:160px;
+         box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+         z-index: 1;
         }
         .dropdown-content a {
-            display: block;
-            padding: 12px 16px;
-            font-size: 16px;
-            border-bottom: 1px solid black;
+         color:black
+         padding:12px 17px;
+         display:block;
+         font-size:14px;
+         line-height: 3;
+         border-bottom:1px solid black
         }
         .dropdown-content a:last-child {
-            border-bottom: none;
+         border-bottom: none;
+        }
+        .dropdown-content a:hover {
+         background-color: White
         }
         .dropdown:hover .dropdown-content {
-            display: block;
+         display:block;
         }
         .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 20px;
+         display:flex;
+         align-items:center;
+         gap:20px;
         }
+        .navbar-right span {
+         font-size: 20px;
+         cursor:pointer;
+         }
+        .icon-btn {
+         display: inline-flex;   /* centers the emoji inside */
+         justify-content: center;
+         align-items: center;
+         width: 40px;
+         height: 40px;
+         background: #007BFF;
+         color: white;
+         border-radius: 6px;
+         cursor: pointer;
+         font-size: 20px;
+         transition: background 0.3s;
+         }
+        .icon-btn:hover {
+         background: #0056b3;
+         }
         .slider {
-            width: 1000px;
-            max-width: calc(100% - 32px);
-            height: 500px;
-            margin: 30px auto;
-            overflow: hidden;
-            border: 4px solid white;
-            border-radius: 8px;
-        }
+         width:1000;
+         height:500px;
+         margin:30px auto;
+         overflow: hidden;
+         position:relative;
+         border:4px solid white;
+         border-radius:8px;
+         }
         .slides {
-            display: flex;
-            width: 400%;
-            animation: slide 20s infinite;
-            gap: 8px;
-        }
+         display:flex;
+         width:400%;
+         animation: slide 20s infinite;
+         gap:8px;
+         }
         .slides img {
-            width: 25%;
-            height: 500px;
-            object-fit: cover;
-            flex-shrink: 0;
-        }
+         width:25%;
+         height: 500px;
+         object-fit: cover;
+         flex-shrink:0;
+         }
         .image-row {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: 24px;
-            padding: 0 16px 32px;
-        }
+         flex-wrap: wrap;
+         justify-content:center;
+         align-items: center;
+         gap: clamp(16px, 2vw, 40px);
+         display:flex;
+         }
         .image-row img {
-            width: 400px;
-            height: auto;
-            border-radius: 14px;
-            object-fit: cover;
-        }
-        @keyframes slide {
-            0%, 20% { transform: translateX(0); }
-            25%, 45% { transform: translateX(-25%); }
-            50%, 70% { transform: translateX(-50%); }
-            75%, 95% { transform: translateX(-75%); }
-            100% { transform: translateX(0); }
-        }
+         width: 400px;
+         height: auto;
+         border-radius: 14px;
+         object-fit:cover;
+         }
+@keyframes slide {
+  0%   { transform: translateX(0); }
+  20%  { transform: translateX(0); }       /* hold first image */
+  25%  { transform: translateX(-25%); }
+  45%  { transform: translateX(-25%); }    /* hold second image */
+  50%  { transform: translateX(-50%); }
+  70%  { transform: translateX(-50%); }    /* hold third image */
+  75%  { transform: translateX(-75%); }
+  95%  { transform: translateX(-75%); }    /* hold fourth image */
+  100% { transform: translateX(0); }
+}
+
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-left">
-            <img src="/logo.png" alt="Logo">
-            <a href="/">Home</a>
-            <div class="dropdown">
-                <a href="#categories">Categories</a>
-                <div class="dropdown-content">
-                    <a href="/laptops/">Laptops</a>
-                    <a href="/pc/">PC</a>
-                    <a href="/gaming/">Gaming</a>
-                    <a href="/monitor/">Monitor</a>
-                    <a href="/build%20pc/">Build PC</a>
-                </div>
-            </div>
-            <a href="#contact">Contact</a>
+
+  <div class="navbar">
+    <div class="navbar-left">
+      <img src="/logo.png" alt="Logo">
+      <a href="index.html">Home</a>
+      <div class="dropdown">
+        <a href="#categories">Categories ▼</a>
+        <div class="dropdown-content">
+          <a href="/laptops">Laptops</a>
+          <a href="/pc">PC</a>
+          <a href="/gaming">Gaming</a>
         </div>
-        <div class="navbar-right">
-            <a href="/login/">Account</a>
-        </div>
+      </div>
+      <a href="#contact">Contact</a>
     </div>
-    <div class="slider">
-        <div class="slides">
-            <img src="/images/slide1.jpg" alt="Slide 1">
-            <img src="/images/slide2.jpg" alt="Slide 2">
-            <img src="/images/slide3.jpg" alt="Slide 3">
-            <img src="/images/slide4.jpg" alt="Slide 4">
-        </div>
+    <div class="navbar-right">
+      <span class="icon-btn">🔍</span>
+      <a href="/login" class="icon-btn">👤</a>
+      <span class="icon-btn">🛒</span>
+      <span class="icon-btn">📄</span>
     </div>
-    <div class="image-row" id="categories">
-        <a href="/gaming/">
-            <img src="/buttons/button1.jpg" alt="Gaming">
-        </a>
-        <a href="/monitor/">
-            <img src="/buttons/button2.jpg" alt="Monitor">
-        </a>
-        <a href="/laptops/">
-            <img src="/buttons/button3.jpg" alt="Laptops">
-        </a>
-        <a href="/build%20pc/">
-            <img src="/buttons/button4.jpg" alt="Build PC">
-        </a>
+  </div>
+<div class="slider">
+  <div class="slides">
+    <img src="/images/slide1.jpg" alt="Slide 1">
+    <img src="/images/slide2.jpg" alt="Slide 2">
+    <img src="/images/slide3.jpg" alt="Slide 3">
+    <img src="/images/slide4.jpg" alt="Slide 4">
     </div>
+</div>
+<div class="image-row">
+  <a href="/gaming">
+  <img src="/buttons/button1.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
+  </a>
+  <a href="/monitor">
+  <img src="/buttons/button2.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
+  </a>
+  <a href="/laptops">
+  <img src="/buttons/button3.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
+  </a>
+  <a href="/build%20pc">
+  <img src="/buttons/button4.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
+  </a>
+</div>
 </body>
 </html>
