@@ -1,0 +1,12 @@
+{
+  "name": "unet-solutions-website",
+  "version": "1.0.0",
+  "description": "Unet Solutions website with Vercel Speed Insights",
+  "private": true,
+  "scripts": {
+    "dev": "python3 main.py"
+  },
+  "dependencies": {
+    "@vercel/speed-insights": "^2.0.0"
+  }
+}
