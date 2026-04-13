@@ -78,6 +78,22 @@
          font-size: 20px;
          cursor:pointer;
          }
+        .icon-btn {
+         display: inline-flex;   /* centers the emoji inside */
+         justify-content: center;
+         align-items: center;
+         width: 40px;
+         height: 40px;
+         background: #007BFF;
+         color: white;
+         border-radius: 6px;
+         cursor: pointer;
+         font-size: 20px;
+         transition: background 0.3s;
+         }
+        .icon-btn:hover {
+         background: #0056b3;
+         }
         .slider {
          width:1000;
          height:500px;
@@ -142,11 +158,11 @@
       </div>
       <a href="#contact">Contact</a>
     </div>
-          <div class="navbar-right">
-      <span>🔍</span>
-      <span>👤</span>
-      <span>🛒</span>
-      <span>📄</span>
+    <div class="navbar-right">
+      <span class="icon-btn">🔍</span>
+      <a href="login" class="icon-btn">👤</a>
+      <span class="icon-btn">🛒</span>
+      <span class="icon-btn">📄</span>
     </div>
   </div>
 <div class="slider">
