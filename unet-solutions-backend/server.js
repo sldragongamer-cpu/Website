@@ -48,13 +48,9 @@ app.post('/products', async (req, res) => {
 app.post("/signup", async (req, res) => {
   try {
     const { username, password } = req.body;
-
-
     const hashedPassword = await bcrypt.hash(password, 10);
-
     const newUser = new User({ username, password: hashedPassword });
     await newUser.save();
-
     res.json({ message: "User registered successfully" });
   } catch (err) {
     res.status(500).json({ error: err.message });
@@ -75,6 +71,9 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
+const path = require("path");
+app.use(express.static(path.join(__dirname, "../Website")));
+
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
 });
