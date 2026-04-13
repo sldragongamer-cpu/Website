@@ -92,7 +92,7 @@
 
 
     if (data.message === "Login successful"){
-     window.location.href = "/home";
+     window.location.href = "../index.html";
      }else{
        alert(data.message);
        }
@@ -112,7 +112,7 @@
     });
     const data = await res.json();
      if (data.message === "User registered successfully"){
-     window.location.href ="/home"
+     window.location.href ="../index.html";
      }else{
        alert(data.error || data.message);
        }

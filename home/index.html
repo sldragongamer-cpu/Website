@@ -2,190 +2,255 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-  <title>Unet Solutions</title>
-    <link rel="icon" type="image/png" href="/favicon.png">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet Solutions</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
     <style>
         body {
-          margin: 0;
-          font-family:Arial,sans-serif;
-          background-color: lightblue;
-         }
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #d7efff 0%, #bfe2ff 100%);
+            color: #17324d;
+        }
         .navbar {
-          width:100%;
-          height:80px;
-          margin:0 auto;
-          background-color: white;
-          color: Black;
-          display: flex;
-          align-items: center;
-          justify-content: space-between;
-         }
-        .navbar-left{
-          display:flex;
-          align-items:center;
-          gap:40px
+            width: min(1180px, calc(100% - 32px));
+            min-height: 88px;
+            margin: 18px auto 24px;
+            padding: 0 22px;
+            background: rgba(255, 255, 255, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(130, 171, 208, 0.35);
+            border-radius: 22px;
+            box-shadow: 0 18px 45px rgba(32, 74, 120, 0.16);
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
         }
-        .navbar-left img {
-          height: 70px;
-    }
-       .navbar-left a {
-         color: Black;
-         text-decoration: none;
-         font-size: 20px;
-         font-weight: bold;
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
         }
-        .navbar-left a:hover {
-         color: black;
+        .brand-mark {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .brand-mark img {
+            height: 58px;
+            width: auto;
+        }
+        .brand-name {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: #0e3b66;
+        }
+        .nav-link {
+            color: #1b3550;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 999px;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+        }
+        .nav-link:hover {
+            background: #eef6ff;
+            color: #0b57d0;
+            transform: translateY(-1px);
         }
         .dropdown {
-         position:relative;
-         display: inline-block
+            position: relative;
+            display: inline-block;
         }
-        .dropdown >a {
-         cursor:pointer;
+        .dropdown > a {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
         }
         .dropdown-content {
-         display:none;
-         position:absolute;
-         background-color:white;
-         min-width:160px;
-         box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
-         z-index: 1;
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 220px;
+            background: rgba(255, 255, 255, 0.98);
+            border: 1px solid #dbe7f3;
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(20, 40, 80, 0.14);
+            padding: 10px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(8px);
+            transition: opacity 0.22s ease, transform 0.22s ease, visibility 0.22s ease;
+            z-index: 10;
         }
         .dropdown-content a {
-         color:black
-         padding:12px 17px;
-         display:block;
-         font-size:14px;
-         line-height: 3;
-         border-bottom:1px solid black
-        }
-        .dropdown-content a:last-child {
-         border-bottom: none;
+            display: block;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            color: #1f2937;
+            text-decoration: none;
+            transition: background-color 0.18s ease, color 0.18s ease, transform 0.18s ease;
         }
         .dropdown-content a:hover {
-         background-color: White
+            background-color: #eef6ff;
+            color: #0b57d0;
+            transform: translateX(4px);
         }
         .dropdown:hover .dropdown-content {
-         display:block;
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
         }
         .navbar-right {
-         display:flex;
-         align-items:center;
-         gap:20px;
+            display: flex;
+            align-items: center;
+            gap: 12px;
         }
-        .navbar-right span {
-         font-size: 20px;
-         cursor:pointer;
-         }
         .icon-btn {
-         display: inline-flex;   /* centers the emoji inside */
-         justify-content: center;
-         align-items: center;
-         width: 40px;
-         height: 40px;
-         background: #007BFF;
-         color: white;
-         border-radius: 6px;
-         cursor: pointer;
-         font-size: 20px;
-         transition: background 0.3s;
-         }
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 14px;
+            background: linear-gradient(135deg, #1787ff, #0a5dd8);
+            color: white;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 22px rgba(23, 135, 255, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
         .icon-btn:hover {
-         background: #0056b3;
-         }
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(23, 135, 255, 0.32);
+            filter: brightness(1.02);
+        }
         .slider {
-         width:1000;
-         height:500px;
-         margin:30px auto;
-         overflow: hidden;
-         position:relative;
-         border:4px solid white;
-         border-radius:8px;
-         }
+            width: 1000px;
+            max-width: calc(100% - 32px);
+            height: 500px;
+            margin: 30px auto;
+            overflow: hidden;
+            position: relative;
+            border: 4px solid white;
+            border-radius: 18px;
+            box-shadow: 0 20px 40px rgba(27, 53, 80, 0.16);
+        }
         .slides {
-         display:flex;
-         width:400%;
-         animation: slide 20s infinite;
-         gap:8px;
-         }
+            display: flex;
+            width: 400%;
+            animation: slide 20s infinite;
+            gap: 8px;
+        }
         .slides img {
-         width:25%;
-         height: 500px;
-         object-fit: cover;
-         flex-shrink:0;
-         }
+            width: 25%;
+            height: 500px;
+            object-fit: cover;
+            flex-shrink: 0;
+        }
         .image-row {
-         flex-wrap: wrap;
-         justify-content:center;
-         align-items: center;
-         gap: clamp(16px, 2vw, 40px);
-         display:flex;
-         }
+            flex-wrap: wrap;
+            justify-content: center;
+            align-items: center;
+            gap: clamp(16px, 2vw, 40px);
+            display: flex;
+            padding-bottom: 34px;
+        }
         .image-row img {
-         width: 400px;
-         height: auto;
-         border-radius: 14px;
-         object-fit:cover;
-         }
-@keyframes slide {
-  0%   { transform: translateX(0); }
-  20%  { transform: translateX(0); }       /* hold first image */
-  25%  { transform: translateX(-25%); }
-  45%  { transform: translateX(-25%); }    /* hold second image */
-  50%  { transform: translateX(-50%); }
-  70%  { transform: translateX(-50%); }    /* hold third image */
-  75%  { transform: translateX(-75%); }
-  95%  { transform: translateX(-75%); }    /* hold fourth image */
-  100% { transform: translateX(0); }
-}
-
+            width: 400px;
+            height: auto;
+            border-radius: 18px;
+            object-fit: cover;
+            box-shadow: 0 16px 32px rgba(27, 53, 80, 0.14);
+        }
+        @keyframes slide {
+            0% { transform: translateX(0); }
+            20% { transform: translateX(0); }
+            25% { transform: translateX(-25%); }
+            45% { transform: translateX(-25%); }
+            50% { transform: translateX(-50%); }
+            70% { transform: translateX(-50%); }
+            75% { transform: translateX(-75%); }
+            95% { transform: translateX(-75%); }
+            100% { transform: translateX(0); }
+        }
+        @media (max-width: 860px) {
+            .navbar {
+                padding: 16px;
+                gap: 16px;
+            }
+            .navbar-left,
+            .navbar-right {
+                gap: 10px;
+            }
+            .brand-name {
+                font-size: 18px;
+            }
+            .slider,
+            .slides img {
+                height: 320px;
+            }
+        }
     </style>
 </head>
 <body>
-
-  <div class="navbar">
-    <div class="navbar-left">
-      <img src="/logo.png" alt="Logo">
-      <a href="index.html">Home</a>
-      <div class="dropdown">
-        <a href="#categories">Categories ▼</a>
-        <div class="dropdown-content">
-          <a href="/laptops">Laptops</a>
-          <a href="/pc">PC</a>
-          <a href="/gaming">Gaming</a>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="index.html" class="brand-mark">
+                <img src="../logo.png" alt="Logo">
+                <span class="brand-name">Unet Solutions</span>
+            </a>
+            <a href="index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <a href="#categories" class="nav-link">Categories ▼</a>
+                <div class="dropdown-content">
+                    <a href="laptops/index.html">Laptops</a>
+                    <a href="pc/index.html">PC</a>
+                    <a href="gaming/index.html">Gaming</a>
+                    <a href="monitor/index.html">Monitor</a>
+                    <a href="build%20pc/index.html">Build PC</a>
+                </div>
+            </div>
+            <a href="#contact" class="nav-link">Contact</a>
         </div>
-      </div>
-      <a href="#contact">Contact</a>
+        <div class="navbar-right">
+            <span class="icon-btn">Search</span>
+            <a href="login/index.html" class="icon-btn">Account</a>
+            <span class="icon-btn">Cart</span>
+        </div>
     </div>
-    <div class="navbar-right">
-      <span class="icon-btn">🔍</span>
-      <a href="/login" class="icon-btn">👤</a>
-      <span class="icon-btn">🛒</span>
-      <span class="icon-btn">📄</span>
+    <div class="slider">
+        <div class="slides">
+            <img src="../images/slide1.jpg" alt="Slide 1">
+            <img src="../images/slide2.jpg" alt="Slide 2">
+            <img src="../images/slide3.jpg" alt="Slide 3">
+            <img src="../images/slide4.jpg" alt="Slide 4">
+        </div>
     </div>
-  </div>
-<div class="slider">
-  <div class="slides">
-    <img src="/images/slide1.jpg" alt="Slide 1">
-    <img src="/images/slide2.jpg" alt="Slide 2">
-    <img src="/images/slide3.jpg" alt="Slide 3">
-    <img src="/images/slide4.jpg" alt="Slide 4">
+    <div class="image-row" id="categories">
+        <a href="gaming/index.html">
+            <img src="../buttons/button1.jpg" alt="Gaming">
+        </a>
+        <a href="monitor/index.html">
+            <img src="../buttons/button2.jpg" alt="Monitor">
+        </a>
+        <a href="laptops/index.html">
+            <img src="../buttons/button3.jpg" alt="Laptops">
+        </a>
+        <a href="build%20pc/index.html">
+            <img src="../buttons/button4.jpg" alt="Build PC">
+        </a>
     </div>
-</div>
-<div class="image-row">
-  <a href="/gaming">
-  <img src="/buttons/button1.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
-  </a>
-  <a href="/monitor">
-  <img src="/buttons/button2.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
-  </a>
-  <a href="/laptops">
-  <img src="/buttons/button3.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
-  </a>
-  <a href="/build%20pc">
-  <img src="/buttons/button4.jpg" alt="peripherals" width="400" height="300" style="border-radius:20px; cursor:pointer;">
-  </a>
-</div>
 </body>
 </html>
