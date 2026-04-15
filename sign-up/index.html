@@ -59,6 +59,18 @@
         .signin-btn:hover {
          background-color: blue;
         }
+        .status-message {
+        min-height: 20px;
+        margin-top: 12px;
+        font-size: 14px;
+        text-align: center;
+        }
+        .status-message.error {
+        color: #b42318;
+        }
+        .status-message.success {
+        color: #067647;
+        }
     </style>
 </head>
 <body>
@@ -69,25 +81,67 @@
       <br>
       <input type="password" id="password" placeholder="Password" required>
       <button type="submit">Login</button>
+      <p id="loginMessage" class="status-message" aria-live="polite"></p>
       <br>
       <center>or</center>
       <br>
-      <a href="sign-up/index.html" class="signin-btn">Sign Up</a>
+      <a href="../login/" class="signin-btn">Sign Up</a>
     </form>
  </div>
   <script>
-    document.getElementById("login-form").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const res = await fetch("http://localhost:5000/login", {
+    const API_BASE =
+      window.location.port === "5000" ? window.location.origin : "http://localhost:5000";
+
+    const setMessage = (message, type) => {
+      const element = document.getElementById("loginMessage");
+      element.textContent = message;
+      element.className = `status-message ${type}`;
+    };
+
+    const postJson = async (url, payload) => {
+      const response = await fetch(`${API_BASE}${url}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
+        body: JSON.stringify(payload)
+      });
+
+      const contentType = response.headers.get("content-type") || "";
+      if (!contentType.includes("application/json")) {
+        throw new Error(`Backend is not responding correctly on ${API_BASE}.`);
+      }
+
+      let data = {};
+      try {
+        data = await response.json();
+      } catch (error) {
+        throw new Error("Server returned an invalid response.");
+      }
+
+      if (!response.ok) {
+        throw new Error(data.error || data.message || "Request failed.");
+      }
+
+      return data;
+    };
+
+    document.getElementById("loginForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      setMessage("", "");
+      try {
+        const data = await postJson("/login", {
           username: document.getElementById("username").value,
           password: document.getElementById("password").value
-        })
-      });
-      const data = await res.json();
-      alert(data.message);
+        });
+
+        if (data.message === "Login successful") {
+          setMessage("Login successful", "success");
+          window.location.href = new URL("../home/index.html", window.location.href).href;
+        } else {
+          setMessage(data.message || "Login failed", "error");
+        }
+      } catch (error) {
+        setMessage(error.message || `Unable to sign in. Check that ${API_BASE} is running.`, "error");
+      }
     });
   </script>
 </body>

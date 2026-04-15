@@ -3,15 +3,15 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const cors = require('cors');
 const path = require("path");
-app.use(express.static(path.join(__dirname, "../Website")));
-
-app.get("/home", (req, res) => {
-  res.sendFile(path.join(__dirname, "../Website/home/index.html"));
-});
-
 const app = express();
+
 app.use(cors());
 app.use(express.json());
+app.use(express.static(path.join(__dirname, "..")));
+
+app.get("/home", (req, res) => {
+  res.sendFile(path.join(__dirname, "../home/index.html"));
+});
 
 const uri = "mongodb://Unetadmin:Fao%40321@ac-l7thjp3-shard-00-00.ridbddz.mongodb.net:27017,ac-l7thjp3-shard-00-01.ridbddz.mongodb.net:27017,ac-l7thjp3-shard-00-02.ridbddz.mongodb.net:27017/unetDB?ssl=true&replicaSet=atlas-5ql69r-shard-0&authSource=admin&retryWrites=true&w=majority";
 
@@ -77,8 +77,6 @@ app.post("/login", async (req, res) => {
     res.status(500).json({ error: err.message });
   }
 });
-app.use(express.static(path.join(__dirname, "../Website")));
-
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
 });
