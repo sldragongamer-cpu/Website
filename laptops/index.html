@@ -1,1 +1,415 @@
-<title>Unet Solutions | Laptops</title>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet Solutions | Laptops</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(180deg, #d7efff 0%, #bfe2ff 100%);
+            color: #17324d;
+        }
+        .navbar {
+            position: relative;
+            width: min(1800px, calc(100% - 32px));
+            min-height: 88px;
+            margin: 18px auto 24px;
+            padding: 0 22px;
+            background: rgba(255, 255, 255, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(130, 171, 208, 0.35);
+            border-radius: 22px;
+            box-shadow: 0 18px 45px rgba(32, 74, 120, 0.16);
+            backdrop-filter: blur(10px);
+            box-sizing: border-box;
+            overflow: visible;
+            z-index: 20;
+        }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+            flex-wrap: wrap;
+        }
+        .brand-mark {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+        }
+        .brand-mark img {
+            height: 58px;
+            width: auto;
+        }
+        .brand-name {
+            font-size: 22px;
+            font-weight: 800;
+            letter-spacing: 0.02em;
+            text-transform: uppercase;
+            color: #0e3b66;
+        }
+        .nav-link {
+            color: #1b3550;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 700;
+            padding: 10px 14px;
+            border-radius: 999px;
+            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            background: transparent;
+        }
+        .nav-link:hover {
+            background: #eef6ff;
+            color: #0b57d0;
+            transform: translateY(-1px);
+        }
+        .dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            padding-bottom: 8px;
+        }
+        .dropdown > button {
+            position: relative;
+            top: 4px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+            height: 44px;
+            box-sizing: border-box;
+        }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            min-width: 220px;
+            background: white;
+            border: 1px solid #dbe7f3;
+            border-radius: 16px;
+            box-shadow: 0 18px 40px rgba(20, 40, 80, 0.18);
+            padding: 10px;
+            z-index: 9999;
+        }
+        .dropdown-content a {
+            display: block;
+            padding: 12px 14px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #1f2937;
+            font-weight: 600;
+        }
+        .dropdown-content a:hover {
+            background-color: #eef6ff;
+            color: #0b57d0;
+            transform: translateX(4px);
+        }
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+        .navbar-right {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .icon-btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            min-width: 44px;
+            height: 44px;
+            padding: 0 14px;
+            background: linear-gradient(135deg, #1787ff, #0a5dd8);
+            color: white;
+            border-radius: 999px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+            box-shadow: 0 10px 22px rgba(23, 135, 255, 0.25);
+            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+        }
+        .icon-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 28px rgba(23, 135, 255, 0.32);
+            filter: brightness(1.02);
+        }
+        .product-page {
+            display: none;
+        }
+        .product-page.active {
+            display: block;
+        }
+        .products-row {
+            width: min(1200px, calc(100% - 32px));
+            margin: 30px auto 20px;
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+        .card {
+            width: 100%;
+            background: white;
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+            text-align: center;
+            box-sizing: border-box;
+        }
+        .product-image {
+            width: 100%;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #f5f9ff;
+        }
+        .product-name {
+            margin: 12px 0 8px;
+            font-size: 15px;
+            font-weight: 700;
+            line-height: 1.4;
+            overflow: hidden;
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+        }
+        .price {
+            margin: 0;
+            color: #0b57d0;
+            font-size: 18px;
+            font-weight: 700;
+        }
+        .pagination {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0 40px;
+        }
+        .pagination button {
+            border: none;
+            padding: 10px 14px;
+            border-radius: 10px;
+            background: #1787ff;
+            color: white;
+            cursor: pointer;
+            font-weight: 700;
+        }
+        @media (max-width: 1000px) {
+            .products-row {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+        }
+        @media (max-width: 600px) {
+            .products-row {
+                grid-template-columns: 1fr;
+            }
+        }
+.cart-btn {
+    margin-top: 12px;
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    border: none;
+    border-radius: 12px;
+    padding: 10px 14px;
+    background: linear-gradient(lightblue);
+    color: white;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+}
+        .cart-btn:hover {
+         transform: translateY(-2px);
+         box-shadow: 0 12px 24px rgba(23, 135, 255, 0.28);
+         filter: brightness(1.03);
+         }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <div class="navbar-left">
+            <a href="../index.html" class="brand-mark">
+                <img src="../logo.png" alt="Logo">
+                <span class="brand-name">Unet Solutions</span>
+            </a>
+            <a href="../index.html" class="nav-link">Home</a>
+            <div class="dropdown">
+                <button type="button" class="nav-link">Categories ▼</button>
+                <div class="dropdown-content">
+                    <a href="../laptops/index.html">Laptops</a>
+                    <a href="../pc/index.html">PC</a>
+                    <a href="../gaming/index.html">Gaming</a>
+                    <a href="../monitor/index.html">Monitor</a>
+                    <a href="../build%20pc/index.html">Build PC</a>
+                </div>
+            </div>
+            <a href="../index.html#contact" class="nav-link">Contact</a>
+        </div>
+        <div class="navbar-right">
+            <span class="icon-btn">Search</span>
+            <a href="../login/index.html" class="icon-btn">Account</a>
+            <span class="icon-btn">Cart</span>
+        </div>
+    </div>
+
+    <div class="product-page active" id="page1">
+        <h2><center>Lenovo Laptops</center></h2>
+        <div class="products-row">
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="Lenovo LOQ" class="product-image">
+                <h4 class="product-name">LENOVO LOQ 15AHP10 RYZEN 7-250 | 16GB DDR5 | 512GB NVMe | RTX 5050 8GB | 15.6 FHD IPS 144HZ | WIN11 | LUNA GREY</h4>
+                <p class="price">Rs. 410,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/i5 loq.png" alt="Lenovo LOQ i5" class="product-image">
+                <h4 class="product-name">LENOVO LOQ 15IAX9E | i5-12450HX | 8GB DDR5 | 512GB NVMe | 15.6 144Hz | RTX 4050 6GB | LUNA GREY | WIN11</h4>
+                <p class="price">Rs. 295,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/leg r5.jpg" alt="Lenovo Ryzen 5" class="product-image">
+                <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB / LUNA GREY | WIN11</h4>
+                <p class="price">Rs. 335,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+        <div class="products-row">
+            <div class="card">
+                <img src="../Product card images/legion pro.png" alt="Legion PRO" class="product-image">
+                <h4 class="product-name">Lenovo Legion Pro 5 16IRX9 | i7-14650HX | 16GB DDR5 | 1TB NVMe | RTX4060 | 16'' WQXGA | DOS</h4>
+                <p class="price">Rs. 470,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/Ideapad1.png" alt="Idea PAD" class="product-image">
+                <h4 class="product-name">Lenovo Ideapad Slim 3-15IRH8 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.6'' FHD | DOS</h4>
+                <p class="price">Rs. 208,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/ideapad2.png" alt="H10" class="product-image">
+                <h4 class="product-name">Lenovo IdeaPad Slim 3 15IRH10 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.3'' WUXGA | UHD Graphics | DOS | Luna GreyLenovo IdeaPad Slim 3 15IRH10 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.3'' WUXGA | UHD Graphics | DOS | Luna Grey</h4>
+                <p class="price">Rs. 180,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+        <div class="products-row">
+            <div class="card">
+                <img src="../Product card images/4731cb21eb18cb7b1e7c14ec06531d273a2b2416-500x500.png" alt="Lenovo LOQ" class="product-image">
+                <h4 class="product-name">Lenovo Ideapad Slim 3-15ABR8 | Ryzen 7-7730U | 8GB DDR4 | 512GB NVMe | 15.6'' FHD | DOS</h4>
+                <p class="price">Rs. 189,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="ASUS TUF" class="product-image">
+                <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
+                <p class="price">Rs. 389,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="MSI Katana" class="product-image">
+                <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
+                <p class="price">Rs. 412,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="product-page" id="page2">
+        <h2><center>MSI Laptops</center></h2>
+        <div class="products-row">
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="Lenovo LOQ" class="product-image">
+                <h4 class="product-name">LENOVO LOQ 15AHP10 RYZEN 7-250</h4>
+                <p class="price">Rs. 405,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="ASUS TUF" class="product-image">
+                <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
+                <p class="price">Rs. 389,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="MSI Katana" class="product-image">
+                <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
+                <p class="price">Rs. 412,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+        <div class="products-row">
+            <div class="card">
+                <img src="../Product card images/lenove loq 7-250.png" alt="HP Victus" class="product-image">
+                <h4 class="product-name">HP VICTUS 15 RTX 4050</h4>
+                <p class="price">Rs. 365,000.00</p>
+                <button class="cart-btn">
+                <span>🛒</span>
+                <span>Add to Cart</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div class="pagination">
+        <button type="button" onclick="showPage('page1')">1</button>
+        <button type="button" onclick="showPage('page2')">2</button>
+    </div>
+
+    <script>
+      function showPage(pageId) {
+        document.querySelectorAll(".product-page").forEach((page) => {
+          page.classList.remove("active");
+        });
+        document.getElementById(pageId).classList.add("active");
+      }
+    </script>
+</body>
+</html>
