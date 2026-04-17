@@ -210,16 +210,6 @@
                 height: 320px;
             }
         }
-        .cart-container{
-         position:fixed;
-         top:50%;
-         left:50%;
-         transform: translate(-50%, -50%);
-         background:white;
-         border-radius: 16px;
-         padding:20px;
-         box-shadow:0 20px 40px;
-         width
     </style>
 </head>
 <body>
@@ -242,17 +232,10 @@
             </div>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <div id="cart-container" class="cart-container" style="display:none;">
-            <h2>Cart</h2>
-            <ul id="cart-items"></ul>
-            <p id="cart-total">Total: Rs.0</p>
-            <button onclick="checkout()">Checkout</button>
-            <button onclick="closeCart()">Close</button>
-        </div>
         <div class="navbar-right">
             <span class="icon-btn">Search</span>
             <a href="/login/index.html" class="icon-btn">Account</a>
-            <span class="icon-btn">Cart</span>
+            <span class="icon-btn" id="cartToggle">Cart</span>
         </div>
     </div>
     <div class="slider">
@@ -264,16 +247,16 @@
         </div>
     </div>
     <div class="image-row" id="categories">
-        <a href="/gaming">
+        <a href="/gaming/index.html">
             <img src="/buttons/button1.jpg" alt="Gaming">
         </a>
-        <a href="/monitor">
+        <a href="/monitor/index.html">
             <img src="/buttons/button2.jpg" alt="Monitor">
         </a>
-        <a href="/laptops">
+        <a href="/laptops/index.html">
             <img src="/buttons/button3.jpg" alt="Laptops">
         </a>
-        <a href="/build%20pc">
+        <a href="/build%20pc/index.html">
             <img src="/buttons/button4.jpg" alt="Build PC">
         </a>
     </div>
@@ -283,5 +266,6 @@
         injectSpeedInsights();
     </script>
     <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
 </body>
 </html>
