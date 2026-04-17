@@ -43,11 +43,24 @@ function attachAddToCartListeners() {
                 const card = e.target.closest('.card');
                 if (!card) return;
                 
+                const imageSrc = card.querySelector('.product-image')?.src || '';
+                const productName = card.querySelector('.product-name')?.textContent || '';
+                const priceElement = card.querySelector('.price');
+                const priceText = priceElement?.textContent || '0';
+                const price = parsePrice(priceText);
+                
+                console.log('Adding to cart:', { 
+                    name: productName.substring(0, 50), 
+                    priceText: priceText, 
+                    parsedPrice: price,
+                    imageSrc: imageSrc
+                });
+                
                 const product = {
-                    id: card.querySelector('.product-name')?.textContent || Date.now().toString(),
-                    name: card.querySelector('.product-name')?.textContent || 'Unknown Product',
-                    price: parsePrice(card.querySelector('.price')?.textContent || '0'),
-                    image: card.querySelector('.product-image')?.src || '',
+                    id: imageSrc || productName || Date.now().toString(),
+                    name: productName || 'Unknown Product',
+                    price: price,
+                    image: imageSrc,
                     quantity: 1
                 };
                 
@@ -58,7 +71,9 @@ function attachAddToCartListeners() {
 }
 
 function parsePrice(priceStr) {
-    return parseFloat(priceStr.replace(/[^0-9.]/g, '')) || 0;
+    const cleaned = priceStr.replace(/Rs\.?\s*/gi, '').replace(/,/g, '').trim();
+    const parsed = parseFloat(cleaned);
+    return isNaN(parsed) ? 0 : parsed;
 }
 
 function addToCart(product) {
@@ -92,6 +107,26 @@ function updateQuantity(productId, change) {
             renderCart();
         }
     }
+}
+
+function syncPrices() {
+    document.querySelectorAll('.card').forEach(card => {
+        const image = card.querySelector('.product-image')?.src || '';
+        const priceText = card.querySelector('.price')?.textContent || '0';
+        const price = parsePrice(priceText);
+        
+        const parent = card.closest('.products-row, .card-container');
+        const isVisible = parent ? getComputedStyle(parent).display !== 'none' : true;
+        
+        if (image && price > 0 && isVisible) {
+            const item = cart.find(i => i.image === image);
+            if (item) {
+                item.price = price;
+            }
+        }
+    });
+    saveCart();
+    renderCart();
 }
 
 function saveCart() {
@@ -128,7 +163,7 @@ function renderCart() {
             <img src="${item.image}" alt="${item.name}" style="width:60px;height:60px;object-fit:contain;border-radius:8px;background:#f5f9ff;">
             <div style="flex:1;min-width:0;">
                 <p style="margin:0;font-size:13px;font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${item.name}</p>
-                <p style="margin:4px 0 0;color:#0b57d0;font-weight:700;">Rs. ${item.price.toLocaleString()}</p>
+                <p style="margin:4px 0 0;color:#0b57d0;font-weight:700;">Rs. ${item.price.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</p>
             </div>
             <div style="display:flex;align-items:center;gap:8px;">
                 <button onclick="updateQuantity('${item.id}', -1)" style="width:28px;height:28px;border:1px solid #ddd;border-radius:6px;background:#fff;cursor:pointer;font-size:16px;font-weight:700;">-</button>
@@ -146,7 +181,7 @@ function renderCart() {
 function updateTotal(total) {
     const totalEl = document.querySelector('.cart-total');
     if (totalEl) {
-        totalEl.textContent = `Total: Rs. ${total.toLocaleString()}`;
+        totalEl.textContent = `Total: Rs. ${total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}`;
     }
 }
 
@@ -156,6 +191,7 @@ function toggleCart() {
     if (cartTab.classList.contains('open')) {
         cartTab.style.transform = 'translateX(0)';
         document.body.style.overflow = 'hidden';
+        syncPrices();
     } else {
         cartTab.style.transform = 'translateX(100%)';
         document.body.style.overflow = '';
@@ -176,16 +212,67 @@ function checkout() {
         return;
     }
     
-    const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-    const itemsList = cart.map(item => `${item.name} (x${item.quantity})`).join('\n');
+    closeCart();
+    window.location.href = '/checkout/index.html';
+}
+
+function viewOrders() {
+    const orders = getOrders();
+    const ordersWindow = window.open('', '_blank', 'width=600,height=700');
     
-    if (confirm(`Checkout Summary:\n\n${itemsList}\n\nTotal: Rs. ${total.toLocaleString()}\n\nProceed to checkout?`)) {
-        cart = [];
-        saveCart();
-        renderCart();
-        closeCart();
-        showNotification('Order placed successfully! Thank you!', 'success');
+    if (orders.length === 0) {
+        ordersWindow.document.write(`
+            <html>
+            <head><title>My Orders</title>
+            <style>
+                body { font-family: Arial, sans-serif; padding: 20px; }
+                .no-orders { text-align: center; color: #666; margin-top: 50px; }
+            </style>
+            </head>
+            <body>
+                <h1>My Orders</h1>
+                <div class="no-orders">
+                    <p>No orders yet</p>
+                    <p>Start shopping to see your orders here!</p>
+                </div>
+            </body>
+            </html>
+        `);
+        return;
     }
+    
+    const ordersHTML = orders.map(order => `
+        <div style="border: 1px solid #ddd; border-radius: 8px; padding: 15px; margin-bottom: 15px;">
+            <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                <strong>${order.id}</strong>
+                <span style="background: ${order.status === 'Pending' ? '#ffc107' : order.status === 'Completed' ? '#28a745' : '#17a2b8'}; color: white; padding: 2px 10px; border-radius: 12px; font-size: 12px;">${order.status}</span>
+            </div>
+            <div style="color: #666; font-size: 12px; margin-bottom: 10px;">${new Date(order.date).toLocaleString()}</div>
+            <div style="font-size: 14px;">
+                ${order.items.map(item => `<div style="margin: 5px 0;">${item.name.substring(0, 40)}... x${item.quantity} = Rs. ${(item.price * item.quantity).toLocaleString()}</div>`).join('')}
+            </div>
+            <div style="margin-top: 10px; padding-top: 10px; border-top: 1px solid #eee; font-weight: bold; color: #0b57d0;">
+                Total: Rs. ${order.total.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}
+            </div>
+        </div>
+    `).join('');
+    
+    ordersWindow.document.write(`
+        <html>
+        <head><title>My Orders</title>
+        <style>
+            body { font-family: Arial, sans-serif; padding: 20px; max-width: 600px; margin: 0 auto; }
+            h1 { color: #333; }
+            .back-btn { background: #0b57d0; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer; margin-bottom: 20px; }
+        </style>
+        </head>
+        <body>
+            <button class="back-btn" onclick="window.close()">Close</button>
+            <h1>My Orders</h1>
+            ${ordersHTML}
+        </body>
+        </html>
+    `);
 }
 
 function showNotification(message, type = 'success') {
