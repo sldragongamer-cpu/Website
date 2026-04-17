@@ -136,7 +136,7 @@ function saveCart() {
 
 function updateCartBadge() {
     const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
-    document.querySelectorAll('.icon-btn, .cart-btn, button').forEach(btn => {
+    document.querySelectorAll('.icon-btn').forEach(btn => {
         if (btn.textContent.includes('Cart') && !btn.closest('.cartTab')) {
             btn.innerHTML = `Cart ${totalItems > 0 ? `<span style="background:#ff4444;border-radius:50%;padding:2px 8px;font-size:12px;margin-left:4px;">${totalItems}</span>` : ''}`;
         }
