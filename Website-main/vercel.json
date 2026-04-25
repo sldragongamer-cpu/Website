@@ -2,5 +2,8 @@
   "buildCommand": "echo 'Build complete'",
   "outputDirectory": ".",
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "github": {
+    "silent": true
+  }
 }
