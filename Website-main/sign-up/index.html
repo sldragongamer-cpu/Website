@@ -193,8 +193,13 @@
        } catch (error) {
          setMessage(error.message || `Unable to sign in. Check that ${API_BASE} is running.`, "error");
        }
-     });
-   </script>
+});
+    </script>
+    <script type="module">
+        import { injectSpeedInsights } from "/node_modules/@vercel/speed-insights/dist/index.mjs";
+
+        injectSpeedInsights();
+    </script>
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
 </body>

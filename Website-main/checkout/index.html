@@ -487,5 +487,10 @@
             to { transform: translateX(-50%) translateY(0); opacity: 1; }
         }
     </style>
+    <script type="module">
+        import { injectSpeedInsights } from "/node_modules/@vercel/speed-insights/dist/index.mjs";
+
+        injectSpeedInsights();
+    </script>
 </body>
 </html>

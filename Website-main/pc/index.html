@@ -340,8 +340,10 @@
         window.scrollTo(0, 0);
         };
     </script>
-    <script>
+    <script type="module">
+        import { injectSpeedInsights } from "/node_modules/@vercel/speed-insights/dist/index.mjs";
 
+        injectSpeedInsights();
     </script>
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
