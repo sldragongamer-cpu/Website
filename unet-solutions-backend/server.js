@@ -91,7 +91,7 @@ app.post('/generate-pc-image', async (req, res) => {
       return res.status(400).json({ error: 'No prompt provided' });
     }
 
-    const apiKey = process.env.TOGETHER_API_KEY || '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';
+    const apiKey = process.env.TOGETHER_API_KEY;
     
     if (!apiKey || apiKey === 'sk-proj-YOUR_KEY_HERE') {
       return res.status(500).json({ error: 'API key not configured' });
