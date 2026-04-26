@@ -46,34 +46,19 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.disabled = true;
 
         try {
-            const apiKey = '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';
-            
-            if (!apiKey || apiKey === 'sk-proj-YOUR_KEY_HERE') {
-                throw new Error('API key not set. Get a free key from https://together.ai');
-            }
-
-            const response = await fetch('https://api.together.xyz/inference', {
+            const response = await fetch('/generate-pc-image', {
                 method: 'POST',
-                headers: {
-                    'Authorization': `Bearer ${apiKey}`,
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify({
-                    model: 'black-forest-labs/FLUX.1-pro',
-                    prompt: prompt,
-                    image_size: '768x768',
-                    steps: 25,
-                    seed: Math.floor(Math.random() * 1000000)
-                })
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ prompt })
             });
 
             if (!response.ok) {
                 const error = await response.json();
-                throw new Error(error.error?.message || 'API Error');
+                throw new Error(error.error || 'API Error');
             }
 
             const data = await response.json();
-            const imageUrl = data.output?.choices?.[0]?.image_url || data.data?.[0];
+            const imageUrl = data.imageUrl;
 
             if (imageUrl) {
                 imageContainer.innerHTML = `

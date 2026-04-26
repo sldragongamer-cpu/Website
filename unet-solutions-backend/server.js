@@ -80,3 +80,68 @@ app.post("/login", async (req, res) => {
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
 });
+
+const https = require('https');
+
+app.post('/generate-pc-image', async (req, res) => {
+  try {
+    const { prompt } = req.body;
+    
+    if (!prompt) {
+      return res.status(400).json({ error: 'No prompt provided' });
+    }
+
+    const apiKey = process.env.TOGETHER_API_KEY || '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';
+    
+    if (!apiKey || apiKey === 'sk-proj-YOUR_KEY_HERE') {
+      return res.status(500).json({ error: 'API key not configured' });
+    }
+
+    const data = JSON.stringify({
+      model: 'black-forest-labs/FLUX.1-pro',
+      prompt: prompt,
+      image_size: '768x768',
+      steps: 25,
+      seed: Math.floor(Math.random() * 1000000)
+    });
+
+    const options = {
+      hostname: 'api.together.xyz',
+      path: '/inference',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      }
+    };
+
+    const request = https.request(options, (response) => {
+      let body = '';
+      response.on('data', (chunk) => body += chunk);
+      response.on('end', () => {
+        try {
+          const result = JSON.parse(body);
+          if (result.error) {
+            return res.status(400).json({ error: result.error.message || 'API Error' });
+          }
+          const imageUrl = result.output?.choices?.[0]?.image_url || result.data?.[0];
+          if (!imageUrl) {
+            return res.status(500).json({ error: 'No image generated' });
+          }
+          res.json({ imageUrl });
+        } catch (e) {
+          res.status(500).json({ error: 'Failed to parse response' });
+        }
+      });
+    });
+
+    request.on('error', (e) => {
+      res.status(500).json({ error: e.message });
+    });
+
+    request.write(data);
+    request.end();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
+});
