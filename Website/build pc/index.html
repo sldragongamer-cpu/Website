@@ -318,6 +318,47 @@
             display: block;
             margin-bottom: 4px;
         }
+        .generate-image-btn {
+            width: 100%;
+            padding: 14px;
+            margin-top: 12px;
+            border: none;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #8b5cf6, #6366f1);
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.3);
+        }
+        .generate-image-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 12px 28px rgba(139, 92, 246, 0.4);
+        }
+        .generate-image-btn:disabled {
+            background: #9ca3af;
+            cursor: not-allowed;
+            box-shadow: none;
+        }
+        .generated-image-container {
+            margin-top: 20px;
+            text-align: center;
+            display: none;
+        }
+        .generated-image-container.show {
+            display: block;
+        }
+        .generated-image-container img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+        }
+        .generated-image-container .loading {
+            padding: 40px;
+            color: #6b7280;
+            font-size: 14px;
+        }
     </style>
 </head>
 <body>
@@ -569,7 +610,12 @@
                     <strong>Compatibility Note:</strong>
                     <span id="warningText"></span>
                 </div>
+                <div class="generated-image-container" id="generatedImageContainer">
+                    <div class="loading" id="imageLoading">Generating AI image...</div>
+                    <img id="generatedImage" src="" alt="Generated PC Build">
+                </div>
                 <button class="add-to-cart-btn" id="addToCartBtn" disabled>Select Components to Continue</button>
+                <button class="generate-image-btn" id="generateImageBtn" style="display:none;">Generate Build Image</button>
                 <button class="clear-btn" id="clearBtn">Clear All</button>
             </div>
         </div>
@@ -647,6 +693,8 @@
         function checkCompatibility() {
             const warning = document.getElementById('compatibilityWarning');
             const warningText = document.getElementById('warningText');
+            const generateImageBtn = document.getElementById('generateImageBtn');
+            const generatedImageContainer = document.getElementById('generatedImageContainer');
             
             let warnings = [];
 
@@ -686,6 +734,14 @@
             } else {
                 warning.classList.remove('show');
             }
+
+            const entries = Object.entries(selectedComponents);
+            if (entries.length >= 3) {
+                generateImageBtn.style.display = 'block';
+            } else {
+                generateImageBtn.style.display = 'none';
+                generatedImageContainer.classList.remove('show');
+            }
         }
 
         document.getElementById('addToCartBtn').addEventListener('click', () => {
@@ -718,6 +774,49 @@
             Object.keys(selectedComponents).forEach(key => delete selectedComponents[key]);
             updateSummary();
             checkCompatibility();
+        });
+
+        document.getElementById('generateImageBtn').addEventListener('click', async () => {
+            const entries = Object.entries(selectedComponents);
+            if (entries.length < 3) return;
+
+            const container = document.getElementById('generatedImageContainer');
+            const loading = document.getElementById('imageLoading');
+            const img = document.getElementById('generatedImage');
+            
+            container.classList.add('show');
+            loading.style.display = 'block';
+            img.style.display = 'none';
+
+            try {
+                const components = entries.map(([cat, item]) => ({
+                    category: categoryLabels[cat],
+                    name: item.name
+                }));
+
+                const response = await fetch('/generate-pc-image', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ components })
+                });
+
+                const data = await response.json();
+                
+                if (data.error) {
+                    alert('Error: ' + data.error);
+                    container.classList.remove('show');
+                    return;
+                }
+
+                img.src = data.imageUrl;
+                img.onload = () => {
+                    loading.style.display = 'none';
+                    img.style.display = 'block';
+                };
+            } catch (err) {
+                alert('Failed to generate image: ' + err.message);
+                container.classList.remove('show');
+            }
         });
     </script>
 </body>

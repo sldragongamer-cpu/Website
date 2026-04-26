@@ -3,6 +3,8 @@ const mongoose = require('mongoose');
 const bcrypt = require("bcryptjs");
 const cors = require('cors');
 const path = require("path");
+const https = require('https');
+const fs = require('fs');
 const app = express();
 
 app.use(cors());
@@ -79,4 +81,66 @@ app.post("/login", async (req, res) => {
 });
 app.listen(5000, () => {
   console.log("Server running on http://localhost:5000");
+});
+
+app.post('/generate-pc-image', async (req, res) => {
+  try {
+    const { components } = req.body;
+    
+    if (!components || components.length === 0) {
+      return res.status(400).json({ error: 'No components provided' });
+    }
+
+    const specsText = components.map(c => `${c.category}: ${c.name}`).join(', ');
+    const prompt = `A professional high-tech PC build showcase with sleek RGB lighting, modern gaming computer with transparent case showing internal components including: ${specsText}. Clean modern background with subtle blue and purple ambient lighting, cyberpunk aesthetic, photorealistic 3D render, high quality, no text`;
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    
+    if (!apiKey) {
+      return res.status(500).json({ error: 'OpenAI API key not configured' });
+    }
+
+    const data = JSON.stringify({
+      model: "dall-e-3",
+      prompt: prompt,
+      size: "1024x1024",
+      quality: "standard",
+      n: 1
+    });
+
+    const options = {
+      hostname: 'api.openai.com',
+      path: '/v1/images/generations',
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${apiKey}`
+      }
+    };
+
+    const request = https.request(options, (response) => {
+      let body = '';
+      response.on('data', (chunk) => body += chunk);
+      response.on('end', () => {
+        try {
+          const result = JSON.parse(body);
+          if (result.error) {
+            return res.status(400).json({ error: result.error.message });
+          }
+          res.json({ imageUrl: result.data[0].url });
+        } catch (e) {
+          res.status(500).json({ error: 'Failed to parse response' });
+        }
+      });
+    });
+
+    request.on('error', (e) => {
+      res.status(500).json({ error: e.message });
+    });
+
+    request.write(data);
+    request.end();
+  } catch (err) {
+    res.status(500).json({ error: err.message });
+  }
 });
