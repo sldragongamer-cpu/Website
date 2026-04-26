@@ -46,10 +46,10 @@ document.addEventListener('DOMContentLoaded', () => {
         generateBtn.disabled = true;
 
         try {
-            const apiKey = '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'; // User must replace this
+            const apiKey = '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';
             
-            if (apiKey === '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') {
-                throw new Error('❌ API key not set. Edit pc-builder.js and replace "your_api_key_here" with your Together AI key from https://together.ai');
+            if (!apiKey || apiKey === 'sk-proj-YOUR_KEY_HERE') {
+                throw new Error('API key not set. Get a free key from https://together.ai');
             }
 
             const response = await fetch('https://api.together.xyz/inference', {
