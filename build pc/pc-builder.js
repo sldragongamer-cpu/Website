@@ -2,7 +2,7 @@ class PCBuilder {
     constructor() {
         this.apiKey = 'your_api_key_here'; // Replace with your actual API key
         this.selectedComponents = {};
-        this.apiProvider = 'together'; // Options: 'together', 'huggingface', 'localai', 'openai'
+        this.apiProvider = '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'; // Options: 'together', 'huggingface', 'localai', 'openai'
         this.init();
     }
 
