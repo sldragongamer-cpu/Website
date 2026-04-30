@@ -6,188 +6,80 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Unet Solutions | Gaming</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #d7efff 0%, #bfe2ff 100%);
-            color: #17324d;
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
+            color: #0f172a; min-height: 100vh;
         }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none; z-index: 0;
+        }
+        .page-wrapper { position: relative; z-index: 1; }
         .navbar {
-            position: relative;
-            width: min(1800px, calc(100% - 32px));
-            min-height: 88px;
-            margin: 18px auto 24px;
-            padding: 0 22px;
-            background: rgba(255, 255, 255, 0.94);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(130, 171, 208, 0.35);
-            border-radius: 22px;
-            box-shadow: 0 18px 45px rgba(32, 74, 120, 0.16);
-            backdrop-filter: blur(10px);
-            box-sizing: border-box;
-            overflow: visible;
-            z-index: 20;
+            position: relative; width: min(1400px, calc(100% - 48px));
+            min-height: 80px; margin: 24px auto 32px; padding: 0 28px;
+            background: rgba(255, 255, 255, 0.82);
+            display: flex; align-items: center; justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px;
+            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%); box-sizing: border-box; z-index: 100;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 22px;
-            flex-wrap: wrap;
-        }
-        .brand-mark {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-        }
-        .brand-mark img {
-            height: 58px;
-            width: auto;
-        }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .navbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; padding-right: 20px; margin-right: 8px; border-right: 1px solid rgba(148, 163, 184, 0.2); }
+        .brand-mark img { height: 48px; width: auto; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
+        .brand-mark:hover img { transform: scale(1.05) rotate(-2deg); }
         .brand-name {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 0.02em;
-            text-transform: uppercase;
-            color: #0e3b66;
+            font-size: 20px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .nav-link {
-            color: #1b3550;
-            text-decoration: none;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-radius: 999px;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
-            background: transparent;
-        }
-        .nav-link:hover {
-            background: #eef6ff;
-            color: #0b57d0;
-            transform: translateY(-1px);
-        }
-        .dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-            padding-bottom: 8px;
-        }
-        .dropdown > button {
-            position: relative;
-            top: 4px;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: none;
-            cursor: pointer;
-            font: inherit;
-            height: 44px;
-            box-sizing: border-box;
-        }
-        .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            background: white;
-            border: 1px solid #dbe7f3;
-            border-radius: 16px;
-            box-shadow: 0 18px 40px rgba(20, 40, 80, 0.18);
-            padding: 10px;
-            z-index: 9999;
-        }
-        .dropdown-content a {
-            display: block;
-            padding: 12px 14px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #1f2937;
-            font-weight: 600;
-        }
-        .dropdown-content a:hover {
-            background-color: #eef6ff;
-            color: #0b57d0;
-            transform: translateX(4px);
-        }
-        .dropdown:hover .dropdown-content {
-            display: block;
-        }
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-        .icon-btn {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 44px;
-            height: 44px;
-            padding: 0 14px;
-            background: linear-gradient(135deg, #1787ff, #0a5dd8);
-            color: white;
-            border-radius: 999px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 10px 22px rgba(23, 135, 255, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-        }
-        .icon-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(23, 135, 255, 0.32);
-            filter: brightness(1.02);
-        }
-        .icon-btn {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 44px;
-            height: 44px;
-            padding: 0 14px;
-            background: linear-gradient(135deg, #1787ff, #0a5dd8);
-            color: white;
-            border-radius: 999px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 700;
-            text-decoration: none;
-            box-shadow: 0 10px 22px rgba(23, 135, 255, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
-        }
-        .icon-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(23, 135, 255, 0.32);
-            filter: brightness(1.02);
-        }
-        .content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-            text-align: center;
-        }
-        h1 {
-            font-size: 36px;
-            margin-bottom: 20px;
-        }
+        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); background: transparent; }
+        .nav-link:hover { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
+        .dropdown { position: relative; display: inline-flex; align-items: center; }
+        .dropdown > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font: inherit; background: transparent; color: #334155; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dropdown:hover > button { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
+        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s; }
+        .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
+        .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dropdown-content a:hover { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06)); color: #1e40af; padding-left: 20px; }
+        .dropdown:hover .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+        .navbar-right { display: flex; align-items: center; gap: 10px; }
+        .icon-btn { display: inline-flex; justify-content: center; align-items: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .icon-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
+        .content { max-width: 800px; margin: 60px auto; padding: 0 24px; text-align: center; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        h1 { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 32px; }
         .coming-soon {
-            background: white;
-            padding: 60px;
-            border-radius: 20px;
-            box-shadow: 0 8px 30px rgba(0,0,0,0.1);
-            margin-top: 40px;
+            background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
+            padding: 60px 40px; border-radius: 24px;
+            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.1);
+            backdrop-filter: blur(16px);
+        }
+        .coming-soon p:first-child { font-size: 72px; margin: 0 0 16px; }
+        .coming-soon p:nth-child(2) { font-size: 24px; font-weight: 700; margin: 16px 0; color: #1e293b; }
+        .coming-soon p:last-child { color: #64748b; font-size: 16px; }
+        @media (max-width: 860px) {
+            .navbar { flex-direction: column; padding: 20px; gap: 16px; margin: 16px auto 24px; width: calc(100% - 32px); }
+            .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; }
+            .brand-mark { border-right: none; padding-right: 0; margin-right: 0; }
+            .brand-name { font-size: 18px; }
+            h1 { font-size: 28px; }
+            .coming-soon { padding: 40px 24px; }
         }
     </style>
 </head>
 <body>
-<body>
+<div class="page-wrapper">
     <div class="navbar">
         <div class="navbar-left">
             <a href="../index.html" class="brand-mark">
@@ -217,11 +109,12 @@
     <div class="content">
         <h1>Gaming Gear Coming Soon</h1>
         <div class="coming-soon">
-            <p style="font-size:64px;margin:0;">🎮</p>
-            <p style="font-size:24px;font-weight:700;margin:20px 0;">We're working on adding gaming products!</p>
-            <p style="color:#666;">Stay tuned for keyboards, mice, headsets, and more.</p>
+            <p>🎮</p>
+            <p>We're working on adding gaming products!</p>
+            <p>Stay tuned for keyboards, mice, headsets, and more.</p>
         </div>
     </div>
+</div>
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
 </body>

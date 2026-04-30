@@ -5,202 +5,544 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Unet Solutions</title>
     <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #d7efff 0%, #bfe2ff 100%);
-            color: #17324d;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
+            color: #0f172a;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .page-wrapper {
+            position: relative;
+            z-index: 1;
+        }
+
         .navbar {
             position: relative;
-            width: min(1800px, calc(100% - 32px));
-            min-height: 88px;
-            margin: 18px auto 24px;
-            padding: 0 22px;
-            background: rgba(255, 255, 255, 0.94);
+            width: min(1600px, calc(100% - 48px));
+            min-height: 80px;
+            margin: 24px auto 32px;
+            padding: 0 28px;
+            background: rgba(255, 255, 255, 0.82);
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border: 1px solid rgba(130, 171, 208, 0.35);
-            border-radius: 22px;
-            box-shadow: 0 18px 45px rgba(32, 74, 120, 0.16);
-            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(30, 58, 138, 0.08),
+                0 2px 8px rgba(30, 58, 138, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             box-sizing: border-box;
             overflow: visible;
-            z-index: 20;
+            z-index: 100;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .navbar-left {
             display: flex;
             align-items: center;
-            gap: 22px;
+            gap: 8px;
             flex-wrap: wrap;
         }
+
         .brand-mark {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 14px;
             text-decoration: none;
+            padding-right: 20px;
+            margin-right: 8px;
+            border-right: 1px solid rgba(148, 163, 184, 0.2);
         }
+
         .brand-mark img {
-            height: 58px;
+            height: 48px;
             width: auto;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
         }
+
+        .brand-mark:hover img {
+            transform: scale(1.05) rotate(-2deg);
+        }
+
         .brand-name {
-            font-size: 22px;
-            font-weight: 800;
-            letter-spacing: 0.02em;
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
             text-transform: uppercase;
-            color: #0e3b66;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
+
         .nav-link {
-            color: #1b3550;
+            color: #334155;
             text-decoration: none;
-            font-size: 16px;
-            font-weight: 700;
-            padding: 10px 14px;
-            border-radius: 999px;
-            transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             background: transparent;
+            position: relative;
+            letter-spacing: -0.01em;
         }
+
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .nav-link:hover {
-            background: #eef6ff;
-            color: #0b57d0;
-            transform: translateY(-1px);
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
         }
+
+        .nav-link:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
         .dropdown {
             position: relative;
             display: inline-flex;
             align-items: center;
-            padding-bottom: 8px;
         }
+
         .dropdown > button {
-            position: relative;
-            top: 4px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 8px;
+            gap: 6px;
             border: none;
             cursor: pointer;
             font: inherit;
-            height: 44px;
+            height: auto;
             box-sizing: border-box;
+            background: transparent;
+            color: #334155;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
         }
-        .dropdown-content {
-            display: none;
+
+        .dropdown > button::before {
+            content: '';
             position: absolute;
-            top: 100%;
-            left: 0;
-            min-width: 220px;
-            background: white;
-            border: 1px solid #dbe7f3;
-            border-radius: 16px;
-            box-shadow: 0 18px 40px rgba(20, 40, 80, 0.18);
-            padding: 10px;
-            z-index: 9999;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
+
+        .dropdown:hover > button {
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
+        }
+
+        .dropdown:hover > button::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+
+        .dropdown-content {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transform: translateY(-8px);
+            position: absolute;
+            top: calc(100% + 12px);
+            left: 0;
+            min-width: 200px;
+            background: rgba(255, 255, 255, 0.95);
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 16px;
+            box-shadow: 
+                0 20px 50px rgba(30, 58, 138, 0.12),
+                0 4px 16px rgba(30, 58, 138, 0.06);
+            padding: 8px;
+            z-index: 9999;
+            backdrop-filter: blur(20px);
+            transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+        }
+
+        .dropdown-content::before {
+            content: '';
+            position: absolute;
+            top: -20px;
+            left: 0;
+            width: 100%;
+            height: 20px;
+            background: transparent;
+        }
+
         .dropdown-content a {
             display: block;
-            padding: 12px 14px;
+            padding: 12px 16px;
             border-radius: 10px;
             text-decoration: none;
-            color: #1f2937;
+            color: #1e293b;
             font-weight: 600;
+            font-size: 14px;
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
         }
+
+        .dropdown-content a::after {
+            content: '→';
+            position: absolute;
+            right: 16px;
+            opacity: 0;
+            transform: translateX(-8px);
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
         .dropdown-content a:hover {
-            background-color: #eef6ff;
-            color: #0b57d0;
-            transform: translateX(4px);
+            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06));
+            color: #1e40af;
+            padding-left: 20px;
         }
+
+        .dropdown-content a:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
         .dropdown:hover .dropdown-content {
-            display: block;
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateY(0);
+            transition-delay: 0s;
         }
+
         .navbar-right {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
+
         .icon-btn {
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            min-width: 44px;
-            height: 44px;
-            padding: 0 14px;
-            background: linear-gradient(135deg, #1787ff, #0a5dd8);
+            min-width: 42px;
+            height: 42px;
+            padding: 0 20px;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: white;
-            border-radius: 999px;
+            border-radius: 12px;
             cursor: pointer;
             font-size: 14px;
-            font-weight: 700;
+            font-weight: 600;
             text-decoration: none;
-            box-shadow: 0 10px 22px rgba(23, 135, 255, 0.25);
-            transition: transform 0.2s ease, box-shadow 0.2s ease, filter 0.2s ease;
+            box-shadow: 
+                0 4px 12px rgba(59, 130, 246, 0.25),
+                0 2px 4px rgba(59, 130, 246, 0.15);
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative;
+            overflow: hidden;
+            letter-spacing: -0.01em;
         }
+
+        .icon-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255, 255, 255, 0.2), transparent);
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+
         .icon-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 14px 28px rgba(23, 135, 255, 0.32);
-            filter: brightness(1.02);
+            box-shadow: 
+                0 8px 20px rgba(59, 130, 246, 0.3),
+                0 4px 8px rgba(59, 130, 246, 0.2);
         }
+
+        .icon-btn:hover::before {
+            opacity: 1;
+        }
+
+        .icon-btn:active {
+            transform: translateY(0);
+        }
+
+        .hero-section {
+            position: relative;
+            width: min(1400px, calc(100% - 48px));
+            margin: 0 auto 48px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .slider {
             position: relative;
-            width: 1500px;
-            max-width: calc(100% - 32px);
-            height: 500px;
-            margin: 30px auto;
+            width: 100%;
+            height: 480px;
             overflow: hidden;
-            border: 4px solid white;
-            border-radius: 18px;
-            box-shadow: 0 20px 40px rgba(27, 53, 80, 0.16);
-            z-index: 1;
+            border-radius: 24px;
+            box-shadow: 
+                0 24px 64px rgba(30, 58, 138, 0.15),
+                0 8px 24px rgba(30, 58, 138, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.5);
         }
+
+        .slider::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 24px;
+            box-shadow: inset 0 2px 4px rgba(255, 255, 255, 0.3), inset 0 -2px 4px rgba(0, 0, 0, 0.05);
+            pointer-events: none;
+        }
+
         .slides {
             display: flex;
             width: 400%;
-            animation: slide 20s infinite;
-            gap: 8px;
+            animation: slide 20s infinite cubic-bezier(0.4, 0, 0.2, 1);
         }
+
         .slides img {
             width: 25%;
-            height: 500px;
+            height: 480px;
             object-fit: cover;
             flex-shrink: 0;
         }
-        .image-row {
-            flex-wrap: wrap;
-            justify-content: center;
-            align-items: center;
-            gap: clamp(16px, 2vw, 40px);
-            display: flex;
-            padding-bottom: 34px;
-        }
-        .image-row img {
-            width: 400px;
-            height: auto;
-            border-radius: 18px;
-            object-fit: cover;
-            box-shadow: 0 16px 32px rgba(27, 53, 80, 0.14);
-        }
+
         @keyframes slide {
-            0% { transform: translateX(0); }
-            20% { transform: translateX(0); }
-            25% { transform: translateX(-25%); }
-            45% { transform: translateX(-25%); }
-            50% { transform: translateX(-50%); }
-            70% { transform: translateX(-50%); }
-            75% { transform: translateX(-75%); }
-            95% { transform: translateX(-75%); }
+            0%, 20% { transform: translateX(0); }
+            25%, 45% { transform: translateX(-25%); }
+            50%, 70% { transform: translateX(-50%); }
+            75%, 95% { transform: translateX(-75%); }
             100% { transform: translateX(0); }
         }
+
+        .categories-section {
+            position: relative;
+            width: min(1400px, calc(100% - 48px));
+            margin: 0 auto 64px;
+            animation: fadeInUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            font-weight: 800;
+            letter-spacing: -0.03em;
+            margin-bottom: 40px;
+            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+
+        .category-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+            cursor: pointer;
+            box-shadow: 
+                0 8px 24px rgba(30, 58, 138, 0.1),
+                0 2px 8px rgba(30, 58, 138, 0.06);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, transparent 40%, rgba(15, 23, 42, 0.6) 100%);
+            z-index: 1;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: 20px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .category-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .category-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 48px rgba(30, 58, 138, 0.18),
+                0 8px 16px rgba(30, 58, 138, 0.1);
+        }
+
+        .category-card:hover::before {
+            background: linear-gradient(180deg, transparent 20%, rgba(15, 23, 42, 0.7) 100%);
+        }
+
+        .category-card:hover::after {
+            opacity: 1;
+        }
+
+        .category-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .category-label {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            z-index: 2;
+            color: white;
+            font-size: 18px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            transform: translateY(8px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.1s;
+        }
+
+        .category-card:hover .category-label {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        .category-arrow {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            z-index: 2;
+            width: 40px;
+            height: 40px;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(10px);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 18px;
+            transform: translate(10px, 10px);
+            opacity: 0;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) 0.15s;
+        }
+
+        .category-card:hover .category-arrow {
+            transform: translate(0, 0);
+            opacity: 1;
+        }
+
+        @media (max-width: 1024px) {
+            .categories-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
         @media (max-width: 860px) {
             .navbar {
-                padding: 16px;
+                flex-direction: column;
+                padding: 20px;
                 gap: 16px;
+                margin: 16px auto 24px;
+                width: calc(100% - 32px);
             }
             .navbar-left,
             .navbar-right {
-                gap: 10px;
+                gap: 8px;
+                justify-content: center;
+                flex-wrap: wrap;
+            }
+            .brand-mark {
+                border-right: none;
+                padding-right: 0;
+                margin-right: 0;
             }
             .brand-name {
                 font-size: 18px;
@@ -209,60 +551,120 @@
             .slides img {
                 height: 320px;
             }
+            .hero-section,
+            .categories-section {
+                width: calc(100% - 32px);
+            }
+            .section-title {
+                font-size: 26px;
+                margin-bottom: 28px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .categories-grid {
+                grid-template-columns: 1fr;
+                gap: 16px;
+            }
+            .category-card {
+                aspect-ratio: 16/10;
+            }
+            .category-label {
+                opacity: 1;
+                transform: translateY(0);
+            }
+            .category-arrow {
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .slider,
+            .slides img {
+                height: 220px;
+                border-radius: 16px;
+            }
+            .nav-link,
+            .dropdown > button {
+                padding: 8px 12px;
+                font-size: 14px;
+            }
+            .icon-btn {
+                padding: 0 16px;
+                font-size: 13px;
+                height: 38px;
+            }
         }
     </style>
 </head>
 <body>
-    <div class="navbar">
-        <div class="navbar-left">
-            <a href="index.html" class="brand-mark">
-                <img src="/logo.png" alt="Logo">
-                <span class="brand-name">Unet Solutions</span>
-            </a>
-            <a href="index.html" class="nav-link">Home</a>
-            <div class="dropdown">
-                <button type="button" class="nav-link">Categories ▼</button>
-                <div class="dropdown-content">
-                    <a href="/laptops">Laptops</a>
-                    <a href="/pc">PC</a>
-                    <a href="/gaming">Gaming</a>
-                    <a href="/monitor">Monitor</a>
-                    <a href="/build pc">Build PC</a>
+    <div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="index.html" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button type="button">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <a href="/build pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="slider">
+                <div class="slides">
+                    <img src="/images/slide1.jpg" alt="Slide 1">
+                    <img src="/images/slide2.jpg" alt="Slide 2">
+                    <img src="/images/slide3.jpg" alt="Slide 3">
+                    <img src="/images/slide4.jpg" alt="Slide 4">
                 </div>
             </div>
-            <a href="#contact" class="nav-link">Contact</a>
         </div>
-        <div class="navbar-right">
-            <span class="icon-btn">Search</span>
-            <a href="/login/index.html" class="icon-btn">Account</a>
-            <span class="icon-btn" id="cartToggle">Cart</span>
+
+        <div class="categories-section" id="categories">
+            <h2 class="section-title">Shop by Category</h2>
+            <div class="categories-grid">
+                <a href="/gaming/index.html" class="category-card">
+                    <img src="/buttons/button1.jpg" alt="Gaming">
+                    <span class="category-label">Gaming</span>
+                    <span class="category-arrow">→</span>
+                </a>
+                <a href="/monitor/index.html" class="category-card">
+                    <img src="/buttons/button2.jpg" alt="Monitor">
+                    <span class="category-label">Monitors</span>
+                    <span class="category-arrow">→</span>
+                </a>
+                <a href="/laptops/index.html" class="category-card">
+                    <img src="/buttons/button3.jpg" alt="Laptops">
+                    <span class="category-label">Laptops</span>
+                    <span class="category-arrow">→</span>
+                </a>
+                <a href="/build pc/index.html" class="category-card">
+                    <img src="/buttons/button4.jpg" alt="Build PC">
+                    <span class="category-label">Build PC</span>
+                    <span class="category-arrow">→</span>
+                </a>
+            </div>
         </div>
     </div>
-    <div class="slider">
-        <div class="slides">
-            <img src="/images/slide1.jpg" alt="Slide 1">
-            <img src="/images/slide2.jpg" alt="Slide 2">
-            <img src="/images/slide3.jpg" alt="Slide 3">
-            <img src="/images/slide4.jpg" alt="Slide 4">
-        </div>
-    </div>
-    <div class="image-row" id="categories">
-        <a href="/gaming/index.html">
-            <img src="/buttons/button1.jpg" alt="Gaming">
-        </a>
-        <a href="/monitor/index.html">
-            <img src="/buttons/button2.jpg" alt="Monitor">
-        </a>
-        <a href="/laptops/index.html">
-            <img src="/buttons/button3.jpg" alt="Laptops">
-        </a>
-        <a href="/build pc/index.html">
-            <img src="/buttons/button4.jpg" alt="Build PC">
-        </a>
-    </div>
+
     <script type="module">
         import { injectSpeedInsights } from "/node_modules/@vercel/speed-insights/dist/index.mjs";
-
         injectSpeedInsights();
     </script>
     <script src="/clear-forms.js"></script>

@@ -3,489 +3,278 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Checkout - UNET Solutions</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <title>Checkout - Unet Solutions</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
-            font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #e4e8ec 100%);
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
+            min-height: 100vh; padding: 24px;
         }
+        body::before {
+            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+        .page-wrapper { position: relative; z-index: 1; }
         .container {
-            max-width: 900px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
-            overflow: hidden;
+            max-width: 960px; margin: 0 auto;
+            background: rgba(255, 255, 255, 0.9); border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 24px; overflow: hidden;
+            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.1), 0 4px 12px rgba(30, 58, 138, 0.06);
+            backdrop-filter: blur(20px);
+            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         .header {
-            background: linear-gradient(135deg, #1787ff, #0a5dd8);
-            color: white;
-            padding: 30px;
-            text-align: center;
+            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
+            color: white; padding: 36px 32px; text-align: center; position: relative; overflow: hidden;
         }
-        .header h1 {
-            font-size: 28px;
-            margin-bottom: 5px;
+        .header::before {
+            content: ''; position: absolute; top: -50%; right: -20%; width: 300px; height: 300px;
+            background: rgba(255, 255, 255, 0.06); border-radius: 50%;
         }
-        .header p {
-            opacity: 0.9;
-            font-size: 14px;
-        }
-        .content {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            padding: 30px;
-        }
-        @media (max-width: 768px) {
-            .content {
-                grid-template-columns: 1fr;
-            }
-        }
+        .header h1 { font-size: 32px; font-weight: 900; letter-spacing: -0.03em; margin-bottom: 8px; }
+        .header p { opacity: 0.9; font-size: 15px; font-weight: 500; }
+        .content { display: grid; grid-template-columns: 1.2fr 1fr; gap: 32px; padding: 32px; }
+        @media (max-width: 768px) { .content { grid-template-columns: 1fr; padding: 24px; gap: 24px; } .header { padding: 28px 20px; } .header h1 { font-size: 26px; } }
         .section {
-            background: #f8f9fa;
-            border-radius: 15px;
-            padding: 25px;
+            background: rgba(248, 250, 252, 0.7); border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: 18px; padding: 28px;
         }
         .section h2 {
-            font-size: 18px;
-            color: #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 2px solid #1787ff;
+            font-size: 18px; color: #1e293b; margin-bottom: 20px; padding-bottom: 12px;
+            border-bottom: 2px solid rgba(59, 130, 246, 0.15); font-weight: 800; letter-spacing: -0.02em;
         }
-        .form-group {
-            margin-bottom: 15px;
+        .form-group { margin-bottom: 16px; }
+        .form-group label { display: block; font-size: 14px; font-weight: 600; color: #475569; margin-bottom: 6px; }
+        .form-group input, .form-group textarea, .form-group select {
+            width: 100%; padding: 12px 14px;
+            border: 2px solid rgba(148, 163, 184, 0.15); border-radius: 12px;
+            font-size: 14px; font-family: inherit; color: #1e293b;
+            background: rgba(255, 255, 255, 0.7); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            color: #555;
-            margin-bottom: 5px;
+        .form-group input::placeholder, .form-group textarea::placeholder { color: #94a3b8; }
+        .form-group input:focus, .form-group textarea:focus, .form-group select:focus {
+            outline: none; border-color: #3b82f6; background: white;
+            box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.1);
         }
-        .form-group input,
-        .form-group textarea,
-        .form-group select {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 14px;
-            font-family: 'Poppins', sans-serif;
-            transition: border-color 0.3s;
-        }
-        .form-group input:focus,
-        .form-group textarea:focus,
-        .form-group select:focus {
-            outline: none;
-            border-color: #1787ff;
-        }
-        .form-group textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        .order-summary {
-            background: white;
-            border: 1px solid #e0e0e0;
-        }
-        .order-item {
-            display: flex;
-            gap: 15px;
-            padding: 15px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .order-item img {
-            width: 60px;
-            height: 60px;
-            object-fit: contain;
-            border-radius: 8px;
-            background: #f0f7ff;
-        }
-        .order-item-details {
-            flex: 1;
-        }
-        .order-item-name {
-            font-size: 13px;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 5px;
-        }
-        .order-item-price {
-            font-size: 14px;
-            font-weight: 700;
-            color: #0b57d0;
-        }
-        .order-item-qty {
-            font-size: 12px;
-            color: #666;
-        }
-        .order-total {
-            padding: 20px 0;
-            border-top: 2px solid #1787ff;
-            margin-top: 10px;
-        }
-        .order-total-row {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 10px;
-            font-size: 14px;
-        }
-        .order-total-row.grand-total {
-            font-size: 20px;
-            font-weight: 700;
-            color: #0b57d0;
-        }
-        .empty-cart {
-            text-align: center;
-            padding: 40px;
-        }
-        .empty-cart p {
-            color: #666;
-            margin-bottom: 20px;
-        }
+        .form-group textarea { resize: vertical; min-height: 80px; }
+        .order-summary { background: rgba(255, 255, 255, 0.6); border: 1px solid rgba(148, 163, 184, 0.1); }
+        .order-item { display: flex; gap: 14px; padding: 14px 0; border-bottom: 1px solid rgba(148, 163, 184, 0.1); }
+        .order-item img { width: 56px; height: 56px; object-fit: contain; border-radius: 10px; background: rgba(241, 245, 249, 0.8); }
+        .order-item-details { flex: 1; }
+        .order-item-name { font-size: 13px; font-weight: 600; color: #1e293b; margin-bottom: 4px; }
+        .order-item-qty { font-size: 12px; color: #64748b; }
+        .order-item-price { font-size: 14px; font-weight: 700; color: #2563eb; }
+        .order-total { padding: 18px 0; border-top: 2px solid rgba(59, 130, 246, 0.15); margin-top: 12px; }
+        .order-total-row { display: flex; justify-content: space-between; margin-bottom: 10px; font-size: 14px; color: #475569; }
+        .order-total-row.grand-total { font-size: 22px; font-weight: 800; color: #1e293b; letter-spacing: -0.02em; }
+        .empty-cart { text-align: center; padding: 40px; }
+        .empty-cart p { color: #64748b; margin-bottom: 20px; }
         .empty-cart a {
-            display: inline-block;
-            background: #1787ff;
-            color: white;
-            padding: 12px 30px;
-            border-radius: 10px;
-            text-decoration: none;
-            font-weight: 600;
+            display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white; padding: 12px 28px; border-radius: 12px; text-decoration: none;
+            font-weight: 600; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s ease;
         }
-        .buttons {
-            display: flex;
-            gap: 15px;
-            margin-top: 20px;
-        }
+        .empty-cart a:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
+        .buttons { display: flex; gap: 14px; margin-top: 24px; }
+        @media (max-width: 480px) { .buttons { flex-direction: column; } }
         .btn {
-            flex: 1;
-            padding: 15px;
-            border: none;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
+            flex: 1; padding: 14px; border: none; border-radius: 14px;
+            font-size: 15px; font-weight: 600; cursor: pointer; font-family: inherit;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-back {
-            background: #e0e0e0;
-            color: #333;
-        }
-        .btn-back:hover {
-            background: #d0d0d0;
-        }
-        .btn-submit {
-            background: linear-gradient(135deg, #1787ff, #0a5dd8);
-            color: white;
-        }
-        .btn-submit:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(23, 135, 255, 0.4);
-        }
-        .btn-submit:disabled {
-            background: #ccc;
-            cursor: not-allowed;
-            transform: none;
-            box-shadow: none;
-        }
-        .success-message {
-            display: none;
-            text-align: center;
-            padding: 60px 30px;
-        }
-        .success-message.show {
-            display: block;
-        }
+        .btn-back { background: rgba(241, 245, 249, 0.8); color: #475569; border: 1px solid rgba(148, 163, 184, 0.15); }
+        .btn-back:hover { background: rgba(226, 232, 240, 0.8); transform: translateY(-2px); }
+        .btn-submit { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3); }
+        .btn-submit:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4); }
+        .btn-submit:disabled { background: #cbd5e1; cursor: not-allowed; transform: none; box-shadow: none; }
+        .success-message { display: none; text-align: center; padding: 60px 32px; }
+        .success-message.show { display: block; }
         .success-icon {
-            width: 80px;
-            height: 80px;
-            background: #28a745;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 20px;
-            font-size: 40px;
-            color: white;
+            width: 80px; height: 80px; background: linear-gradient(135deg, #10b981, #059669);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 24px; font-size: 40px; color: white;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
         }
-        .success-message h2 {
-            font-size: 24px;
-            color: #333;
-            margin-bottom: 10px;
-        }
-        .success-message p {
-            color: #666;
-            margin-bottom: 20px;
-        }
+        .success-message h2 { font-size: 26px; color: #1e293b; margin-bottom: 12px; font-weight: 800; letter-spacing: -0.02em; }
+        .success-message p { color: #64748b; margin-bottom: 20px; font-size: 15px; }
         .order-id {
-            background: #f0f7ff;
-            padding: 15px 25px;
-            border-radius: 10px;
-            display: inline-block;
-            margin-bottom: 20px;
+            background: rgba(239, 246, 255, 0.8); padding: 14px 24px; border-radius: 14px;
+            display: inline-block; margin-bottom: 24px; font-weight: 600; color: #475569;
+            border: 1px solid rgba(59, 130, 246, 0.15);
         }
-        .order-id span {
-            font-weight: 700;
-            color: #0b57d0;
+        .order-id span { font-weight: 800; color: #2563eb; }
+        .success-message a {
+            display: inline-block; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+            color: white; padding: 14px 32px; border-radius: 14px; text-decoration: none;
+            font-weight: 600; box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3); transition: all 0.25s ease;
         }
+        .success-message a:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(59, 130, 246, 0.4); }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>Checkout</h1>
-            <p>Complete your order</p>
-        </div>
-        
-        <div id="checkoutForm">
-            <div class="content">
-                <div class="left">
-                    <div class="section">
-                        <h2>Customer Information</h2>
-                        <form id="customerForm">
-                            <div class="form-group">
-                                <label>Full Name *</label>
-                                <input type="text" id="name" required placeholder="Enter your full name">
-                            </div>
-                            <div class="form-group">
-                                <label>Email Address *</label>
-                                <input type="email" id="email" required placeholder="Enter your email">
-                            </div>
-                            <div class="form-group">
-                                <label>Phone Number *</label>
-                                <input type="tel" id="phone" required placeholder="Enter your phone number">
-                            </div>
-                            <div class="form-group">
-                                <label>City / Location *</label>
-                                <input type="text" id="location" required placeholder="Enter your city or location">
-                            </div>
-                            <div class="form-group">
-                                <label>Delivery Address *</label>
-                                <textarea id="address" required placeholder="Enter your complete delivery address"></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Order Notes (Optional)</label>
-                                <textarea id="notes" placeholder="Any special instructions..."></textarea>
-                            </div>
-                        </form>
+    <div class="page-wrapper">
+        <div class="container">
+            <div class="header">
+                <h1>Checkout</h1>
+                <p>Complete your order</p>
+            </div>
+            
+            <div id="checkoutForm">
+                <div class="content">
+                    <div class="left">
+                        <div class="section">
+                            <h2>Customer Information</h2>
+                            <form id="customerForm">
+                                <div class="form-group">
+                                    <label>Full Name *</label>
+                                    <input type="text" id="name" required placeholder="Enter your full name">
+                                </div>
+                                <div class="form-group">
+                                    <label>Email Address *</label>
+                                    <input type="email" id="email" required placeholder="Enter your email">
+                                </div>
+                                <div class="form-group">
+                                    <label>Phone Number *</label>
+                                    <input type="tel" id="phone" required placeholder="Enter your phone number">
+                                </div>
+                                <div class="form-group">
+                                    <label>City / Location *</label>
+                                    <input type="text" id="location" required placeholder="Enter your city or location">
+                                </div>
+                                <div class="form-group">
+                                    <label>Delivery Address *</label>
+                                    <textarea id="address" required placeholder="Enter your complete delivery address"></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>Order Notes (Optional)</label>
+                                    <textarea id="notes" placeholder="Any special instructions..."></textarea>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="buttons">
+                            <button class="btn btn-back" onclick="goBack()">Back to Cart</button>
+                            <button class="btn btn-submit" id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
+                        </div>
                     </div>
-                    
-                    <div class="buttons">
-                        <button class="btn btn-back" onclick="goBack()">Back to Cart</button>
-                        <button class="btn btn-submit" id="placeOrderBtn" onclick="placeOrder()">Place Order</button>
-                    </div>
-                </div>
-                
-                <div class="right">
-                    <div class="section order-summary">
-                        <h2>Order Summary</h2>
-                        <div id="orderItems"></div>
-                        <div class="order-total">
-                            <div class="order-total-row">
-                                <span>Subtotal</span>
-                                <span id="subtotal">Rs. 0</span>
-                            </div>
-                            <div class="order-total-row">
-                                <span>Delivery</span>
-                                <span>Free</span>
-                            </div>
-                            <div class="order-total-row grand-total">
-                                <span>Total</span>
-                                <span id="total">Rs. 0</span>
+                    <div class="right">
+                        <div class="section order-summary">
+                            <h2>Order Summary</h2>
+                            <div id="orderItems"></div>
+                            <div class="order-total">
+                                <div class="order-total-row">
+                                    <span>Subtotal</span>
+                                    <span id="subtotal">Rs. 0</span>
+                                </div>
+                                <div class="order-total-row">
+                                    <span>Delivery</span>
+                                    <span>Free</span>
+                                </div>
+                                <div class="order-total-row grand-total">
+                                    <span>Total</span>
+                                    <span id="total">Rs. 0</span>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        
-        <div class="success-message" id="successMessage">
-            <div class="success-icon">✓</div>
-            <h2>Order Placed Successfully!</h2>
-            <p>Thank you for your order. We will contact you shortly.</p>
-            <div class="order-id">Order ID: <span id="orderId"></span></div>
-            <p>A confirmation email has been sent to your email address.</p>
-            <a href="/index.html">Continue Shopping</a>
+            
+            <div class="success-message" id="successMessage">
+                <div class="success-icon">✓</div>
+                <h2>Order Placed Successfully!</h2>
+                <p>Thank you for your order. We will contact you shortly.</p>
+                <div class="order-id">Order ID: <span id="orderId"></span></div>
+                <p>A confirmation email has been sent to your email address.</p>
+                <a href="/index.html">Continue Shopping</a>
+            </div>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     <script>
-        (function() {
-            emailjs.init("aqyQLy9ekgqUBGNiM");
-        })();
-
+        (function() { emailjs.init("aqyQLy9ekgqUBGNiM"); })();
         let cart = JSON.parse(localStorage.getItem('cart')) || [];
-        
         function loadOrderItems() {
             const container = document.getElementById('orderItems');
-            
             if (cart.length === 0) {
-                container.innerHTML = `
-                    <div class="empty-cart">
-                        <p>Your cart is empty</p>
-                        <a href="/index.html">Go Shopping</a>
-                    </div>
-                `;
+                container.innerHTML = `<div class="empty-cart"><p>Your cart is empty</p><a href="/index.html">Go Shopping</a></div>`;
                 document.getElementById('placeOrderBtn').disabled = true;
                 return;
             }
-            
             let itemsHTML = '';
             cart.forEach(item => {
-                itemsHTML += `
-                    <div class="order-item">
-                        <img src="${item.image}" alt="${item.name}">
-                        <div class="order-item-details">
-                            <div class="order-item-name">${item.name.substring(0, 50)}...</div>
-                            <div class="order-item-qty">Qty: ${item.quantity}</div>
-                            <div class="order-item-price">Rs. ${(item.price * item.quantity).toLocaleString()}</div>
-                        </div>
-                    </div>
-                `;
+                itemsHTML += `<div class="order-item"><img src="${item.image}" alt="${item.name}"><div class="order-item-details"><div class="order-item-name">${item.name.substring(0, 50)}...</div><div class="order-item-qty">Qty: ${item.quantity}</div><div class="order-item-price">Rs. ${(item.price * item.quantity).toLocaleString()}</div></div></div>`;
             });
-            
             container.innerHTML = itemsHTML;
-            
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             document.getElementById('subtotal').textContent = `Rs. ${total.toLocaleString()}`;
             document.getElementById('total').textContent = `Rs. ${total.toLocaleString()}`;
         }
-        
-        function goBack() {
-            window.location.href = '/index.html';
-        }
-        
+        function goBack() { window.location.href = '/index.html'; }
         function validateForm() {
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const location = document.getElementById('location').value.trim();
             const address = document.getElementById('address').value.trim();
-            
-            if (!name || !email || !phone || !location || !address) {
-                showNotification('Please fill in all required fields', 'error');
-                return false;
-            }
-            
+            if (!name || !email || !phone || !location || !address) { showNotification('Please fill in all required fields', 'error'); return false; }
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            if (!emailRegex.test(email)) {
-                showNotification('Please enter a valid email address', 'error');
-                return false;
-            }
-            
+            if (!emailRegex.test(email)) { showNotification('Please enter a valid email address', 'error'); return false; }
             return true;
         }
-        
         function placeOrder() {
             if (!validateForm()) return;
-            
             const btn = document.getElementById('placeOrderBtn');
-            btn.disabled = true;
-            btn.textContent = 'Processing...';
-            
+            btn.disabled = true; btn.textContent = 'Processing...';
             const name = document.getElementById('name').value.trim();
             const email = document.getElementById('email').value.trim();
             const phone = document.getElementById('phone').value.trim();
             const location = document.getElementById('location').value.trim();
             const address = document.getElementById('address').value.trim();
             const notes = document.getElementById('notes').value.trim();
-            
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
-            
-            const order = {
-                id: 'ORD-' + Date.now(),
-                date: new Date().toISOString(),
-                items: [...cart],
-                total: total,
-                status: 'Pending',
-                customer: {
-                    name: name,
-                    email: email,
-                    phone: phone,
-                    location: location,
-                    address: address,
-                    notes: notes
-                }
-            };
-            
-            saveOrder(order);
-            sendOrderEmail(order);
-            
+            const order = { id: 'ORD-' + Date.now(), date: new Date().toISOString(), items: [...cart], total, status: 'Pending', customer: { name, email, phone, location, address, notes } };
+            saveOrder(order); sendOrderEmail(order);
             localStorage.removeItem('cart');
-            
             document.getElementById('checkoutForm').style.display = 'none';
             document.getElementById('orderId').textContent = order.id;
             document.getElementById('successMessage').classList.add('show');
         }
-        
         function saveOrder(order) {
             const orders = JSON.parse(localStorage.getItem('orders')) || [];
             orders.unshift(order);
             localStorage.setItem('orders', JSON.stringify(orders));
         }
-        
         function sendOrderEmail(order) {
             const templateParams = {
-                order_id: order.id,
-                order_date: new Date(order.date).toLocaleString(),
-                customer_name: order.customer.name,
-                customer_email: order.customer.email,
-                customer_phone: order.customer.phone,
-                customer_location: order.customer.location,
+                order_id: order.id, order_date: new Date(order.date).toLocaleString(),
+                customer_name: order.customer.name, customer_email: order.customer.email,
+                customer_phone: order.customer.phone, customer_location: order.customer.location,
                 customer_address: order.customer.address,
                 order_items: order.items.map(item => `${item.name} x${item.quantity} = Rs. ${(item.price * item.quantity).toLocaleString()}`).join('\n'),
-                order_total: `Rs. ${order.total.toLocaleString()}`,
-                status: order.status
+                order_total: `Rs. ${order.total.toLocaleString()}`, status: order.status
             };
-            
             emailjs.send('service_cxazdfg', 'template_9qiuwyt', templateParams)
-                .then(function(response) {
-                    console.log('Email sent successfully!', response.status, response.text);
-                }, function(error) {
-                    console.log('Email failed:', error);
-                });
+                .then(r => console.log('Email sent!', r.status, r.text), e => console.log('Email failed:', e));
         }
-        
         function showNotification(message, type) {
             const notification = document.createElement('div');
-            notification.style.cssText = `
-                position: fixed;
-                top: 20px;
-                left: 50%;
-                transform: translateX(-50%);
-                padding: 12px 24px;
-                background: ${type === 'success' ? '#28a745' : '#ff4444'};
-                color: white;
-                border-radius: 12px;
-                font-weight: 600;
-                z-index: 10000;
-                animation: slideDown 0.3s ease;
-            `;
+            notification.style.cssText = `position: fixed; top: 20px; left: 50%; transform: translateX(-50%); padding: 14px 28px; background: ${type === 'success' ? 'linear-gradient(135deg, #10b981, #059669)' : 'linear-gradient(135deg, #ef4444, #dc2626)'}; color: white; border-radius: 14px; font-weight: 600; z-index: 10000; animation: slideDown 0.3s ease; font-family: 'Inter', sans-serif; box-shadow: 0 8px 24px rgba(0,0,0,0.2);`;
             notification.textContent = message;
             document.body.appendChild(notification);
-            
-            setTimeout(() => {
-                notification.remove();
-            }, 3000);
+            setTimeout(() => notification.remove(), 3000);
         }
-        
         loadOrderItems();
     </script>
     <style>
-        @keyframes slideDown {
-            from { transform: translateX(-50%) translateY(-100px); opacity: 0; }
-            to { transform: translateX(-50%) translateY(0); opacity: 1; }
-        }
+        @keyframes slideDown { from { transform: translateX(-50%) translateY(-100px); opacity: 0; } to { transform: translateX(-50%) translateY(0); opacity: 1; } }
     </style>
 </body>
 </html>
