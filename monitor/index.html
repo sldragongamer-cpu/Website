@@ -3,14 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unet Solutions | Monitor</title>
+    <title>Unet Solutions | Monitors</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
+            margin: 0;
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
             color: #0f172a; min-height: 100vh;
@@ -33,7 +35,8 @@
             animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
         @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; }
+        .navbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
+        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; padding-right: 20px; margin-right: 8px; border-right: 1px solid rgba(148, 163, 184, 0.2); }
         .brand-mark img { height: 48px; width: auto; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
         .brand-mark:hover img { transform: scale(1.05) rotate(-2deg); }
         .brand-name {
@@ -41,55 +44,299 @@
             background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
         }
-        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); background: transparent; }
         .nav-link:hover { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
+        .dropdown { position: relative; display: inline-flex; align-items: center; }
+        .dropdown > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font: inherit; background: transparent; color: #334155; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dropdown:hover > button { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
+        .dropdown-content {
+            opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px);
+            position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px;
+            background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12);
+            padding: 8px; z-index: 9999; backdrop-filter: blur(20px);
+            transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+        }
+        .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
+        .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dropdown-content a:hover { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06)); color: #1e40af; padding-left: 20px; }
+        .dropdown:hover .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+        .navbar-right { display: flex; align-items: center; gap: 10px; }
         .icon-btn { display: inline-flex; justify-content: center; align-items: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
         .icon-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
-        .content { max-width: 800px; margin: 60px auto; padding: 0 24px; text-align: center; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        .page-header { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; text-align: center; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        h1 { font-size: 40px; font-weight: 900; letter-spacing: -0.03em; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; margin-bottom: 32px; }
-        .coming-soon {
+        .page-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .product-page { display: none; }
+        .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
+        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .card {
             background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
-            padding: 60px 40px; border-radius: 24px;
-            box-shadow: 0 16px 48px rgba(30, 58, 138, 0.1); backdrop-filter: blur(16px);
+            border-radius: 20px; padding: 20px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
+            backdrop-filter: blur(12px); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+            overflow: hidden; position: relative;
         }
-        .coming-soon p:first-child { font-size: 72px; margin: 0 0 16px; }
-        .coming-soon p:nth-child(2) { font-size: 24px; font-weight: 700; margin: 16px 0; color: #1e293b; }
-        .coming-soon p:last-child { color: #64748b; font-size: 16px; }
+        .card::before { content: ''; position: absolute; inset: 0; border-radius: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(6, 182, 212, 0.02)); opacity: 0; transition: opacity 0.35s ease; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(30, 58, 138, 0.14), 0 4px 12px rgba(30, 58, 138, 0.08); }
+        .card:hover::before { opacity: 1; }
+        .product-image { width: 100%; height: 200px; object-fit: contain; border-radius: 14px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover .product-image { transform: scale(1.03); }
+        .product-name { margin: 16px 0 10px; font-size: 15px; font-weight: 700; line-height: 1.45; color: #1e293b; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
+        .price { margin: 0 0 12px; color: #2563eb; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+        .In-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
+        .Out-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #ef4444; background: rgba(239, 68, 68, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
+        .cart-btn { width: 100%; margin-top: 8px; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 12px; padding: 12px 16px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; z-index: 1; }
+        .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35); }
+        .pagination { display: flex; justify-content: center; gap: 12px; margin: 20px 0 60px; }
+        .pagination button { border: none; padding: 12px 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.6); color: #334155; cursor: pointer; font-weight: 600; font-size: 15px; backdrop-filter: blur(10px); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .pagination button:hover { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3); }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
         @media (max-width: 860px) {
             .navbar { flex-direction: column; padding: 20px; gap: 16px; margin: 16px auto 24px; width: calc(100% - 32px); }
-            .navbar > div { justify-content: center; flex-wrap: wrap; }
+            .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; }
+            .brand-mark { border-right: none; padding-right: 0; margin-right: 0; }
             .brand-name { font-size: 18px; }
-            h1 { font-size: 28px; }
-            .coming-soon { padding: 40px 24px; }
+            .page-header, .products-row { width: calc(100% - 32px); }
+            .page-header h2 { font-size: 28px; }
+        }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
+        .sidebar {
+            position: fixed; top: 50%; left: 0; transform: translateY(-50%); z-index: 200;
+            display: flex; flex-direction: column; gap: 6px; padding: 16px 10px;
+            background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
+            border-left: none; border-radius: 0 16px 16px 0;
+            box-shadow: 8px 0 32px rgba(30, 58, 138, 0.1), inset 1px 0 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px); animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
+        }
+        @keyframes slideInLeft {
+            from { opacity: 0; transform: translateY(-50%) translateX(-20px); }
+            to { opacity: 1; transform: translateY(-50%) translateX(0); }
+        }
+        .sidebar-link {
+            display: flex; align-items: center; gap: 10px; padding: 10px 14px;
+            text-decoration: none; color: #475569; font-size: 13px; font-weight: 600;
+            border-radius: 10px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            white-space: nowrap; position: relative;
+        }
+        .sidebar-link::before {
+            content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%) scaleY(0);
+            width: 3px; height: 60%; background: linear-gradient(180deg, #3b82f6, #06b6d4);
+            border-radius: 0 4px 4px 0; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .sidebar-link:hover { background: rgba(59, 130, 246, 0.08); color: #1e40af; transform: translateX(4px); }
+        .sidebar-link:hover::before { transform: translateY(-50%) scaleY(1); }
+        .sidebar-link.active { background: linear-gradient(135deg, rgba(59, 130, 246, 0.12), rgba(6, 182, 212, 0.08)); color: #1e40af; }
+        .sidebar-link.active::before { transform: translateY(-50%) scaleY(1); }
+        .sidebar-icon { width: 20px; height: 20px; flex-shrink: 0; opacity: 0.75; transition: opacity 0.25s ease; }
+        .sidebar-link:hover .sidebar-icon, .sidebar-link.active .sidebar-icon { opacity: 1; }
+        .sidebar-toggle {
+            display: none; position: fixed; top: 20px; left: 20px; z-index: 250;
+            width: 44px; height: 44px; background: rgba(255, 255, 255, 0.9);
+            border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 12px;
+            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.15); backdrop-filter: blur(12px);
+            cursor: pointer; align-items: center; justify-content: center; transition: all 0.25s ease;
+        }
+        .sidebar-toggle:hover { transform: scale(1.05); }
+        .sidebar-toggle svg { width: 22px; height: 22px; color: #334155; }
+        .sidebar-overlay {
+            display: none; position: fixed; inset: 0; background: rgba(0, 0, 0, 0.3);
+            z-index: 190; backdrop-filter: blur(4px);
+        }
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateY(-50%) translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+            .sidebar.open { transform: translateY(-50%) translateX(0); }
+            .sidebar-toggle { display: flex; }
+            .sidebar-overlay.active { display: block; }
         }
     </style>
 </head>
 <body>
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Toggle navigation">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+    </button>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <nav class="sidebar" id="sidebar">
+        <a href="/" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="m2.25 12 8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"/></svg>
+            Home
+        </a>
+        <a href="/laptops" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"/></svg>
+            Laptops
+        </a>
+        <a href="/pc" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5.25 14.25h13.5m-13.5 0a3 3 0 0 1-3-3m3 3a3 3 0 1 0 0 6h13.5a3 3 0 1 0 0-6m-16.5-3a3 3 0 0 1 3-3h13.5a3 3 0 0 1 3 3m-19.5 0a4.5 4.5 0 0 1 .9-2.7L5.737 5.4a3 3 0 0 1 2.4-1.2h7.726a3 3 0 0 1 2.4 1.2l1.637 2.15a4.5 4.5 0 0 1 .9 2.7"/></svg>
+            PC
+        </a>
+        <a href="/gaming" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/></svg>
+            Gaming
+        </a>
+        <a href="/monitor" class="sidebar-link active">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 17.25v1.007a3 3 0 0 1-.879 2.122L7.5 21h9l-.621-.621A3 3 0 0 1 15 18.257V17.25m6-12V15a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 15V5.25m18 0A2.25 2.25 0 0 0 18.75 3H5.25A2.25 2.25 0 0 0 3 5.25m18 0V12a2.25 2.25 0 0 1-2.25 2.25H5.25A2.25 2.25 0 0 1 3 12V5.25"/></svg>
+            Monitors
+        </a>
+        <a href="/build pc" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M11.42 15.17 17.25 21A2.652 2.652 0 0 0 21 17.25l-5.877-5.877M11.42 15.17l2.496-3.03c.317-.384.74-.626 1.208-.766M11.42 15.17l-4.655 5.653a2.426 2.426 0 0 1-3.436 0 2.426 2.426 0 0 1 0-3.436l4.654-4.654m0-7.192 4.654-4.654a2.426 2.426 0 0 1 3.436 0 2.426 2.426 0 0 1 0 3.436L12 12m-.586-7.192L5.25 10.964M6.75 3H3"/></svg>
+            Build PC
+        </a>
+        <a href="/#contact" class="sidebar-link">
+            <svg class="sidebar-icon" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75"/></svg>
+            Contact
+        </a>
+    </nav>
     <div class="page-wrapper">
         <div class="navbar">
-            <a href="/" class="brand-mark">
-                <img src="/logo.png" alt="Logo">
-                <span class="brand-name">Unet Solutions</span>
-            </a>
-            <div style="display:flex;gap:10px;">
+            <div class="navbar-left">
+                <a href="/" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
                 <a href="/" class="nav-link">Home</a>
-                <a href="/laptops" class="nav-link">Laptops</a>
-                <a href="/pc" class="nav-link">PC</a>
-                <a href="/gaming" class="nav-link">Gaming</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <a href="/build pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="/#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login" class="icon-btn">Account</a>
                 <span class="icon-btn" id="cartToggle">Cart</span>
             </div>
         </div>
-        <div class="content">
-            <h1>Monitors Coming Soon</h1>
-            <div class="coming-soon">
-                <p>🖥️</p>
-                <p>We're working on adding monitors!</p>
-                <p>Stay tuned for high-quality displays.</p>
+
+        <div class="page-header"><h2>🖥️ Gaming Monitors</h2></div>
+
+        <div class="product-page active" id="page1">
+            <div class="products-row">
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/04/20260424150826_2.webp" alt="DAHUA DHI-LM27-E231" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM27-E231 27'' FHD IPS 165Hz GAMING MONITOR</h4>
+                    <p class="price">Rs. 61,600.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/04/20260424151001_2.webp" alt="DAHUA DHI-LM24-E231" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM24-E231 24'' FHD IPS 165Hz GAMING MONITOR</h4>
+                    <p class="price">Rs. 58,800.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213130132_3.webp" alt="DAHUA DHI-LM25-E231B" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM25-E231B 24.5'' 180Hz FHD GAMING MONITOR</h4>
+                    <p class="price">Rs. 44,600.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260312102521_1.webp" alt="DAHUA DHI-LM24-E231 180Hz" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM24-E231 24'' FHD IPS 180Hz GAMING MONITOR</h4>
+                    <p class="price">Rs. 63,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2025/12/20251231135921_1.webp" alt="DAHUA DHI-LM27-E230C" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM27-E230C 27'' FHD 180Hz CURVED GAMING MONITOR</h4>
+                    <p class="price">Rs. 59,300.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260318143926_1.webp" alt="DAHUA DHI-LM24-E230C" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM24-E230C 24'' FHD 180Hz CURVED GAMING MONITOR</h4>
+                    <p class="price">Rs. 56,100.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213125524_3.webp" alt="DAHUA DHI-LM27-E331A" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM27-E331A 27'' QHD IPS GAMING MONITOR</h4>
+                    <p class="price">Rs. 77,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213124901_3.webp" alt="DAHUA DHI-LM25-E241A" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM25-E241A 24.5'' 320Hz IPS GAMING MONITOR</h4>
+                    <p class="price">Rs. 58,300.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213125728_2.webp" alt="DAHUA DHI-LM30-E330CW" class="product-image">
+                    <h4 class="product-name">DAHUA DHI-LM30-E330CW 30'' WFHD 200Hz CURVED GAMING MONITOR</h4>
+                    <p class="price">Rs. 85,600.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
             </div>
         </div>
+
+        <div class="product-page" id="page2">
+            <div class="products-row">
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260217142449_3.webp" alt="ASUS ROG STRIX XG259CMS" class="product-image">
+                    <h4 class="product-name">ASUS ROG STRIX XG259CMS 24.5'' IPS 310Hz GAMING MONITOR</h4>
+                    <p class="price">Rs. 105,730.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/74081_26_DELL-S2422HG-24.png" alt="DELL S2422HG" class="product-image">
+                    <h4 class="product-name">DELL S2422HG 24'' CURVED GAMING MONITOR</h4>
+                    <p class="price">Rs. 94,050.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260318165155_3.webp" alt="MSI G2422C" class="product-image">
+                    <h4 class="product-name">MSI G2422C 23.6'' FHD 180Hz CURVED GAMING MONITOR</h4>
+                    <p class="price">Rs. 68,050.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button type="button" onclick="showPage('page1'); window.scrollTo(0, 0);">1</button>
+            <button type="button" onclick="showPage('page2'); window.scrollTo(0, 0);">2</button>
+        </div>
     </div>
+
+    <script>
+        function showPage(pageId) {
+            document.querySelectorAll(".product-page").forEach(p => p.classList.remove("active"));
+            document.getElementById(pageId).classList.add("active");
+        }
+        window.onload = function() { window.scrollTo(0, 0); };
+    </script>
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
+    <script>
+        const sidebar = document.getElementById('sidebar');
+        const sidebarToggle = document.getElementById('sidebarToggle');
+        const sidebarOverlay = document.getElementById('sidebarOverlay');
+        sidebarToggle?.addEventListener('click', () => {
+            sidebar.classList.toggle('open');
+            sidebarOverlay.classList.toggle('active');
+        });
+        sidebarOverlay?.addEventListener('click', () => {
+            sidebar.classList.remove('open');
+            sidebarOverlay.classList.remove('active');
+        });
+    </script>
 </body>
 </html>
