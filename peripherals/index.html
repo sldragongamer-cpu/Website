@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Unet Solutions | Laptops</title>
+    <title>Unet Solutions | Peripherals</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -569,19 +569,36 @@
     <aside class="filter-sidebar" id="sidebar">
         <h2>Filters <span class="results-count" id="resultsCount"></span><button type="button" class="clear-filters-btn" id="clearFilters">Clear All</button></h2>
         <div class="filter-section">
+            <h3>Category</h3>
+            <div class="filter-option"><input type="checkbox" id="cat-webcam" data-filter="cat" value="webcam"><label for="cat-webcam">Webcam</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-mousekb" data-filter="cat" value="mousekb"><label for="cat-mousekb">Mouse & Keyboard</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-psu" data-filter="cat" value="psu"><label for="cat-psu">Power Supply</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-casing" data-filter="cat" value="casing"><label for="cat-casing">Casings</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-cooler" data-filter="cat" value="cooler"><label for="cat-cooler">Coolers</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-processor" data-filter="cat" value="processor"><label for="cat-processor">Processors</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-mobo" data-filter="cat" value="mobo"><label for="cat-mobo">Motherboard</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-ram" data-filter="cat" value="ram"><label for="cat-ram">Desktop RAM</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-vga" data-filter="cat" value="vga"><label for="cat-vga">VGA Card</label></div>
+            <div class="filter-option"><input type="checkbox" id="cat-sound" data-filter="cat" value="sound"><label for="cat-sound">Sound Card</label></div>
+        </div>
+        <div class="filter-section">
             <h3>Brand</h3>
-            <div class="filter-option"><input type="checkbox" id="brand-lenovo" data-filter="brand" value="lenovo"><label for="brand-lenovo">Lenovo</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-msi" data-filter="brand" value="msi"><label for="brand-msi">MSI</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-logitech" data-filter="brand" value="logitech"><label for="brand-logitech">Logitech</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-corsair" data-filter="brand" value="corsair"><label for="brand-corsair">Corsair</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-amd" data-filter="brand" value="amd"><label for="brand-amd">AMD</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-intel" data-filter="brand" value="intel"><label for="brand-intel">Intel</label></div>
             <div class="filter-option"><input type="checkbox" id="brand-asus" data-filter="brand" value="asus"><label for="brand-asus">Asus</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-hp" data-filter="brand" value="hp"><label for="brand-hp">HP</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-msi" data-filter="brand" value="msi"><label for="brand-msi">MSI</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-kingston" data-filter="brand" value="kingston"><label for="brand-kingston">Kingston</label></div>
+            <div class="filter-option"><input type="checkbox" id="brand-gigabyte" data-filter="brand" value="gigabyte"><label for="brand-gigabyte">Gigabyte</label></div>
         </div>
         <div class="filter-section">
             <h3>Price Range</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="0" data-max="150000"><label>Under Rs. 150K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="150000" data-max="250000"><label>Rs. 150K - 250K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="250000" data-max="350000"><label>Rs. 250K - 350K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="350000" data-max="450000"><label>Rs. 350K - 450K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="450000" data-max="9999999"><label>Rs. 450K+</label></div>
+            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="0" data-max="10000"><label>Under Rs. 10K</label></div>
+            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="10000" data-max="30000"><label>Rs. 10K - 30K</label></div>
+            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="30000" data-max="60000"><label>Rs. 30K - 60K</label></div>
+            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="60000" data-max="100000"><label>Rs. 60K - 100K</label></div>
+            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="100000" data-max="9999999"><label>Rs. 100K+</label></div>
         </div>
         <div class="filter-section">
             <h3>Availability</h3>
@@ -617,106 +634,106 @@
             </div>
         </div>
 
-        <div class="product-page" id="page1">
-            <div class="page-header">
-                <h2>Lenovo Laptops</h2>
-            </div>
+        <div class="page-header">
+            <h2>Computer Peripherals</h2>
+        </div>
 
+        <div class="product-page active" id="page1">
             <div class="products-row">
-                <div class="card" data-brand="lenovo" data-price="410000">
-                    <img src="../product-card-images/lenove loq 7-250.png" alt="Lenovo LOQ" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ 15AHP10 RYZEN 7-250 | 16GB DDR5 | 512GB NVMe | RTX 5050 8GB | 15.6 FHD IPS 144HZ | WIN11 | LUNA GREY</h4>
-                    <p class="product-description">Powerful gaming laptop with Ryzen 7 processor, RTX 5050 graphics, and 144Hz display for smooth gameplay.</p>
-                    <p class="price">Rs. 410,000.00</p>
+                <div class="card" data-brand="logitech" data-cat="webcam" data-price="18500">
+                    <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/product-images/webcams/c920s/gallery-1-c920s.png" alt="Logitech C920s" class="product-image">
+                    <h4 class="product-name">Logitech C920s HD Pro Webcam 1080P</h4>
+                    <p class="product-description">Full HD 1080p webcam with stereo audio, autofocus, and privacy shutter for video calls and streaming.</p>
+                    <p class="price">Rs. 18,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="295000">
-                    <img src="../product-card-images/i5 loq.png" alt="Lenovo LOQ i5" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ 15IAX9E | i5-12450HX | 8GB DDR5 | 512GB NVMe | 15.6 144Hz | RTX 4050 6GB | LUNA GREY | WIN11</h4>
-                    <p class="product-description">Budget-friendly gaming laptop featuring Intel i5, RTX 4050, and 144Hz screen for entry-level gaming.</p>
-                    <p class="price">Rs. 295,000.00</p>
+                <div class="card" data-brand="logitech" data-cat="webcam" data-price="12800">
+                    <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/product-images/webcams/c270/gallery-1-c270.png" alt="Logitech C270" class="product-image">
+                    <h4 class="product-name">Logitech C270 HD Webcam 720P</h4>
+                    <p class="product-description">Affordable HD 720p webcam with built-in microphone, ideal for everyday video conferencing.</p>
+                    <p class="price">Rs. 12,800.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="335000">
-                    <img src="../product-card-images/leg r5.jpg" alt="Lenovo Ryzen 5" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB / LUNA GREY | WIN11</h4>
-                    <p class="product-description">Mid-range gaming laptop with Ryzen 5, RTX 4050, and 12GB RAM for reliable performance.</p>
-                    <p class="price">Rs. 335,000.00</p>
+                <div class="card" data-brand="logitech" data-cat="mousekb" data-price="8500">
+                    <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wireless-mice/m185/gallery-1-m185.png" alt="Logitech M185" class="product-image">
+                    <h4 class="product-name">Logitech M185 Wireless Mouse</h4>
+                    <p class="product-description">Reliable wireless mouse with 1000DPI optical tracking and 12-month battery life.</p>
+                    <p class="price">Rs. 8,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="470000">
-                    <img src="../product-card-images/legion pro.png" alt="Legion PRO" class="product-image">
-                    <h4 class="product-name">Lenovo Legion Pro 5 16IRX9 | i7-14650HX | 16GB DDR5 | 1TB NVMe | RTX4060 | 16'' WQXGA | DOS</h4>
-                    <p class="product-description">Premium gaming laptop with i7-14650HX, RTX 4060, and stunning 16-inch WQXGA display.</p>
-                    <p class="price">Rs. 470,000.00</p>
+                <div class="card" data-brand="logitech" data-cat="mousekb" data-price="15200">
+                    <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wireless-keyboards/k380/gallery-1-k380.png" alt="Logitech K380" class="product-image">
+                    <h4 class="product-name">Logitech K380 Multi-Device Bluetooth Keyboard</h4>
+                    <p class="product-description">Compact Bluetooth keyboard that connects to 3 devices simultaneously with easy-switch keys.</p>
+                    <p class="price">Rs. 15,200.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="208000">
-                    <img src="../product-card-images/Ideapad1.png" alt="Idea PAD" class="product-image">
-                    <h4 class="product-name">Lenovo Ideapad Slim 3-15IRH8 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Thin and light everyday laptop with i5-13420H, perfect for work and study.</p>
-                    <p class="price">Rs. 208,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="mousekb" data-price="16500">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CH-9000239-NA/Gallery/GAMING-MOUSE-M65-ELITE-WT.png" alt="Corsair M65" class="product-image">
+                    <h4 class="product-name">Corsair M65 RGB ELITE Gaming Mouse 18000 DPI</h4>
+                    <p class="product-description">High-precision gaming mouse with 18000 DPI sensor, adjustable weight, and customizable RGB lighting.</p>
+                    <p class="price">Rs. 16,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="180000">
-                    <img src="../product-card-images/ideapad2.png" alt="H10" class="product-image">
-                    <h4 class="product-name">Lenovo IdeaPad Slim 3 15IRH10 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.3'' WUXGA | UHD Graphics | DOS | Luna Grey</h4>
-                    <p class="product-description">Ultra-portable laptop with 15.3-inch WUXGA display and all-day battery life.</p>
-                    <p class="price">Rs. 180,000.00</p>
+                <div class="card" data-brand="logitech" data-cat="mousekb" data-price="28500">
+                    <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wired-keyboards/g413/gallery-1-g413.png" alt="Logitech G413" class="product-image">
+                    <h4 class="product-name">Logitech G413 Mechanical Gaming Keyboard</h4>
+                    <p class="product-description">Mechanical gaming keyboard with Romer-G tactile switches, aircraft-grade aluminum body, and white LED backlight.</p>
+                    <p class="price">Rs. 28,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="189000">
-                    <img src="../product-card-images/4731cb21eb18cb7b1e7c14ec06531d273a2b2416-500x500.png" alt="Lenovo LOQ" class="product-image">
-                    <h4 class="product-name">Lenovo Ideapad Slim 3-15ABR8 | Ryzen 7-7730U | 8GB DDR4 | 512GB NVMe | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Efficient Ryzen 7 laptop with DDR4 memory, ideal for multitasking and productivity.</p>
-                    <p class="price">Rs. 189,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="psu" data-price="18500">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CP-9020100-NA/Gallery/PSU-CX650-WT.png" alt="Corsair CX650" class="product-image">
+                    <h4 class="product-name">Corsair CX650 650W 80+ Bronze PSU</h4>
+                    <p class="product-description">Reliable 650W power supply with 80+ Bronze efficiency and 120mm thermally controlled fan.</p>
+                    <p class="price">Rs. 18,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="105000">
-                    <img src="../product-card-images/Lenovo v15.png" alt="Lenovo v15" class="product-image">
-                    <h4 class="product-name">Lenovo V15 G2 IJL | Intel Celeron N4500 | 4GB DDR4 | 256GB NVMe | DOS</h4>
-                    <p class="product-description">Entry-level laptop with Intel Celeron, great for basic computing and web browsing.</p>
-                    <p class="price">Rs. 105,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="psu" data-price="35000">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CP-9020098-NA/Gallery/PSU-RMX750-WT.png" alt="Corsair RM750x" class="product-image">
+                    <h4 class="product-name">Corsair RM750x 750W 80+ Gold Modular PSU</h4>
+                    <p class="product-description">Premium fully modular 750W PSU with 80+ Gold certification and zero RPM fan mode for silent operation.</p>
+                    <p class="price">Rs. 35,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="112000">
-                    <img src="../product-card-images/Lenovo-IdeaPad-Slim-3-15IAN8-Intel-N100.jpg" alt="Lenovo N100" class="product-image">
-                    <h4 class="product-name">Lenovo IdeaPad Slim 3 15IAN8 – Intel N100</h4>
-                    <p class="product-description">Affordable Intel N100 laptop for everyday tasks and light productivity.</p>
-                    <p class="price">Rs. 112,000.00</p>
-                    <p class="In-stock">In Stock</p>
+                <div class="card" data-brand="corsair" data-cat="psu" data-price="52000">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CP-9020094-NA/Gallery/PSU-RMX850-WT.png" alt="Corsair RM850x" class="product-image">
+                    <h4 class="product-name">Corsair RM850x 850W 80+ Gold Modular PSU</h4>
+                    <p class="product-description">High-capacity 850W fully modular PSU with Japanese capacitors and ultra-quiet operation for high-end builds.</p>
+                    <p class="price">Rs. 52,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
@@ -727,69 +744,102 @@
 
         <div class="product-page" id="page2">
             <div class="page-header">
-                <h2>MSI Laptops</h2>
+                <h2>Casings & Coolers</h2>
             </div>
             <div class="products-row">
-                <div class="card" data-brand="msi" data-price="405000">
-                    <img src="../product-card-images/MSI Cyborg.jpg" alt="MSI Cyborg" class="product-image">
-                    <h4 class="product-name">MSI CYBORG 15 A13UC I7 RTX3050</h4>
-                    <p class="product-description">Futuristic gaming laptop with i7 processor and RTX 3050 graphics for immersive gaming.</p>
-                    <p class="price">Rs. 405,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="casing" data-price="22000">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CC-9011138-WW/Gallery/CASE-4000D-ATX-WT.png" alt="Corsair 4000D" class="product-image">
+                    <h4 class="product-name">Corsair 4000D Airflow ATX Mid-Tower Case</h4>
+                    <p class="product-description">Spacious ATX case with optimized airflow, tempered glass panel, and cable management system.</p>
+                    <p class="price">Rs. 22,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="asus" data-price="389000">
-                    <img src="../product-card-images/MSI Cyborg B13.jpg" alt="MSI Cyborg B13" class="product-image">
-                    <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
-                    <p class="product-description">Rugged gaming laptop with Ryzen 7, built to handle intense gaming sessions.</p>
-                    <p class="price">Rs. 389,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="casing" data-price="32000">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CC-9011168-WW/Gallery/CASE-5000D-WT.png" alt="Corsair 5000D" class="product-image">
+                    <h4 class="product-name">Corsair 5000D Airflow ATX Full-Tower Case</h4>
+                    <p class="product-description">Premium full-tower case with exceptional airflow, support for E-ATX, and spacious interior for custom builds.</p>
+                    <p class="price">Rs. 32,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="msi" data-price="412000">
-                    <img src="../product-card-images/Katana.jpg" alt="MSI Katana" class="product-image">
-                    <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
-                    <p class="product-description">Sleek gaming laptop with i7 processor and dedicated graphics for content creation.</p>
-                    <p class="price">Rs. 412,000.00</p>
+                <div class="card" data-brand="msi" data-cat="casing" data-price="15500">
+                    <img src="https://asset.msi.com/resize/image?product=product_16189862595b9b32b36c036.png" alt="MSI MAG FORGE" class="product-image">
+                    <h4 class="product-name">MSI MAG FORGE 100A ATX Gaming Case</h4>
+                    <p class="product-description">Mid-tower gaming case with front RGB panel, tempered glass side panel, and support for up to 6 fans.</p>
+                    <p class="price">Rs. 15,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="msi" data-price="365000">
-                    <img src="../product-card-images/Thin15.png" alt="Thin15" class="product-image">
-                    <h4 class="product-name">MSI Thin 15 B13UC i7-13620H | 8GB DDR4 | 512GB NVMe | RTX 3050 4GB GDDR6 | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Ultra-slim gaming laptop with i7-13620H and RTX 3050 for portability and power.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="Out-stock">Out Of Stock</p>
+                <div class="card" data-brand="corsair" data-cat="cooler" data-price="8500">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060043-WW/Gallery/HS60-H100-WT.png" alt="Corsair H60" class="product-image">
+                    <h4 class="product-name">Corsair H60 120mm AIO Liquid CPU Cooler</h4>
+                    <p class="product-description">Compact 120mm liquid cooler with PWM fan for efficient CPU cooling and quiet operation.</p>
+                    <p class="price">Rs. 8,500.00</p>
+                    <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="msi" data-price="365000">
-                    <img src="../product-card-images/Thin15B2.png" alt="Thin15B2" class="product-image">
-                    <h4 class="product-name">MSI Thin 15 B2RVE | Core 7 240H | 16GB DDR5 | 512GB NVMe | RTX 4050 6GB | 15.6" FHD 144Hz IPS | DOS</h4>
-                    <p class="product-description">Next-gen thin gaming laptop with Core 7 240H, RTX 4050, and 144Hz IPS display.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="Out-stock">Out Of Stock</p>
+                <div class="card" data-brand="corsair" data-cat="cooler" data-price="14500">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060058-WW/Gallery/HS100-240-WT.png" alt="Corsair H100i" class="product-image">
+                    <h4 class="product-name">Corsair H100i 240mm AIO Liquid CPU Cooler</h4>
+                    <p class="product-description">240mm dual-fan liquid cooler with RGB pump head for superior thermal performance.</p>
+                    <p class="price">Rs. 14,500.00</p>
+                    <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="hp" data-price="365000">
-                    <img src="../product-card-images/lenove loq 7-250.png" alt="HP Victus" class="product-image">
-                    <h4 class="product-name">HP VICTUS 15 RTX 4050</h4>
-                    <p class="product-description">Versatile gaming laptop with RTX 4050, balancing performance and value.</p>
-                    <p class="price">Rs. 365,000.00</p>
+                <div class="card" data-brand="corsair" data-cat="cooler" data-price="6200">
+                    <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060069-WW/Gallery/A500-WT.png" alt="Corsair A500" class="product-image">
+                    <h4 class="product-name">Corsair A500 Dual Fan CPU Air Cooler</h4>
+                    <p class="product-description">High-performance air cooler with dual 120mm fans and 4 copper heat pipes for efficient heat dissipation.</p>
+                    <p class="price">Rs. 6,200.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="amd" data-cat="processor" data-price="42000">
+                    <img src="https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-887-V01.jpg" alt="AMD Ryzen 5 7600X" class="product-image">
+                    <h4 class="product-name">AMD Ryzen 5 7600X 6-Core Processor</h4>
+                    <p class="product-description">6-core 12-thread desktop processor with 4.7GHz boost, AM5 socket support, and integrated graphics.</p>
+                    <p class="price">Rs. 42,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="amd" data-cat="processor" data-price="78000">
+                    <img src="https://c1.neweggimages.com/ProductImageCompressAll1280/19-113-888-V01.jpg" alt="AMD Ryzen 7 7700X" class="product-image">
+                    <h4 class="product-name">AMD Ryzen 7 7700X 8-Core Processor</h4>
+                    <p class="product-description">8-core 16-thread powerhouse with 5.4GHz boost for gaming and content creation workloads.</p>
+                    <p class="price">Rs. 78,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="intel" data-cat="processor" data-price="52000">
+                    <img src="https://c1.neweggimages.com/ProductImageCompressAll1280/19-118-361-V01.jpg" alt="Intel Core i5-13400F" class="product-image">
+                    <h4 class="product-name">Intel Core i5-13400F 10-Core Processor</h4>
+                    <p class="product-description">10-core desktop processor with 6P+4E architecture and 4.6GHz turbo for versatile performance.</p>
+                    <p class="price">Rs. 52,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
@@ -801,34 +851,103 @@
 
         <div class="product-page" id="page3">
             <div class="page-header">
-                <h2>Asus Laptops</h2>
+                <h2>Motherboards, RAM & Graphics</h2>
             </div>
             <div class="products-row">
-                <div class="card" data-brand="msi" data-price="405000">
-                    <img src="../product-card-images/MSI Cyborg.jpg" alt="MSI Cyborg" class="product-image">
-                    <h4 class="product-name">MSI CYBORG 15 A13UC I7 RTX3050</h4>
-                    <p class="product-description">Futuristic gaming laptop with i7 processor and RTX 3050 graphics for immersive gaming.</p>
-                    <p class="price">Rs. 405,000.00</p>
+                <div class="card" data-brand="asus" data-cat="mobo" data-price="38000">
+                    <img src="https://www.asus.com/media/Odin/Websites/product/product_20220830104125_1.jpg" alt="ASUS TUF B650M-PLUS" class="product-image">
+                    <h4 class="product-name">ASUS TUF GAMING B650M-PLUS WiFi Motherboard</h4>
+                    <p class="product-description">AM5 motherboard with DDR5 support, PCIe 4.0, WiFi 6, and military-grade components.</p>
+                    <p class="price">Rs. 38,000.00</p>
+                    <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="asus" data-price="389000">
-                    <img src="../product-card-images/MSI Cyborg B13.jpg" alt="MSI Cyborg B13" class="product-image">
-                    <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
-                    <p class="product-description">Rugged gaming laptop with Ryzen 7, built to handle intense gaming sessions.</p>
-                    <p class="price">Rs. 389,000.00</p>
+                <div class="card" data-brand="msi" data-cat="mobo" data-price="45000">
+                    <img src="https://asset.msi.com/resize/image?product=product_16671973054d7a96b5e6e5.png" alt="MSI PRO B660M-A" class="product-image">
+                    <h4 class="product-name">MSI PRO B660M-A DDR4 Motherboard</h4>
+                    <p class="product-description">LGA1700 mATX motherboard with DDR4 support, PCIe 4.0 M.2 slot, and Core Boost power design.</p>
+                    <p class="price">Rs. 45,000.00</p>
+                    <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
                     </button>
                 </div>
-                <div class="card" data-brand="msi" data-price="412000">
-                    <img src="../product-card-images/Katana.jpg" alt="MSI Katana" class="product-image">
-                    <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
-                    <p class="product-description">Sleek gaming laptop with i7 processor and dedicated graphics for content creation.</p>
-                    <p class="price">Rs. 412,000.00</p>
+                <div class="card" data-brand="gigabyte" data-cat="mobo" data-price="55000">
+                    <img src="https://www.gigabyte.com/ImageUpload/044450-1400x1400.jpg" alt="Gigabyte B760M DS3H" class="product-image">
+                    <h4 class="product-name">Gigabyte B760M DS3H DDR4 Motherboard</h4>
+                    <p class="product-description">LGA1700 motherboard with dual M.2 slots, 2.5GbE LAN, and robust power delivery system.</p>
+                    <p class="price">Rs. 55,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="kingston" data-cat="ram" data-price="6500">
+                    <img src="https://www.kingston.com/images/products/thumbs/kvr24n17s8_8.jpg" alt="Kingston 8GB DDR4" class="product-image">
+                    <h4 class="product-name">Kingston Fury Beast 8GB DDR4 3200MHz Desktop RAM</h4>
+                    <p class="product-description">High-speed 8GB DDR4 3200MHz memory with low-latency XMP profiles for responsive computing.</p>
+                    <p class="price">Rs. 6,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="kingston" data-cat="ram" data-price="12000">
+                    <img src="https://www.kingston.com/images/products/thumbs/kf552c40bbk2-16.jpg" alt="Kingston 16GB DDR5" class="product-image">
+                    <h4 class="product-name">Kingston Fury Beast 16GB DDR5 5200MHz Desktop RAM</h4>
+                    <p class="product-description">Next-gen 16GB DDR5 5200MHz module for extreme bandwidth and future-proof performance.</p>
+                    <p class="price">Rs. 12,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="kingston" data-cat="ram" data-price="22000">
+                    <img src="https://www.kingston.com/images/products/thumbs/kf552c40bwak2-32.jpg" alt="Kingston 32GB DDR5" class="product-image">
+                    <h4 class="product-name">Kingston Fury Beast 32GB DDR5 5200MHz Kit (2x16GB)</h4>
+                    <p class="product-description">Dual-channel 32GB DDR5 kit with 5200MHz speed for heavy multitasking and content creation.</p>
+                    <p class="price">Rs. 22,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="msi" data-cat="vga" data-price="85000">
+                    <img src="https://asset.msi.com/resize/image?product=product_16861022177e8f84b6a887e.png" alt="MSI RTX 4060" class="product-image">
+                    <h4 class="product-name">MSI GeForce RTX 4060 VENTUS 2X 8G OC</h4>
+                    <p class="product-description">RTX 4060 graphics card with 8GB GDDR6, DLSS 3, and ray tracing for modern gaming.</p>
+                    <p class="price">Rs. 85,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="msi" data-cat="vga" data-price="145000">
+                    <img src="https://asset.msi.com/resize/image?product=product_16946567226a1e1b3b5e8e0.png" alt="MSI RTX 4070" class="product-image">
+                    <h4 class="product-name">MSI GeForce RTX 4070 GAMING X TRIO 12G</h4>
+                    <p class="product-description">High-end RTX 4070 with 12GB GDDR6X, triple-fan cooling, and stunning 1440p/4K gaming.</p>
+                    <p class="price">Rs. 145,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="sound" data-price="12500">
+                    <img src="https://dlcdnwebimgs.asus.com/gain/5A99A3C4-B5A2-4F3B-A0C9-3E5E5E3B5E3B/w750/h615" alt="ASUS Xonar AE" class="product-image">
+                    <h4 class="product-name">ASUS Xonar AE PCIe 7.1 Sound Card</h4>
+                    <p class="product-description">PCIe 7.1 surround sound card with high-quality DAC, headphone amplifier, and signal-to-noise ratio of 110dB.</p>
+                    <p class="price">Rs. 12,500.00</p>
+                    <p class="In-stock">In Stock</p>
                     <button class="cart-btn">
                         <span>🛒</span>
                         <span>Add to Cart</span>
@@ -848,80 +967,110 @@
         </div>
     </div>
 
+    <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
     <script>
         (function() {
-            const cards = document.querySelectorAll('.card');
-            const checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
-            const clearBtn = document.getElementById('clearFilters');
-            const sidebar = document.getElementById('sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const resultsCount = document.getElementById('resultsCount');
-            const noResults = document.getElementById('noResults');
-            const pagination = document.querySelector('.pagination');
-            let filtersActive = false;
+            var cards = document.querySelectorAll('.card');
+            var checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
+            var clearBtn = document.getElementById('clearFilters');
+            var sidebar = document.getElementById('sidebar');
+            var sidebarToggle = document.getElementById('sidebarToggle');
+            var sidebarOverlay = document.getElementById('sidebarOverlay');
+            var resultsCount = document.getElementById('resultsCount');
+            var noResults = document.getElementById('noResults');
+            var pagination = document.querySelector('.pagination');
+            var filtersActive = false;
 
-            sidebarToggle?.addEventListener('click', function() {
+            sidebarToggle && sidebarToggle.addEventListener('click', function() {
                 sidebar.classList.toggle('open');
                 sidebarOverlay.classList.toggle('active');
             });
-            sidebarOverlay?.addEventListener('click', function() {
+            sidebarOverlay && sidebarOverlay.addEventListener('click', function() {
                 sidebar.classList.remove('open');
                 sidebarOverlay.classList.remove('active');
             });
 
             function showPage(pageId) {
                 if (filtersActive) return;
-                document.querySelectorAll('.product-page').forEach(function(p) { p.classList.remove('active'); });
+                var pages = document.querySelectorAll('.product-page');
+                for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
                 document.getElementById(pageId).classList.add('active');
                 window.scrollTo({ top: 0, behavior: 'smooth' });
             }
             window.showPage = showPage;
 
             function applyFilters() {
+                var activeCats = [];
                 var activeBrands = [];
                 var priceRanges = [];
                 var activeStock = [];
 
-                document.querySelectorAll('[data-filter="brand"]:checked').forEach(function(cb) { activeBrands.push(cb.value); });
-                document.querySelectorAll('[data-filter="price"]:checked').forEach(function(cb) { priceRanges.push({ min: parseInt(cb.dataset.min), max: parseInt(cb.dataset.max) }); });
-                document.querySelectorAll('[data-filter="stock"]:checked').forEach(function(cb) { activeStock.push(cb.value); });
+                var catCbs = document.querySelectorAll('[data-filter="cat"]:checked');
+                for (var i = 0; i < catCbs.length; i++) { activeCats.push(catCbs[i].value); }
 
-                filtersActive = activeBrands.length > 0 || priceRanges.length > 0 || activeStock.length > 0;
+                var brandCbs = document.querySelectorAll('[data-filter="brand"]:checked');
+                for (var i = 0; i < brandCbs.length; i++) { activeBrands.push(brandCbs[i].value); }
+
+                var priceCbs = document.querySelectorAll('[data-filter="price"]:checked');
+                for (var i = 0; i < priceCbs.length; i++) {
+                    priceRanges.push({ min: parseInt(priceCbs[i].dataset.min), max: parseInt(priceCbs[i].dataset.max) });
+                }
+
+                var stockCbs = document.querySelectorAll('[data-filter="stock"]:checked');
+                for (var i = 0; i < stockCbs.length; i++) { activeStock.push(stockCbs[i].value); }
+
+                filtersActive = activeCats.length > 0 || activeBrands.length > 0 || priceRanges.length > 0 || activeStock.length > 0;
 
                 var visibleCount = 0;
-                cards.forEach(function(card) {
+                for (var j = 0; j < cards.length; j++) {
+                    var card = cards[j];
+                    var cat = card.getAttribute('data-cat');
                     var brand = card.getAttribute('data-brand');
                     var price = parseInt(card.getAttribute('data-price'));
                     var inStock = card.querySelector('.In-stock') !== null;
                     var show = true;
 
+                    if (activeCats.length > 0) show = show && activeCats.indexOf(cat) !== -1;
                     if (activeBrands.length > 0) show = show && activeBrands.indexOf(brand) !== -1;
-                    if (priceRanges.length > 0) show = show && priceRanges.some(function(r) { return price >= r.min && price <= r.max; });
+                    if (priceRanges.length > 0) {
+                        var priceMatch = false;
+                        for (var k = 0; k < priceRanges.length; k++) {
+                            if (price >= priceRanges[k].min && price <= priceRanges[k].max) { priceMatch = true; break; }
+                        }
+                        show = show && priceMatch;
+                    }
                     if (activeStock.length > 0) {
                         var stockMatch = (inStock && activeStock.indexOf('in') !== -1) || (!inStock && activeStock.indexOf('out') !== -1);
                         show = show && stockMatch;
                     }
                     card.style.display = show ? '' : 'none';
                     if (show) visibleCount++;
-                });
+                }
 
                 if (resultsCount) resultsCount.textContent = visibleCount + ' product' + (visibleCount !== 1 ? 's' : '');
                 if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
 
                 if (filtersActive) {
-                    document.querySelectorAll('.product-page').forEach(function(p) { p.classList.add('active'); });
+                    var pages = document.querySelectorAll('.product-page');
+                    for (var i = 0; i < pages.length; i++) { pages[i].classList.add('active'); }
                     if (pagination) pagination.style.display = 'none';
                 } else {
-                    document.querySelectorAll('.product-page').forEach(function(p) { p.classList.remove('active'); });
+                    var pages = document.querySelectorAll('.product-page');
+                    for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
                     document.getElementById('page1').classList.add('active');
                     if (pagination) pagination.style.display = '';
                 }
             }
 
-            checkboxes.forEach(function(cb) {
-                cb.addEventListener('change', applyFilters);
-                cb.addEventListener('input', applyFilters);
+            for (var i = 0; i < checkboxes.length; i++) {
+                checkboxes[i].addEventListener('change', applyFilters);
+                checkboxes[i].addEventListener('input', applyFilters);
+            }
+
+            clearBtn && clearBtn.addEventListener('click', function() {
+                for (var i = 0; i < checkboxes.length; i++) { checkboxes[i].checked = false; }
+                applyFilters();
             });
 
             cards.forEach(function(card) {
@@ -931,16 +1080,9 @@
                 });
             });
 
-            if (clearBtn) clearBtn.addEventListener('click', function() {
-                checkboxes.forEach(function(cb) { cb.checked = false; });
-                applyFilters();
-            });
-
             if (resultsCount) resultsCount.textContent = cards.length + ' products';
             applyFilters();
         })();
     </script>
-    <script src="/clear-forms.js"></script>
-    <script src="/cart.js"></script>
 </body>
 </html>
