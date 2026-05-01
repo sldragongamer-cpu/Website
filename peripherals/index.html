@@ -48,7 +48,7 @@
 
         .navbar {
             position: relative;
-            width: min(1400px, calc(100% - 48px));
+            width: min(1600px, calc(100% - 48px));
             min-height: 80px;
             margin: 24px auto 32px;
             padding: 0 28px;
@@ -58,9 +58,14 @@
             justify-content: space-between;
             border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            box-shadow: 
+                0 8px 32px rgba(30, 58, 138, 0.08),
+                0 2px 8px rgba(30, 58, 138, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
             backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
             box-sizing: border-box;
+            overflow: visible;
             z-index: 100;
             animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
@@ -117,6 +122,68 @@
             border-radius: 12px;
             transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
             background: transparent;
+            position: relative;
+            letter-spacing: -0.01em;
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover {
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
+        }
+        .nav-link:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .dropdown > button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+            background: transparent;
+            color: #334155;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
+        }
+        .dropdown > button::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dropdown:hover > button {
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
+        }
+        .dropdown:hover > button::before {
+            transform: translateX(-50%) scaleX(1);
         }
 
         .nav-link:hover {

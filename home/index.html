@@ -6,11 +6,166 @@
     <title>Unet Solutions</title>
     <link rel="icon" type="image/png" href="/favicon.png">
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+        }
         body {
             margin: 0;
-            font-family: Arial, sans-serif;
-            background: linear-gradient(180deg, #d7efff 0%, #bfe2ff 100%);
-            color: #17324d;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
+            color: #0f172a;
+            min-height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background:
+                radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
+                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(ellipse at 50% 50%, rgba(6, 182, 212, 0.05) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 0;
+        }
+        .navbar {
+            position: relative;
+            width: min(1600px, calc(100% - 48px));
+            min-height: 80px;
+            margin: 24px auto 32px;
+            padding: 0 28px;
+            background: rgba(255, 255, 255, 0.82);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border: 1px solid rgba(255, 255, 255, 0.6);
+            border-radius: 20px;
+            box-shadow:
+                0 8px 32px rgba(30, 58, 138, 0.08),
+                0 2px 8px rgba(30, 58, 138, 0.04),
+                inset 0 1px 0 rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            box-sizing: border-box;
+            overflow: visible;
+            z-index: 100;
+            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes slideDown {
+            from { opacity: 0; transform: translateY(-20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .navbar-left {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+        .brand-mark {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            padding-right: 20px;
+            margin-right: 8px;
+            border-right: 1px solid rgba(148, 163, 184, 0.2);
+        }
+        .brand-mark img {
+            height: 48px;
+            width: auto;
+            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        .brand-mark:hover img {
+            transform: scale(1.05) rotate(-2deg);
+        }
+        .brand-name {
+            font-size: 20px;
+            font-weight: 900;
+            letter-spacing: -0.02em;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .nav-link {
+            color: #334155;
+            text-decoration: none;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            background: transparent;
+            position: relative;
+            letter-spacing: -0.01em;
+        }
+        .nav-link::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .nav-link:hover {
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
+        }
+        .nav-link:hover::before {
+            transform: translateX(-50%) scaleX(1);
+        }
+        .dropdown {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+        .dropdown > button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+            border: none;
+            cursor: pointer;
+            font: inherit;
+            background: transparent;
+            color: #334155;
+            font-size: 15px;
+            font-weight: 600;
+            padding: 10px 18px;
+            border-radius: 12px;
+            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+            letter-spacing: -0.01em;
+        }
+        .dropdown > button::before {
+            content: '';
+            position: absolute;
+            bottom: 4px;
+            left: 50%;
+            transform: translateX(-50%) scaleX(0);
+            width: 20px;
+            height: 2px;
+            background: linear-gradient(90deg, #3b82f6, #06b6d4);
+            border-radius: 2px;
+            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .dropdown:hover > button {
+            color: #1e40af;
+            background: rgba(59, 130, 246, 0.06);
+        }
+        .dropdown:hover > button::before {
+            transform: translateX(-50%) scaleX(1);
         }
         .navbar {
             position: relative;
@@ -120,18 +275,58 @@
             text-decoration: none;
             color: #1f2937;
             font-weight: 600;
+            position: relative;
+        }
+        .dropdown-content a::after {
+            content: '→';
+            position: absolute;
+            right: 12px;
+            opacity: 0;
+            transform: translateX(-4px);
+            transition: all 0.2s ease;
         }
         .dropdown-content a:hover {
             background-color: #eef6ff;
             color: #0b57d0;
-            transform: translateX(4px);
+            padding-left: 20px;
         }
-        .dropdown:hover .dropdown-content {
+        .dropdown-content a:hover::after {
+            opacity: 1;
+            transform: translateX(0);
+        }
+        .dropdown:hover > .dropdown-content {
             opacity: 1;
             visibility: visible;
             pointer-events: auto;
             transform: translateY(0);
             transition-delay: 0s;
+        }
+        .dropdown-content .dropdown {
+            position: relative;
+        }
+        .dropdown-content .dropdown-content {
+            opacity: 0; visibility: hidden; transform: translateX(-8px);
+            position: absolute; top: 0; left: 100%; min-width: 200px;
+            background: white; border: 1px solid #dbe7f3;
+            border-radius: 16px; box-shadow: 0 18px 40px rgba(20, 40, 80, 0.18);
+            padding: 10px; z-index: 9999;
+            transition: none;
+        }
+
+        .dropdown-content .dropdown > a::before {
+            content: ''; position: absolute; top: 0; left: 100%; width: 8px; height: 100%; background: transparent;
+        }
+        .dropdown-content .dropdown::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 100%;
+            width: 8px;
+            height: 100%;
+            background: transparent;
+        }
+        .dropdown-content .dropdown:hover > .dropdown-content {
+            opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); transition-delay: 0s;
         }
         .navbar-right {
             display: flex;
@@ -379,17 +574,31 @@
                 <span class="brand-name">Unet Solutions</span>
             </a>
             <a href="index.html" class="nav-link">Home</a>
-            <div class="dropdown">
-                <button type="button" class="nav-link">Categories ▼</button>
-                <div class="dropdown-content">
-                    <a href="/laptops">Laptops</a>
-                    <a href="/pc">PC</a>
-                    <a href="/gaming">Gaming</a>
-                    <a href="/monitor">Monitor</a>
-                    <div class="dropdown" style="position:relative;"><a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;">Peripherals ?</a><div class="dropdown-content" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div></div><div class="dropdown-content peripherals-submenu" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div>
-                    <a href="/build pc/index.html">Build PC</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <div class="dropdown">
+                            <a href="../peripherals">Peripherals ▶</a>
+                            <div class="dropdown-content">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
+                        <a href="/build pc/index.html">Build PC</a>
+                    </div>
                 </div>
-            </div>
             <a href="#contact" class="nav-link">Contact</a>
         </div>
         <div class="navbar-right">
