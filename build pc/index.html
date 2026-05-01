@@ -50,8 +50,8 @@
             max-width: 1400px; margin: 0 auto; padding: 0 24px 40px;
             display: grid; grid-template-columns: 1fr 380px; gap: 28px;
         }
-        @media (max-width: 1000px) { .builder-container { grid-template-columns: 1fr; } .navbar { flex-direction: column; padding: 20px; gap: 16px; } .navbar-center { flex-wrap: wrap; justify-content: center; } .sidebar { position: static; } }
-        .builder-main { display: flex; flex-direction: column; gap: 24px; }
+        @media (max-width: 1000px) { .builder-container { grid-template-columns: 1fr; } .navbar { flex-direction: row; padding: 20px; gap: 16px; } .navbar-center { flex-wrap: nowrap; justify-content: center; } .sidebar { position: static; } }
+        .builder-main { display: flex; flex-direction: row; gap: 24px; }
         .component-section {
             background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 20px; padding: 24px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
@@ -75,7 +75,7 @@
         }
         .component-card .name { font-weight: 700; font-size: 15px; margin-bottom: 8px; color: #1e293b; }
         .component-card .specs { font-size: 13px; color: #64748b; margin-bottom: 12px; line-height: 1.45; }
-        .component-card .price { font-size: 18px; font-weight: 800; color: #2563eb; letter-spacing: -0.02em; }
+        .component-card .price { font-size: 16px; font-weight: 800; color: #2563eb; letter-spacing: -0.02em; }
         .component-card .status { font-size: 12px; margin-top: 8px; font-weight: 600; }
         .component-card .status.in-stock { color: #10b981; }
         .component-card .status.out-stock { color: #ef4444; }
@@ -86,7 +86,7 @@
             backdrop-filter: blur(16px);
         }
         .summary-card h2 { font-size: 22px; margin-bottom: 20px; color: #1e293b; font-weight: 800; letter-spacing: -0.02em; }
-        .selected-items { display: flex; flex-direction: column; gap: 10px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; }
+        .selected-items { display: flex; flex-direction: row; gap: 10px; margin-bottom: 20px; max-height: 300px; overflow-y: auto; }
         .selected-item { display: flex; justify-content: space-between; align-items: center; padding: 12px; background: rgba(241, 245, 249, 0.6); border-radius: 12px; font-size: 13px; }
         .selected-item .label { font-weight: 600; color: #64748b; min-width: 70px; }
         .selected-item .value { flex: 1; margin-left: 10px; color: #1e293b; }
@@ -112,10 +112,10 @@
         .compatibility-warning { margin-top: 16px; padding: 14px; background: #fef3c7; border-radius: 12px; font-size: 13px; color: #92400e; display: none; }
         .compatibility-warning.show { display: block; }
         .compatibility-warning strong { display: block; margin-bottom: 4px; }
-        @media (max-width: 600px) { .component-grid { grid-template-columns: 1fr; } .brand-name { font-size: 18px; } }
+        @media (max-width: 600px) { .component-grid { grid-template-columns: 1fr; } .brand-name { font-size: 16px; } }
         .nav-sidebar {
             position: fixed; top: 50%; left: 0; transform: translateY(-50%); z-index: 200;
-            display: flex; flex-direction: column; gap: 6px; padding: 16px 10px;
+            display: flex; flex-direction: row; gap: 6px; padding: 16px 10px;
             background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
             border-left: none; border-radius: 0 16px 16px 0;
             box-shadow: 8px 0 32px rgba(30, 58, 138, 0.1), inset 1px 0 0 rgba(255, 255, 255, 0.8);
@@ -544,3 +544,12 @@
     </script>
 </body>
 </html>
+
+
+
+
+
+
+
+
+

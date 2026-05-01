@@ -168,7 +168,7 @@
             padding: 8px;
             z-index: 9999;
             backdrop-filter: blur(20px);
-            transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+            transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease;
         }
 
         .dropdown-content::before {
@@ -604,7 +604,21 @@
                         <a href="../pc">PC</a>
                         <a href="../gaming">Gaming</a>
                         <a href="../monitor">Monitor</a>
-                        <a href="../peripherals">Peripherals</a>
+                        <div class="dropdown" style="position:relative;">
+                            <a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;">Peripherals ▼</a>
+                            <div class="dropdown-content" style="top:0;left:100%;margin-left:8px;">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
                         <a href="../build%20pc/index.html">Build PC</a>
                     </div>
                 </div>
@@ -837,10 +851,88 @@
             </div>
         </div>
 
+        <div class="product-page" id="page4">
+            <div class="products-row">
+                <div class="card" data-brand="lenovo" data-price="349000">
+                    <img src="https://www.nanotek.lk/storage/products/2105/UQKesIp4EhD5TLlJMihoOO5HextutBrKHq58nl56.webp" alt="Lenovo ThinkBook 16 G8" class="product-image">
+                    <h4 class="product-name">Lenovo ThinkBook 16 G8 IRL Core 5 210H</h4>
+                    <p class="product-description">Professional laptop with Intel Core 5 processor, 16-inch display, and premium build quality.</p>
+                    <p class="price">Rs. 349,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="chuwi" data-price="97000">
+                    <img src="https://www.nanotek.lk/storage/products/2083/M0BIdcX1iZYyJvO4bV52rSVkecrJY8Ji96O2mjge.webp" alt="Chuwi CoreBook i3" class="product-image">
+                    <h4 class="product-name">Chuwi CoreBook i3 10th GEN</h4>
+                    <p class="product-description">Budget-friendly laptop with Intel i3 10th gen processor, perfect for students and office work.</p>
+                    <p class="price">Rs. 97,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="chuwi" data-price="178000">
+                    <img src="https://www.nanotek.lk/storage/products/2084/Kq1suWpef2lfK93h2MwYM2RenoURXFIJwc8TaAEa.webp" alt="Chuwi CoreBook X" class="product-image">
+                    <h4 class="product-name">Chuwi CoreBook X Ryzen 5</h4>
+                    <p class="product-description">Slim laptop with AMD Ryzen 5 processor, ideal for productivity and light gaming.</p>
+                    <p class="price">Rs. 178,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="chuwi" data-price="160000">
+                    <img src="https://www.nanotek.lk/storage/products/2085/FroMBwy0G1BFncxeLIzAQ8bhnb3BC7FlyDwsV9zQ.webp" alt="Chuwi CoreBook Air" class="product-image">
+                    <h4 class="product-name">Chuwi CoreBook Air Ryzen 5</h4>
+                    <p class="product-description">Ultra-portable laptop with Ryzen 5, lightweight design and long battery life.</p>
+                    <p class="price">Rs. 160,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="224000">
+                    <img src="https://www.nanotek.lk/storage/products/2080/zdm8WtQYyDsYSfPreGORapZGJCRjZX0zGWyyoyii.webp" alt="Asus ExpertBook" class="product-image">
+                    <h4 class="product-name">Asus ExpertBook B1502CVA i5 13th GEN</h4>
+                    <p class="product-description">Business laptop with Intel i5 13th gen, durable design and security features.</p>
+                    <p class="price">Rs. 224,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="245000">
+                    <img src="https://www.nanotek.lk/storage/products/2037/QX3a1KuBLZ8z4iOmSFD4HEZ6plADAGRocahgoB8w.webp" alt="Asus Vivobook" class="product-image">
+                    <h4 class="product-name">ASUS Vivobook 15 X1504VAP Core 5 - 16GB DDR5</h4>
+                    <p class="product-description">Versatile laptop with Core 5 processor, 16GB DDR5 RAM for multitasking.</p>
+                    <p class="price">Rs. 245,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="lenovo" data-price="299000">
+                    <img src="https://www.nanotek.lk/storage/products/2048/CQtDD6uwL5RTeQBX5uoDugmv4PunwIAv1g84txnb.webp" alt="Lenovo LOQ" class="product-image">
+                    <h4 class="product-name">Lenovo LOQ Essential 15IAX9E i5 12th GEN HX + RTX 3050 6GB</h4>
+                    <p class="product-description">Gaming laptop with i5 12th gen and RTX 3050 for entry-level gaming.</p>
+                    <p class="price">Rs. 299,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="lenovo" data-price="339000">
+                    <img src="https://www.nanotek.lk/storage/products/2049/qtDHQDTcwjCqseSftVncjMyXH65xCfQlDgUBB7dV.webp" alt="Lenovo LOQ Essential" class="product-image">
+                    <h4 class="product-name">Lenovo LOQ Essential 15ARP10E RYZEN 7 + RTX 3050 6GB</h4>
+                    <p class="product-description">AMD-powered gaming laptop with Ryzen 7 and RTX 3050 graphics.</p>
+                    <p class="price">Rs. 339,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="lenovo" data-price="365000">
+                    <img src="https://www.nanotek.lk/storage/products/2056/r42vvq5bjRxJYBpQWNpbVvEi2WZjgyxuyaNeH4sN.webp" alt="Lenovo ThinkBook" class="product-image">
+                    <h4 class="product-name">Lenovo ThinkBook 16 G8 IAL Ultra 5 225H</h4>
+                    <p class="product-description">Latest Intel Ultra 5 processor with AI capabilities and 16-inch display.</p>
+                    <p class="price">Rs. 365,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+
         <div class="pagination">
             <button type="button" onclick="showPage('page1')">1</button>
             <button type="button" onclick="showPage('page2')">2</button>
             <button type="button" onclick="showPage('page3')">3</button>
+            <button type="button" onclick="showPage('page4')">4</button>
         </div>
         <div class="no-results" id="noResults">
             <p>No products found</p>
@@ -944,3 +1036,8 @@
     <script src="/cart.js"></script>
 </body>
 </html>
+
+
+
+
+

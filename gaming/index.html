@@ -12,15 +12,10 @@
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
+            background: url('../product-card-images/Background.png') center/cover no-repeat fixed;
             color: #0f172a; min-height: 100vh;
         }
-        body::before {
-            content: ''; position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
-            pointer-events: none; z-index: 0;
-        }
+
         .page-wrapper { position: relative; z-index: 1; }
         .navbar {
             position: relative; width: min(1400px, calc(100% - 48px));
@@ -47,11 +42,14 @@
         .dropdown { position: relative; display: inline-flex; align-items: center; }
         .dropdown > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font: inherit; background: transparent; color: #334155; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
         .dropdown:hover > button { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
-        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s; }
+        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease; }
         .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
         .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .dropdown-content a:hover { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06)); color: #1e40af; padding-left: 20px; }
-        .dropdown:hover .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+        .dropdown:hover > .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+        .peripherals-sub { position: relative; display: inline-flex; align-items: center; }
+        .peripherals-sub .submenu { opacity: 0; visibility: hidden; pointer-events: none; position: absolute; top: 0; left: 100%; margin-left: 8px; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease; }
+        .peripherals-sub:hover .submenu { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
         .navbar-right { display: flex; align-items: center; gap: 10px; }
         .icon-btn { display: inline-flex; justify-content: center; align-items: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
         .icon-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
@@ -176,7 +174,21 @@
                         <a href="../pc">PC</a>
                         <a href="../gaming">Gaming</a>
                         <a href="../monitor">Monitor</a>
-                        <a href="../peripherals">Peripherals</a>
+                        <div class="peripherals-sub" style="position:relative;display:inline-flex;align-items:center;">
+                            <a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:12px;color:#334155;font-size:15px;font-weight:600;text-decoration:none;transition:all 0.25s cubic-bezier(0.4, 0, 0.2, 1);">Peripherals ▼</a>
+                            <div class="submenu" style="top:0;left:100%;margin-left:8px;">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
                         <a href="../build%20pc/index.html">Build PC</a>
                     </div>
                 </div>
@@ -294,7 +306,126 @@
                         <span>Add to Cart</span>
                     </button>
                 </div>
+                <div class="card" data-brand="sony" data-price="195000">
+                    <img src="https://www.nanotek.lk/storage/products/1842/kVLq8Ldar9UMTTodBfbyekiNaQKj3oyf6nt8LM5t.webp" alt="PlayStation 5 Pro" class="product-image">
+                    <h4 class="product-name">Sony PlayStation 5 Pro 2TB (CFI-7121)</h4>
+                    <p class="product-description">PlayStation 5 Pro with 2TB storage, enhanced performance, and ray tracing capabilities for next-gen gaming.</p>
+                    <p class="price">Rs. 195,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
             </div>
+        </div>
+
+        <div class="product-page" id="page2">
+            <div class="products-row">
+                <div class="card" data-brand="sony" data-price="245000">
+                    <img src="https://www.nanotek.lk/storage/products/1805/s6O5E4a3FKsUuM8mLUjOvQZXTcCWRhBdF66Cua1f.webp" alt="PlayStation 5 Slim" class="product-image">
+                    <h4 class="product-name">Sony PlayStation 5 Slim Disk Edition 1TB - CFI-2116</h4>
+                    <p class="product-description">Slimmer PS5 model with 1TB storage, disc drive, and enhanced efficiency.</p>
+                    <p class="price">Rs. 245,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="sony" data-price="28500">
+                    <img src="https://www.nanotek.lk/storage/products/1137/UKkErh1EHntEBapk6MkZ0yY7ivXQ4abIZzlq1F0s.webp" alt="PS5 Controller" class="product-image">
+                    <h4 class="product-name">PlayStation 5 DualSense Wireless Controller</h4>
+                    <p class="product-description">Official PS5 controller with haptic feedback, adaptive triggers, and built-in microphone.</p>
+                    <p class="price">Rs. 28,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="sony" data-price="14500">
+                    <img src="https://www.nanotek.lk/storage/products/1612/4kQLQwaClXf66IBpDFY9D3RJ88ZXWA4KqWgYOcJ5.webp" alt="PS5 Cooling Station" class="product-image">
+                    <h4 class="product-name">Porodo Gaming PS5 Slim Cooling Station + Controller Charging</h4>
+                    <p class="product-description">Cooling stand with controller charging dock and headphone stand for PS5.</p>
+                    <p class="price">Rs. 14,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="microsoft" data-price="25000">
+                    <img src="https://www.nanotek.lk/storage/products/1156/v14A99NjY8ocOlfTv87V3NkcVB6uSCPVnDgSNCTC.webp" alt="Xbox Controller" class="product-image">
+                    <h4 class="product-name">Xbox Wireless Controller</h4>
+                    <p class="product-description">Official Xbox wireless controller with textured grip and Bluetooth connectivity.</p>
+                    <p class="price">Rs. 25,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="nintendo" data-price="105000">
+                    <img src="https://www.nanotek.lk/storage/products/3/itgPs6NEaMTCI5FWDun1kscGsLXnELIQqFrNOoqn.webp" alt="Nintendo Switch OLED Neon" class="product-image">
+                    <h4 class="product-name">Nintendo Switch OLED Model - Neon</h4>
+                    <p class="product-description">Vibrant neon edition with 7-inch OLED screen and enhanced audio.</p>
+                    <p class="price">Rs. 105,000.00</p>
+                    <p class="Out-stock">Out of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="sony" data-price="265000">
+                    <img src="https://www.nanotek.lk/storage/products/953/WpyOoUVajLbZkGYfC3yrYWo22G7NNhYHmvLknwvt.webp" alt="PS5 Pro 7021" class="product-image">
+                    <h4 class="product-name">Sony PlayStation 5 Pro 2TB - CFI 7021</h4>
+                    <p class="product-description">High-end PS5 Pro with 2TB storage and enhanced ray tracing capabilities.</p>
+                    <p class="price">Rs. 265,000.00</p>
+                    <p class="Out-stock">Out of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="sony" data-price="180000">
+                    <img src="https://www.nanotek.lk/storage/products/759/1ybc53P5ZbX90MNipjYgLeHMNqVjKRIHbaL9OTPl.webp" alt="PS5 Slim 2016" class="product-image">
+                    <h4 class="product-name">Sony PlayStation 5 Slim Disk Edition 1TB - CFI-2016A01Y</h4>
+                    <p class="product-description">Compact PS5 Slim with 1TB storage and detachable disc drive.</p>
+                    <p class="price">Rs. 180,000.00</p>
+                    <p class="Out-stock">Out of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="sony" data-price="65500">
+                    <img src="https://www.nanotek.lk/storage/products/1824/JwdjsyReKSYJ56erLsc2jjKoJmKERcxuQYRlUK04.webp" alt="PS5 Edge Controller" class="product-image">
+                    <h4 class="product-name">PlayStation 5 DualSense Edge Controller</h4>
+                    <p class="product-description">Pro controller with customizable controls, trigger stops, and braided cable.</p>
+                    <p class="price">Rs. 65,500.00</p>
+                    <p class="Out-stock">Out of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+                <div class="card" data-brand="microsoft" data-price="38500">
+                    <img src="https://www.nanotek.lk/storage/products/621/T1RtCm6hc4GNM840R8BBtaZJD9zWo1m29b8CJ32C.webp" alt="Xbox Headset" class="product-image">
+                    <h4 class="product-name">Xbox Wireless Headset</h4>
+                    <p class="product-description">Official Xbox wireless headset with spatial sound and noise isolation.</p>
+                    <p class="price">Rs. 38,500.00</p>
+                    <p class="Out-stock">Out of Stock</p>
+                    <button class="cart-btn">
+                        <span>🛒</span>
+                        <span>Add to Cart</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="pagination">
+            <button type="button" onclick="showPage('page1')">1</button>
+            <button type="button" onclick="showPage('page2')">2</button>
         </div>
 
         <div class="no-results" id="noResults">
@@ -382,3 +513,9 @@
     <script src="/cart.js"></script>
 </body>
 </html>
+
+
+
+
+
+

@@ -55,7 +55,7 @@
             background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6);
             border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12);
             padding: 8px; z-index: 9999; backdrop-filter: blur(20px);
-            transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+            transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease;
         }
         .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
         .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
@@ -198,7 +198,7 @@
                         <a href="/pc">PC</a>
                         <a href="/gaming">Gaming</a>
                         <a href="/monitor">Monitor</a>
-                        <a href="/peripherals">Peripherals</a>
+                        <div class="dropdown" style="position:relative;"><a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;">Peripherals ?</a><div class="dropdown-content" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div></div><div class="dropdown-content peripherals-submenu" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div>
                         <a href="/build pc">Build PC</a>
                     </div>
                 </div>
@@ -323,6 +323,91 @@
             <button type="button" onclick="showPage('page1')">1</button>
             <button type="button" onclick="showPage('page2')">2</button>
         </div>
+        <div class="product-page" id="page3">
+            <div class="products-row">
+                <div class="card" data-brand="asus" data-price="499000" data-hz="240" data-panel="oled">
+                    <img src="https://www.nanotek.lk/storage/products/1188/lkFyEZEC2i6wGZDWpDLOvYth5mSGIHcjV95OVRUy.webp" alt="Asus ROG Swift OLED" class="product-image">
+                    <h4 class="product-name">ASUS ROG Swift OLED PG34WCDM 34" 240HZ 3440 x 1440 Type-C Monitor</h4>
+                    <p class="product-description">Ultrawide OLED gaming monitor with 240Hz refresh rate and USB-C connectivity.</p>
+                    <p class="price">Rs. 499,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="139000" data-hz="120" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/242/SubxG4u5lHB3p4r6AEq1o9WRiN62XioYUkoqRAiO.webp" alt="Asus ProArt PA278QGV" class="product-image">
+                    <h4 class="product-name">ASUS ProArt PA278QGV 27" IPS 2K 1440P 95% DCI-P3 120Hz HDR-10 Calman Verified PROFESSIONAL MONITOR</h4>
+                    <p class="product-description">Professional monitor with 95% DCI-P3 color gamut, Calman verified for color-critical work.</p>
+                    <p class="price">Rs. 139,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="99000" data-hz="100" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/2061/E0Piq7IaMwzgyWFZFn6axbSpzki070K618QxIPHr.webp" alt="Asus ProArt 24" class="product-image">
+                    <h4 class="product-name">Asus ProArt 24" PA248QFV 1080P 100Hz Professional Monitor</h4>
+                    <p class="product-description">24-inch professional monitor with 100Hz refresh rate and accurate color reproduction.</p>
+                    <p class="price">Rs. 99,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="42500" data-hz="" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/1485/P1fEMtLhDtSOhPUJWSQEUNL1KWwszIccxzAb11ny.webp" alt="Asus ZenScreen" class="product-image">
+                    <h4 class="product-name">ASUS 15.6" ZenScreen MB169CK IPS 1080P Portable Monitor</h4>
+                    <p class="product-description">Ultra-portable 15.6-inch monitor with IPS panel, perfect for on-the-go productivity.</p>
+                    <p class="price">Rs. 42,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="46500" data-hz="146" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/2060/4BrD0x2ftNEjV67scloQ8RTymmL2i43yi09Xr1s3.webp" alt="Asus TUF VG279QE5A" class="product-image">
+                    <h4 class="product-name">ASUS TUF GAMING VG279QE5A 27" FHD IPS 146HZ</h4>
+                    <p class="product-description">27-inch FHD gaming monitor with 146Hz refresh rate and ELMB technology.</p>
+                    <p class="price">Rs. 46,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="45000" data-hz="120" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/1953/ntOjsQxuDKZOxgcihwr18mkrUcYGQ0dGhomPSONw.webp" alt="Asus VY279HGR" class="product-image">
+                    <h4 class="product-name">ASUS VY279HGR 27" IPS FHD 120HZ EYE CARE MONITOR</h4>
+                    <p class="product-description">Eye care monitor with 120Hz refresh rate and flicker-free technology.</p>
+                    <p class="price">Rs. 45,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="159000" data-hz="220" data-panel="">
+                    <img src="https://www.nanotek.lk/storage/products/903/PNzDlzoiHaIje5h560WbNkzyyJWGGi9Hx9nyVmiy.webp" alt="Asus ROG XG309CM" class="product-image">
+                    <h4 class="product-name">ASUS ROG Strix 30" XG309CM 2560x1080 Ultra Wide 220Hz</h4>
+                    <p class="product-description">30-inch ultrawide gaming monitor with 220Hz refresh rate for immersive gameplay.</p>
+                    <p class="price">Rs. 159,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="217500" data-hz="165" data-panel="">
+                    <img src="https://www.nanotek.lk/storage/products/767/BAFb5ezoMsvQGQpjxJVqHD3CneuFSWe1JB45wusw.webp" alt="Asus ProArt PA328CGV" class="product-image">
+                    <h4 class="product-name">ASUS ProArt PA328CGV 32" 2560 x 1440 165 Hz 100% sRGB Calman Verified, USB-C</h4>
+                    <p class="product-description">32-inch professional monitor with USB-C docking and 100% sRGB color coverage.</p>
+                    <p class="price">Rs. 217,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="121500" data-hz="" data-panel="ips">
+                    <img src="https://www.nanotek.lk/storage/products/243/maLRTJCR97PQe3oJmywIUqVqrQ7upHaNr1BwUJfS.webp" alt="Asus ProArt PA278QV" class="product-image">
+                    <h4 class="product-name">ASUS 27" PA278QV 1440P IPS PROART DISPLAY CALMAN VERIFIED PROFESSIONAL MONITOR</h4>
+                    <p class="product-description">2K professional monitor with Calman verification for color-accurate work.</p>
+                    <p class="price">Rs. 121,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-price="209000" data-hz="280" data-panel="">
+                    <img src="https://www.nanotek.lk/storage/products/1895/36MitISGuo6I90RCsTcUXRSIqKpxYUUkKcJmily3.webp" alt="Asus ROG OLED XG27AQWMG" class="product-image">
+                    <h4 class="product-name">ASUS ROG STRIX OLED XG27AQWMG 27" 2K W-OLED 280Hz GAMING MONITOR</h4>
+                    <p class="product-description">27-inch W-OLED gaming monitor with 280Hz refresh rate and 0.03ms response time.</p>
+                    <p class="price">Rs. 209,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="no-results" id="noResults">
             <p>No products found</p>
             <span>Try adjusting your filters or clear all to see all products.</span>
@@ -395,7 +480,7 @@
                     if (activeHz.length > 0) {
                         var hzMatch = false;
                         for (var k = 0; k < activeHz.length; k++) {
-                            if (hz >= activeHz[k] && hz < activeHz[k] + 50) { hzMatch = true; break; }
+                            if (hz >= activeHz[k]) { hzMatch = true; break; }
                         }
                         show = show && hzMatch;
                     }
@@ -439,3 +524,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

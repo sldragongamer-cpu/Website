@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unet Solutions | Mouse & Keyboard</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%); color: #0f172a; min-height: 100vh; }
+        .page-wrapper { position: relative; z-index: 1; }
+        .navbar { position: relative; width: min(1400px, calc(100% - 48px)); min-height: 90px; margin: 24px auto 32px; padding: 0 36px; background: rgba(255, 255, 255, 0.82); display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px; box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8); backdrop-filter: blur(20px) saturate(180%); box-sizing: border-box; z-index: 100; animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
+        .navbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
+        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; padding-right: 20px; margin-right: 8px; border-right: 1px solid rgba(148, 163, 184, 0.2); }
+        .brand-name { font-size: 20px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); background: transparent; }
+        .nav-link:hover { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
+        .navbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; }
+        .icon-btn { display: inline-flex; justify-content: center; align-items: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        .page-header { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; text-align: center; }
+        .page-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .card { background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px; padding: 20px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08); backdrop-filter: blur(12px); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1); overflow: hidden; position: relative; display: flex; flex-direction: column; cursor: pointer; }
+        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(30, 58, 138, 0.14), 0 4px 12px rgba(30, 58, 138, 0.08); }
+        .product-image { width: 100%; height: 200px; object-fit: contain; border-radius: 14px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
+        .card:hover .product-image { transform: scale(1.03); }
+        .product-name { margin: 16px 0 8px; font-size: 15px; font-weight: 700; line-height: 1.45; color: #1e293b; }
+        .product-description { margin: 0 0 12px; font-size: 13px; font-weight: 400; line-height: 1.5; color: #64748b; }
+        .price { margin: 0 0 12px; color: #2563eb; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
+        .In-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
+        .cart-btn { width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 12px; padding: 12px 16px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="../index.html" class="brand-mark">
+                    <img src="../logo.png" alt="Logo" style="height:48px;">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="../home" class="nav-link">Home</a>
+                <div class="dropdown" style="position:relative;">
+                    <a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;padding:10px 18px;border-radius:12px;color:#334155;font-size:15px;font-weight:600;">Peripherals ▼</a>
+                </div>
+                <a href="../index.html#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="../login" class="icon-btn">Account</a>
+                <span class="icon-btn">Cart</span>
+            </div>
+        </div>
+        
+        <div class="page-header">
+            <h2>Mouse & Keyboard</h2>
+        </div>
+        
+        <div class="products-row">
+            <div class="card">
+                <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wireless-mice/m185/gallery-1-m185.png" alt="Logitech M185" class="product-image">
+                <h4 class="product-name">Logitech M185 Wireless Mouse</h4>
+                <p class="product-description">Reliable wireless mouse with 1000DPI optical tracking and 12-month battery life.</p>
+                <p class="price">Rs. 8,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wireless-keyboards/k380/gallery-1-k380.png" alt="Logitech K380" class="product-image">
+                <h4 class="product-name">Logitech K380 Multi-Device Bluetooth Keyboard</h4>
+                <p class="product-description">Compact Bluetooth keyboard that connects to 3 devices simultaneously with easy-switch keys.</p>
+                <p class="price">Rs. 15,200.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CH-9000239-NA/Gallery/GAMING-MOUSE-M65-ELITE-WT.png" alt="Corsair M65" class="product-image">
+                <h4 class="product-name">Corsair M65 RGB ELITE Gaming Mouse 18000 DPI</h4>
+                <p class="product-description">High-precision gaming mouse with 18000 DPI sensor, adjustable weight, and customizable RGB lighting.</p>
+                <p class="price">Rs. 16,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://resource.logitech.com/w_692,c_lpad,ar_4:3,q_auto:best,f_auto,dpr_auto/content/dam/wired-keyboards/g413/gallery-1-g413.png" alt="Logitech G413" class="product-image">
+                <h4 class="product-name">Logitech G413 Mechanical Gaming Keyboard</h4>
+                <p class="product-description">Mechanical gaming keyboard with Romer-G tactile switches, aircraft-grade aluminum body, and white LED backlight.</p>
+                <p class="price">Rs. 28,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/1338/K0gYy6oAAi8ubIhBzD8xGolhXmZdh3P5uxFiJnwc.webp" alt="Asus ROG Harpe" class="product-image">
+                <h4 class="product-name">ASUS ROG P718 Harpe Ace Extreme Wireless</h4>
+                <p class="product-description">Flagship wireless gaming mouse with 42,000 DPI sensor and 130-hour battery life.</p>
+                <p class="price">Rs. 89,000.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/1569/qSpTvJuarUbn91fHzszz0tWmaN0m0H4rbVLYgM6L.webp" alt="Asus TUF M4" class="product-image">
+                <h4 class="product-name">ASUS TUF Gaming M4 Wireless Lightweight Gaming Mouse</h4>
+                <p class="product-description">Ultra-lightweight wireless mouse with 16,000 DPI and IP53 water resistance.</p>
+                <p class="price">Rs. 16,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/523/1SXatBcpCz2IsRsGyEnxdVreMlsUgpkFKD8ZT6fA.webp" alt="Asus TUF K1" class="product-image">
+                <h4 class="product-name">Asus TUF Gaming K1 RGB Gaming Keyboard</h4>
+                <p class="product-description">Mechanical gaming keyboard with RGB lighting, programmable keys, and durable switches.</p>
+                <p class="price">Rs. 15,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/524/cXSy0jYqjgpcIfcVHC4cq40DcZ6IpavzQyuxVlJ7.webp" alt="Asus TUF K3" class="product-image">
+                <h4 class="product-name">Asus TUF Gaming K3 RGB GEN II mechanical Gaming Keyboard</h4>
+                <p class="product-description">Mechanical keyboard with per-key RGB, dedicated media controls, and USB passthrough.</p>
+                <p class="price">Rs. 25,000.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/970/szlOJ7VO3tTFw3ZIlIBA8yPgSMtMofef8qXRSSDJ.webp" alt="Asus ROG Gladius" class="product-image">
+                <h4 class="product-name">ASUS ROG Gladius II Core Gaming Mouse</h4>
+                <p class="product-description">Ergonomic gaming mouse with Omron switches and customizable AURA RGB lighting.</p>
+                <p class="price">Rs. 14,000.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/588/0ltMwjDnmpxfvpjsI29hPpVOeRiPKyH3Plm0IBqK.webp" alt="Asus TUF M3" class="product-image">
+                <h4 class="product-name">ASUS TUF Gaming M3 Gen II</h4>
+                <p class="product-description">Budget gaming mouse with 7 programmable buttons and 6,000 DPI optical sensor.</p>
+                <p class="price">Rs. 8,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/587/WbI6opE3DcF5UdWOLlwqCzLvVMuJZldTQsPptWy3.webp" alt="Asus TUF M4 Air" class="product-image">
+                <h4 class="product-name">ASUS TUF Gaming M4 Air Lightweight Gaming Mouse</h4>
+                <p class="product-description">Hollow-shell design gaming mouse weighing just 47g with 16,000 DPI sensor.</p>
+                <p class="price">Rs. 13,500.00</p>
+                <p class="In-stock">In Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/1560/twGImzNaDszlzDjwIapMyxPa5z426wQpJOB27P7j.webp" alt="Asus ROG Falchion" class="product-image">
+                <h4 class="product-name">ASUS ROG STRIX FALCHION NX WIRELESS</h4>
+                <p class="product-description">Compact 65% wireless mechanical keyboard with interactive touch panel and 400-hour battery.</p>
+                <p class="price">Rs. 52,000.00</p>
+                <p class="Out-stock">Out Of Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+            <div class="card">
+                <img src="https://www.nanotek.lk/storage/products/522/ccf2A4Bknd8NZGfIFgJx2ECYkZnOGGw8yAFGQbBf.webp" alt="Asus ROG Scope" class="product-image">
+                <h4 class="product-name">ASUS ROG Strix Scope II 96 Wireless</h4>
+                <p class="product-description">96% layout wireless keyboard with hot-swappable ROG NX switches and RGB.</p>
+                <p class="price">Rs. 52,000.00</p>
+                <p class="Out-stock">Out Of Stock</p>
+                <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+            </div>
+             </div>
+         </div>
+     </div>
+</body>
+</html>
+
+
+

@@ -52,7 +52,7 @@
         .dropdown { position: relative; display: inline-flex; align-items: center; }
         .dropdown > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font: inherit; background: transparent; color: #334155; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
         .dropdown:hover > button { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
-        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s; }
+        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease; }
         .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
         .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); }
         .dropdown-content a:hover { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06)); color: #1e40af; padding-left: 20px; }
@@ -211,7 +211,7 @@
                         <a href="../pc">PC</a>
                         <a href="../gaming">Gaming</a>
                         <a href="../monitor">Monitor</a>
-                        <a href="../peripherals">Peripherals</a>
+                        <div class="dropdown" style="position:relative;"><a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;">Peripherals ?</a><div class="dropdown-content" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div></div>
                         <a href="../build%20pc/index.html">Build PC</a>
                     </div>
                 </div>
@@ -266,8 +266,84 @@
         <div class="pagination">
             <button type="button" onclick="showPage('page1')">1</button>
             <button type="button" onclick="showPage('page2')">2</button>
-            <button type="button" onclick="showPage('page3')">3</button>
         </div>
+        <div class="product-page" id="page2">
+            <div class="products-row">
+                <div class="card" data-brand="intel" data-price="124000">
+                    <img src="https://www.nanotek.lk/storage/products/2110/pEsLndKRzrQOAZ3tkp2sC7eiwR1ztlevMyzQcdPa.webp" alt="Intel Core Ultra 7" class="product-image">
+                    <h4 class="product-name">Intel® Core™ Ultra 7 processor 270K Plus (36M Cache, up to 5.50 GHz)</h4>
+                    <p class="product-description">Latest Intel Ultra 7 processor with AI capabilities and 36M cache for high-performance computing.</p>
+                    <p class="price">Rs. 124,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="amd" data-price="32500">
+                    <img src="https://www.nanotek.lk/storage/products/1933/DWgd0BFBL2FtUghfUgHlh5gNw6U682mHrNwN0Icd.webp" alt="AMD Ryzen 5 5500" class="product-image">
+                    <h4 class="product-name">AMD Ryzen 5 5500 (up to 4.2GHz 6-cores 12-threads) 16M Cache</h4>
+                    <p class="product-description">Budget-friendly 6-core processor with 16M cache, ideal for everyday computing and light gaming.</p>
+                    <p class="price">Rs. 32,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="amd" data-price="24500">
+                    <img src="https://www.nanotek.lk/storage/products/2016/DmzxmukVmjGKiKMmtPO0eaIT69nYyAwrha213pAD.webp" alt="AMD Ryzen 5 3400G" class="product-image">
+                    <h4 class="product-name">AMD Ryzen™ 5 3400G (Up To 4.2GHz Cores 4 - Threads 8) 4M Cache</h4>
+                    <p class="product-description">Entry-level APU with integrated graphics, perfect for budget builds without dedicated GPU.</p>
+                    <p class="price">Rs. 24,500.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="amd" data-price="62000">
+                    <img src="https://www.nanotek.lk/storage/products/62/XxAjExy1N6EHS78lsXbajkaYbVkARAly72js7THe.webp" alt="AMD Ryzen 7 5700X" class="product-image">
+                    <h4 class="product-name">AMD RYZEN 7 5700X (UP TO 4.6GHZ 8-CORES 16-THREADS) 36M CACHE</h4>
+                    <p class="product-description">8-core powerhouse with 36M cache, excellent for gaming and content creation.</p>
+                    <p class="price">Rs. 62,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="intel" data-price="52000">
+                    <img src="https://www.nanotek.lk/storage/products/65/b1Pk52jXOU3wCN0m6RN0O8uL05DXYU1B228EwPZy.webp" alt="Intel i5-12400F" class="product-image">
+                    <h4 class="product-name">INTEL CORE I5-12400F (18M CACHE, UP TO 4.40 GHZ)</h4>
+                    <p class="product-description">6-core Intel processor with 18M cache, great for mid-range gaming builds.</p>
+                    <p class="price">Rs. 52,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="intel" data-price="57500">
+                    <img src="https://www.nanotek.lk/storage/products/64/XA6rwUlEHBoyoAxHQLNrddDuc727CKUQDS00STAT.webp" alt="Intel i5-12400" class="product-image">
+                    <h4 class="product-name">INTEL CORE I5-12400 (18M CACHE, UP TO 4.40 GHZ)</h4>
+                    <p class="product-description">Non-F variant with integrated graphics, suitable for office work and light tasks.</p>
+                    <p class="price">Rs. 57,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="intel" data-price="53500">
+                    <img src="https://www.nanotek.lk/storage/products/69/lVM0vrbvqAdvUzJ7FBnsTlppJR7wZAMsUyGfKd8T.webp" alt="Intel i5-14400F" class="product-image">
+                    <h4 class="product-name">INTEL CORE I5 14400F (20M CACHE, UP TO 4.70 GHZ)</h4>
+                    <p class="product-description">14th gen Intel processor with 20M cache and improved single-core performance.</p>
+                    <p class="price">Rs. 53,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="intel" data-price="75000">
+                    <img src="https://www.nanotek.lk/storage/products/70/ob8AQfjGAAupmVqHkJ9Fq86jz7kjUr4jtMAi10o.webp" alt="Intel i5-14400" class="product-image">
+                    <h4 class="product-name">INTEL CORE I5 14400 (20M CACHE, UP TO 4.70 GHZ)</h4>
+                    <p class="product-description">14th gen with integrated graphics, perfect for productivity and multitasking.</p>
+                    <p class="price">Rs. 75,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="intel" data-price="99500">
+                    <img src="https://www.nanotek.lk/storage/products/75/mXkfdDeiKM2PAkyX7ZmhBZhZXzgX1ZJIUTtjyBR9.webp" alt="Intel i7-14700F" class="product-image">
+                    <h4 class="product-name">INTEL CORE I7 14700F (33M CACHE, UP TO 5.40 GHZ)</h4>
+                    <p class="product-description">High-performance 14th gen processor with 33M cache for demanding workloads.</p>
+                    <p class="price">Rs. 99,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
         <div class="no-results" id="noResults">
             <p>No products found</p>
             <span>Try adjusting your filters or clear all to see all products.</span>
@@ -380,3 +456,8 @@
     </script>
 </body>
 </html>
+
+
+
+
+

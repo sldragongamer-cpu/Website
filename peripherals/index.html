@@ -168,7 +168,7 @@
             padding: 8px;
             z-index: 9999;
             backdrop-filter: blur(20px);
-            transition: opacity 0.2s ease 0.3s, visibility 0.2s ease 0.3s, transform 0.2s ease 0.3s;
+            transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease;
         }
 
         .dropdown-content::before {
@@ -560,52 +560,6 @@
     </style>
 </head>
 <body>
-    <button class="filter-sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/>
-        </svg>
-    </button>
-    <div class="filter-sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="filter-sidebar" id="sidebar">
-        <h2>Filters <span class="results-count" id="resultsCount"></span><button type="button" class="clear-filters-btn" id="clearFilters">Clear All</button></h2>
-        <div class="filter-section">
-            <h3>Category</h3>
-            <div class="filter-option"><input type="checkbox" id="cat-webcam" data-filter="cat" value="webcam"><label for="cat-webcam">Webcam</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-mousekb" data-filter="cat" value="mousekb"><label for="cat-mousekb">Mouse & Keyboard</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-psu" data-filter="cat" value="psu"><label for="cat-psu">Power Supply</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-casing" data-filter="cat" value="casing"><label for="cat-casing">Casings</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-cooler" data-filter="cat" value="cooler"><label for="cat-cooler">Coolers</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-processor" data-filter="cat" value="processor"><label for="cat-processor">Processors</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-mobo" data-filter="cat" value="mobo"><label for="cat-mobo">Motherboard</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-ram" data-filter="cat" value="ram"><label for="cat-ram">Desktop RAM</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-vga" data-filter="cat" value="vga"><label for="cat-vga">VGA Card</label></div>
-            <div class="filter-option"><input type="checkbox" id="cat-sound" data-filter="cat" value="sound"><label for="cat-sound">Sound Card</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Brand</h3>
-            <div class="filter-option"><input type="checkbox" id="brand-logitech" data-filter="brand" value="logitech"><label for="brand-logitech">Logitech</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-corsair" data-filter="brand" value="corsair"><label for="brand-corsair">Corsair</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-amd" data-filter="brand" value="amd"><label for="brand-amd">AMD</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-intel" data-filter="brand" value="intel"><label for="brand-intel">Intel</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-asus" data-filter="brand" value="asus"><label for="brand-asus">Asus</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-msi" data-filter="brand" value="msi"><label for="brand-msi">MSI</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-kingston" data-filter="brand" value="kingston"><label for="brand-kingston">Kingston</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-gigabyte" data-filter="brand" value="gigabyte"><label for="brand-gigabyte">Gigabyte</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Price Range</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="0" data-max="10000"><label>Under Rs. 10K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="10000" data-max="30000"><label>Rs. 10K - 30K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="30000" data-max="60000"><label>Rs. 30K - 60K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="60000" data-max="100000"><label>Rs. 60K - 100K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="100000" data-max="9999999"><label>Rs. 100K+</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Availability</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="in"><label>In Stock</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="out"><label>Out of Stock</label></div>
-        </div>
-    </aside>
     <div class="page-wrapper">
         <div class="navbar">
             <div class="navbar-left">
@@ -621,7 +575,7 @@
                         <a href="../pc">PC</a>
                         <a href="../gaming">Gaming</a>
                         <a href="../monitor">Monitor</a>
-                        <a href="../peripherals">Peripherals</a>
+                        <div class="dropdown" style="position:relative;"><a href="../peripherals" style="display:flex;justify-content:space-between;align-items:center;">Peripherals ?</a><div class="dropdown-content" style="top:0;left:100%;margin-left:8px;"><a href="/peripherals/webcam.html">Webcam</a><a href="/peripherals/mousekb.html">Mouse & Keyboard</a><a href="/peripherals/psu.html">Power Supply</a><a href="/peripherals/casing.html">Casings</a><a href="/peripherals/cooler.html">Coolers</a><a href="/peripherals/processor.html">Processors</a><a href="/peripherals/mobo.html">Motherboard</a><a href="/peripherals/ram.html">Desktop RAM</a><a href="/peripherals/vga.html">VGA Card</a><a href="/peripherals/sound.html">Sound Card</a></div></div>
                         <a href="../build%20pc/index.html">Build PC</a>
                     </div>
                 </div>
@@ -636,6 +590,79 @@
 
         <div class="page-header">
             <h2>Computer Peripherals</h2>
+        </div>
+
+        <div class="products-row">
+            <a href="webcam.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">📷</span>
+                </div>
+                <h4 class="product-name">Webcams</h4>
+                <p class="product-description">Logitech C920s, C270 and more</p>
+            </a>
+            <a href="mousekb.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">🖱️</span>
+                </div>
+                <h4 class="product-name">Mouse & Keyboard</h4>
+                <p class="product-description">Logitech, Corsair, ASUS gaming gear</p>
+            </a>
+            <a href="psu.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">⚡</span>
+                </div>
+                <h4 class="product-name">Power Supply</h4>
+                <p class="product-description">Corsair CX650, RM750x, RM850x</p>
+            </a>
+            <a href="casing.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">🖥️</span>
+                </div>
+                <h4 class="product-name">Casings</h4>
+                <p class="product-description">Corsair 4000D, 5000D, MSI MAG FORGE</p>
+            </a>
+            <a href="cooler.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">❄️</span>
+                </div>
+                <h4 class="product-name">Coolers</h4>
+                <p class="product-description">Corsair H60, H100i, A500</p>
+            </a>
+            <a href="processor.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">🔧</span>
+                </div>
+                <h4 class="product-name">Processors</h4>
+                <p class="product-description">AMD Ryzen 5/7, Intel Core i5</p>
+            </a>
+            <a href="mobo.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">📋</span>
+                </div>
+                <h4 class="product-name">Motherboard</h4>
+                <p class="product-description">ASUS TUF, MSI PRO, Gigabyte</p>
+            </a>
+            <a href="ram.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">💾</span>
+                </div>
+                <h4 class="product-name">Desktop RAM</h4>
+                <p class="product-description">Kingston Fury Beast DDR4/DDR5</p>
+            </a>
+            <a href="vga.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">🎮</span>
+                </div>
+                <h4 class="product-name">VGA Card</h4>
+                <p class="product-description">MSI RTX 4060, RTX 4070</p>
+            </a>
+            <a href="sound.html" class="card" style="text-decoration:none;color:inherit;">
+                <div style="height:200px;display:flex;align-items:center;justify-content:center;background:linear-gradient(135deg,#f8fafc,#f1f5f9);border-radius:14px;margin-bottom:16px;">
+                    <span style="font-size:48px;">🔊</span>
+                </div>
+                <h4 class="product-name">Sound Card</h4>
+                <p class="product-description">ASUS Xonar AE PCIe 7.1</p>
+            </a>
         </div>
 
         <div class="product-page active" id="page1">
@@ -956,133 +983,93 @@
             </div>
         </div>
 
-        <div class="pagination">
-            <button type="button" onclick="showPage('page1')">1</button>
-            <button type="button" onclick="showPage('page2')">2</button>
-            <button type="button" onclick="showPage('page3')">3</button>
+        <div class="product-page" id="page4">
+            <div class="products-row">
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="89000">
+                    <img src="https://www.nanotek.lk/storage/products/1338/K0gYy6oAAi8ubIhBzD8xGolhXmZdh3P5uxFiJnwc.webp" alt="Asus ROG Harpe" class="product-image">
+                    <h4 class="product-name">ASUS ROG P718 Harpe Ace Extreme Wireless</h4>
+                    <p class="product-description">Flagship wireless gaming mouse with 42,000 DPI sensor and 130-hour battery life.</p>
+                    <p class="price">Rs. 89,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="16500">
+                    <img src="https://www.nanotek.lk/storage/products/1569/qSpTvJuarUbn91fHzszz0tWmaN0m0H4rbVLYgM6L.webp" alt="Asus TUF M4" class="product-image">
+                    <h4 class="product-name">ASUS TUF Gaming M4 Wireless Lightweight Gaming Mouse</h4>
+                    <p class="product-description">Ultra-lightweight wireless mouse with 16,000 DPI and IP53 water resistance.</p>
+                    <p class="price">Rs. 16,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="15500">
+                    <img src="https://www.nanotek.lk/storage/products/523/1SXatBcpCz2IsRsGyEnxdVreMlsUgpkFKD8ZT6fA.webp" alt="Asus TUF K1" class="product-image">
+                    <h4 class="product-name">Asus TUF Gaming K1 RGB Gaming Keyboard</h4>
+                    <p class="product-description">Mechanical gaming keyboard with RGB lighting, programmable keys, and durable switches.</p>
+                    <p class="price">Rs. 15,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="25000">
+                    <img src="https://www.nanotek.lk/storage/products/524/cXSy0jYqjgpcIfcVHC4cq40DcZ6IpavzQyuxVlJ7.webp" alt="Asus TUF K3" class="product-image">
+                    <h4 class="product-name">Asus TUF Gaming K3 RGB GEN II mechanical Gaming Keyboard</h4>
+                    <p class="product-description">Mechanical keyboard with per-key RGB, dedicated media controls, and USB passthrough.</p>
+                    <p class="price">Rs. 25,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="14000">
+                    <img src="https://www.nanotek.lk/storage/products/970/szlOJ7VO3tTFw3ZIlIBA8yPgSMtMofef8qXRSSDJ.webp" alt="Asus ROG Gladius" class="product-image">
+                    <h4 class="product-name">ASUS ROG Gladius II Core Gaming Mouse</h4>
+                    <p class="product-description">Ergonomic gaming mouse with Omron switches and customizable AURA RGB lighting.</p>
+                    <p class="price">Rs. 14,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="8500">
+                    <img src="https://www.nanotek.lk/storage/products/588/0ltMwjDnmpxfvpjsI29hPpVOeRiPKyH3Plm0IBqK.webp" alt="Asus TUF M3" class="product-image">
+                    <h4 class="product-name">ASUS TUF Gaming M3 Gen II</h4>
+                    <p class="product-description">Budget gaming mouse with 7 programmable buttons and 6,000 DPI optical sensor.</p>
+                    <p class="price">Rs. 8,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="13500">
+                    <img src="https://www.nanotek.lk/storage/products/587/WbI6opE3DcF5UdWOLlwqCzLvVMuJZldTQsPptWy3.webp" alt="Asus TUF M4 Air" class="product-image">
+                    <h4 class="product-name">ASUS TUF Gaming M4 Air Lightweight Gaming Mouse</h4>
+                    <p class="product-description">Hollow-shell design gaming mouse weighing just 47g with 16,000 DPI sensor.</p>
+                    <p class="price">Rs. 13,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="52000">
+                    <img src="https://www.nanotek.lk/storage/products/1560/twGImzNaDszlzDjwIapMyxPa5z426wQpJOB27P7j.webp" alt="Asus ROG Falchion" class="product-image">
+                    <h4 class="product-name">ASUS ROG STRIX FALCHION NX WIRELESS</h4>
+                    <p class="product-description">Compact 65% wireless mechanical keyboard with interactive touch panel and 400-hour battery.</p>
+                    <p class="price">Rs. 52,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+                <div class="card" data-brand="asus" data-cat="mousekb" data-price="52000">
+                    <img src="https://www.nanotek.lk/storage/products/522/ccf2A4Bknd8NZGfIFgJx2ECYkZnOGGw8yAFGQbBf.webp" alt="Asus ROG Scope" class="product-image">
+                    <h4 class="product-name">ASUS ROG Strix Scope II 96 Wireless</h4>
+                    <p class="product-description">96% layout wireless keyboard with hot-swappable ROG NX switches and RGB.</p>
+                    <p class="price">Rs. 52,000.00</p>
+                    <p class="Out-stock">Out Of Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
         </div>
-        <div class="no-results" id="noResults">
-            <p>No products found</p>
-            <span>Try adjusting your filters or clear all to see all products.</span>
-        </div>
+
     </div>
 
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
-    <script>
-        (function() {
-            var cards = document.querySelectorAll('.card');
-            var checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
-            var clearBtn = document.getElementById('clearFilters');
-            var sidebar = document.getElementById('sidebar');
-            var sidebarToggle = document.getElementById('sidebarToggle');
-            var sidebarOverlay = document.getElementById('sidebarOverlay');
-            var resultsCount = document.getElementById('resultsCount');
-            var noResults = document.getElementById('noResults');
-            var pagination = document.querySelector('.pagination');
-            var filtersActive = false;
-
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-                sidebarOverlay.classList.toggle('active');
-            });
-            sidebarOverlay && sidebarOverlay.addEventListener('click', function() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('active');
-            });
-
-            function showPage(pageId) {
-                if (filtersActive) return;
-                var pages = document.querySelectorAll('.product-page');
-                for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
-                document.getElementById(pageId).classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            window.showPage = showPage;
-
-            function applyFilters() {
-                var activeCats = [];
-                var activeBrands = [];
-                var priceRanges = [];
-                var activeStock = [];
-
-                var catCbs = document.querySelectorAll('[data-filter="cat"]:checked');
-                for (var i = 0; i < catCbs.length; i++) { activeCats.push(catCbs[i].value); }
-
-                var brandCbs = document.querySelectorAll('[data-filter="brand"]:checked');
-                for (var i = 0; i < brandCbs.length; i++) { activeBrands.push(brandCbs[i].value); }
-
-                var priceCbs = document.querySelectorAll('[data-filter="price"]:checked');
-                for (var i = 0; i < priceCbs.length; i++) {
-                    priceRanges.push({ min: parseInt(priceCbs[i].dataset.min), max: parseInt(priceCbs[i].dataset.max) });
-                }
-
-                var stockCbs = document.querySelectorAll('[data-filter="stock"]:checked');
-                for (var i = 0; i < stockCbs.length; i++) { activeStock.push(stockCbs[i].value); }
-
-                filtersActive = activeCats.length > 0 || activeBrands.length > 0 || priceRanges.length > 0 || activeStock.length > 0;
-
-                var visibleCount = 0;
-                for (var j = 0; j < cards.length; j++) {
-                    var card = cards[j];
-                    var cat = card.getAttribute('data-cat');
-                    var brand = card.getAttribute('data-brand');
-                    var price = parseInt(card.getAttribute('data-price'));
-                    var inStock = card.querySelector('.In-stock') !== null;
-                    var show = true;
-
-                    if (activeCats.length > 0) show = show && activeCats.indexOf(cat) !== -1;
-                    if (activeBrands.length > 0) show = show && activeBrands.indexOf(brand) !== -1;
-                    if (priceRanges.length > 0) {
-                        var priceMatch = false;
-                        for (var k = 0; k < priceRanges.length; k++) {
-                            if (price >= priceRanges[k].min && price <= priceRanges[k].max) { priceMatch = true; break; }
-                        }
-                        show = show && priceMatch;
-                    }
-                    if (activeStock.length > 0) {
-                        var stockMatch = (inStock && activeStock.indexOf('in') !== -1) || (!inStock && activeStock.indexOf('out') !== -1);
-                        show = show && stockMatch;
-                    }
-                    card.style.display = show ? '' : 'none';
-                    if (show) visibleCount++;
-                }
-
-                if (resultsCount) resultsCount.textContent = visibleCount + ' product' + (visibleCount !== 1 ? 's' : '');
-                if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-
-                if (filtersActive) {
-                    var pages = document.querySelectorAll('.product-page');
-                    for (var i = 0; i < pages.length; i++) { pages[i].classList.add('active'); }
-                    if (pagination) pagination.style.display = 'none';
-                } else {
-                    var pages = document.querySelectorAll('.product-page');
-                    for (var i = 0; i < pages.length; i++) { pages[i].classList.remove('active'); }
-                    document.getElementById('page1').classList.add('active');
-                    if (pagination) pagination.style.display = '';
-                }
-            }
-
-            for (var i = 0; i < checkboxes.length; i++) {
-                checkboxes[i].addEventListener('change', applyFilters);
-                checkboxes[i].addEventListener('input', applyFilters);
-            }
-
-            clearBtn && clearBtn.addEventListener('click', function() {
-                for (var i = 0; i < checkboxes.length; i++) { checkboxes[i].checked = false; }
-                applyFilters();
-            });
-
-            cards.forEach(function(card) {
-                card.addEventListener('click', function(e) {
-                    if (e.target.closest('.cart-btn')) return;
-                    card.classList.toggle('expanded');
-                });
-            });
-
-            if (resultsCount) resultsCount.textContent = cards.length + ' products';
-            applyFilters();
-        })();
-    </script>
 </body>
 </html>
+
+
+
+
+
+
+
