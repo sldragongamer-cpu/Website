@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unet Solutions | Acer Laptops</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
+    <style>
+        .page-wrapper { padding-top: 100px; }
+        .card.expanded .product-description { max-height: 200px; opacity: 1; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .category-hero { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; border-radius: 24px; overflow: hidden; position: relative; min-height: 240px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glow); background: linear-gradient(135deg, #0a1a2a, #0a0a30, #102030); box-shadow: 0 0 60px rgba(0, 240, 255, 0.12), inset 0 0 80px rgba(0, 240, 255, 0.04); }
+        .category-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(0, 240, 255, 0.02) 30px, rgba(0, 240, 255, 0.02) 31px); }
+        .category-hero-content { text-align: center; z-index: 1; padding: 50px 40px; }
+        .category-hero-content h1 { font-size: 44px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; background: linear-gradient(135deg, #00f0ff, #2a7fff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.35)); }
+        .category-hero-content p { font-size: 16px; color: var(--text-secondary); font-weight: 500; }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } .category-hero-content h1 { font-size: 32px; } }
+        @media (max-width: 860px) { .products-row, .category-hero { width: calc(100% - 32px); } .category-hero { min-height: 180px; } .category-hero-content h1 { font-size: 26px; } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
+        @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
+    </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+<link rel="stylesheet" href="/futuristic-core.css">
+<script defer src="/particles.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="/index.html" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="/index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <div class="dropdown">
+                            <a href="/peripherals">Peripherals</a>
+                            <div class="dropdown-content">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
+                        <a href="/build-pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
+            </div>
+        </div>
+
+        <div class="category-hero">
+            <div class="category-hero-content">
+                <h1>Laptops</h1>
+                <p>Versatile Acer machines for work, study, and entertainment with cutting-edge technology</p>
+            </div>
+        </div>
+
+        <div class="brand-nav">
+            <a href="gaming-laptops.html" class="brand-btn">🎮 Gaming</a>
+            <a href="office-laptops.html" class="brand-btn">💼 Office</a>
+            <a href="lenovo.html" class="brand-btn">Lenovo</a>
+            <a href="dell.html" class="brand-btn">Dell</a>
+            <a href="acer.html" class="brand-btn active">Acer</a>
+            <a href="hp.html" class="brand-btn">HP</a>
+            <a href="asus.html" class="brand-btn">ASUS</a>
+            <a href="index.html" class="brand-btn">All Brands</a>
+        </div>
+
+        <div class="products-row">
+            <div class="card" data-price="211150">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213150440_3.webp" alt="Acer A515-56-53LE" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A515-56-53LE CORE i5 11GN | 4GB | 1TB | W10 | SIL (2Y)</h4>
+                    <p class="product-description">Acer Aspire laptop with Core i5 11th gen, 4GB RAM, and 1TB HDD for everyday computing.</p>
+                    <p class="price">Rs. 211,150.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="236900">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213151242_2.webp" alt="Acer A515-56G-58LQ" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A515-56G-58LQ CORE i5 11GN | 8GB | 1TB | 2GV | W (2Y)</h4>
+                    <p class="product-description">Acer laptop with Core i5, dedicated 2GB graphics, and 1TB storage for multimedia tasks.</p>
+                    <p class="price">Rs. 236,900.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="210000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154603_2.webp" alt="Acer A515-56-734Q" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A515-56-734Q CORE i7 11GN | 8GB | 1TB | MX350 | WIN11 (1Y)</h4>
+                    <p class="product-description">Acer Aspire 5 with Core i7 11th gen, MX350 graphics, and 1TB storage for powerful performance.</p>
+                    <p class="price">Rs. 210,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="247200">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154901_2.webp" alt="Acer TMP 215" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER TMP 215 | RYZEN 5-5650U | 8GB | 512GB | WIN 10 PRO (3Y)</h4>
+                    <p class="product-description">Acer TravelMate with Ryzen 5, 8GB RAM, and 512GB SSD for business use.</p>
+                    <p class="price">Rs. 247,200.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="172000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212093722_2.webp" alt="Acer A15-51P-39HQ" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A15-51P-39HQ CORE 3-100U | 8GB | 512SSD | 15.6" IPS | W11 (2Y)</h4>
+                    <p class="product-description">Acer laptop with Intel Core 3, 8GB RAM, and 15.6-inch IPS display for basic tasks.</p>
+                    <p class="price">Rs. 172,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="326000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212092405_2.webp" alt="Acer NL16-71G-76SE" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER NL16-71G-76SE i7-13620H | 16GB | 512SSD | RTX4050 6GB | 16" WUXGA IPS 165Hz | DOS (1Y)</h4>
+                    <p class="product-description">Acer Nitro laptop with i7-13620H, RTX 4050, and 165Hz display for gaming.</p>
+                    <p class="price">Rs. 326,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="216300">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154346_1.webp" alt="Acer A315-59G-55Z2" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A315-59G-55Z2 CORE i5 12GN | 8GB | 1TB | MX550 2GB | W11 | SILVER (2Y)</h4>
+                    <p class="product-description">Acer laptop with Core i5 12th gen, MX550 graphics, and 1TB storage for work and play.</p>
+                    <p class="price">Rs. 216,300.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="232000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260313095022_2.webp" alt="Acer Aspire Go 14" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER ASPIRE GO 14 AG14-71M-55LO ULTRA 5-115U | 16GB | 512SSD | 14" FHD | W11 (2Y)</h4>
+                    <p class="product-description">Acer Aspire Go with Intel Ultra 5, 16GB RAM, and 14-inch FHD display for portability.</p>
+                    <p class="price">Rs. 232,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.cart-btn')) return;
+                card.classList.toggle('expanded');
+            });
+        });
+    </script>
+    <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
+    <script src="/dropdown-fix.js"></script>
+<script src="../navbar.js"></body>
+</html>

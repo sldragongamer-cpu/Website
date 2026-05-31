@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unet Solutions | Gaming Laptops</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
+    <style>
+        .page-wrapper { padding-top: 100px; }
+        .card.expanded .product-description { max-height: 200px; opacity: 1; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .category-hero { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; border-radius: 24px; overflow: hidden; position: relative; min-height: 280px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glow); background: linear-gradient(135deg, #1a0a30, #0a0a3a, #1a0530); box-shadow: 0 0 60px rgba(255, 0, 170, 0.15), inset 0 0 80px rgba(0, 240, 255, 0.05); }
+        .category-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(255, 0, 170, 0.03) 30px, rgba(255, 0, 170, 0.03) 31px); }
+        .category-hero-content { text-align: center; z-index: 1; padding: 60px 40px; }
+        .category-hero-content h1 { font-size: 52px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; background: linear-gradient(135deg, #ff00aa, #00f0ff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(255, 0, 170, 0.4)); }
+        .category-hero-content p { font-size: 18px; color: var(--text-secondary); font-weight: 500; }
+        .category-nav { display: flex; justify-content: center; gap: 12px; margin: 30px auto; flex-wrap: wrap; max-width: 800px; }
+        .category-nav a { padding: 12px 24px; border: 1px solid var(--border-glow); border-radius: 50px; background: var(--bg-glass); color: var(--text-secondary); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; }
+        .category-nav a:hover { background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-2px); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+        .category-nav a.active { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: #0a0a1a; border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } .category-hero-content h1 { font-size: 36px; } }
+        @media (max-width: 860px) { .products-row, .category-hero { width: calc(100% - 32px); } .category-hero { min-height: 200px; } .category-hero-content h1 { font-size: 28px; } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
+        @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
+    </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+<link rel="stylesheet" href="/futuristic-core.css">
+<script defer src="/particles.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="/index.html" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="/index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <div class="dropdown">
+                            <a href="/peripherals">Peripherals</a>
+                            <div class="dropdown-content">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
+                        <a href="/build-pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
+            </div>
+        </div>
+
+        <div class="category-hero">
+            <div class="category-hero-content">
+                <h1>Laptops</h1>
+                <p>Dominate the game with high-performance machines built for speed, graphics, and victory</p>
+            </div>
+        </div>
+
+        <div class="category-nav">
+            <a href="index.html">All Laptops</a>
+            <a href="gaming-laptops.html" class="active">Gaming</a>
+            <a href="office-laptops.html">Office</a>
+            <a href="lenovo.html">Lenovo</a>
+            <a href="dell.html">Dell</a>
+            <a href="acer.html">Acer</a>
+            <a href="hp.html">HP</a>
+            <a href="asus.html">ASUS</a>
+        </div>
+
+        <div class="products-row">
+            <div class="card" data-price="470000">
+                <div class="product-image-container">
+                    <img src="../product-card-images/legion pro.png" alt="Legion PRO" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LEGION PRO 5 16IRX9 | i7-14650HX | 16GB DDR5 | 1TB NVMe | RTX4060 | 16'' WQXGA | DOS</h4>
+                    <p class="product-description">Premium gaming laptop with i7-14650HX, RTX 4060, and stunning 16-inch WQXGA display for the ultimate gaming experience.</p>
+                    <p class="price">Rs. 470,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="410000">
+                <div class="product-image-container">
+                    <img src="../product-card-images/lenove loq 7-250.png" alt="Lenovo LOQ" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LOQ 15AHP10 RYZEN 7-250 | 16GB DDR5 | 512GB NVMe | RTX 5050 8GB | 15.6 FHD IPS 144HZ | WIN11</h4>
+                    <p class="product-description">Powerful gaming laptop with Ryzen 7 processor, RTX 5050 graphics, and 144Hz display for smooth gameplay.</p>
+                    <p class="price">Rs. 410,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="398520">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212091334_3.webp" alt="ASUS FA607NUG-RL186WS" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ASUS FA607NUG-RL186WS RYZEN 7-7445HS | 16GB | 512SSD | RTX4050 6GB | 16" IPS 144Hz | W11+MS (2Y)</h4>
+                    <p class="product-description">ASUS TUF Gaming laptop with Ryzen 7, RTX 4050, and 144Hz display built for intense gaming sessions.</p>
+                    <p class="price">Rs. 398,520.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="379500">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327153620_3.webp" alt="Lenovo LOQ 15ARP10E" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LOQ 15ARP10E RYZEN 7-7735HS | 16GB | 512SSD | RTX4050 | 15.6" FHD | W11 (2Y)</h4>
+                    <p class="product-description">Lenovo LOQ gaming laptop with Ryzen 7-7735HS, RTX 4050 graphics, and 15.6-inch FHD display for competitive gaming.</p>
+                    <p class="price">Rs. 379,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="346000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327154520_3.webp" alt="Lenovo LOQ 15ARP10E" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LOQ 15ARP10E RYZEN 7-7735HS | 16GB | 512SSD | RTX3050 | 15.6" FHD | W11 (2Y)</h4>
+                    <p class="product-description">Lenovo LOQ with Ryzen 7-7735HS, RTX 3050 graphics for smooth gaming on a budget.</p>
+                    <p class="price">Rs. 346,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="335000">
+                <div class="product-image-container">
+                    <img src="../product-card-images/leg r5.jpg" alt="Lenovo Ryzen 5" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB | WIN11</h4>
+                    <p class="product-description">Mid-range gaming laptop with Ryzen 5, RTX 4050, and 12GB RAM for reliable gaming performance.</p>
+                    <p class="price">Rs. 335,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="326000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212092405_2.webp" alt="Acer NL16-71G-76SE" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER NL16-71G-76SE i7-13620H | 16GB | 512SSD | RTX4050 6GB | 16" WUXGA IPS 165Hz | DOS (1Y)</h4>
+                    <p class="product-description">Acer Nitro laptop with i7-13620H, RTX 4050, and 165Hz display for ultra-smooth gaming.</p>
+                    <p class="price">Rs. 326,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="295000">
+                <div class="product-image-container">
+                    <img src="../product-card-images/i5 loq.png" alt="Lenovo LOQ i5" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO LOQ 15IAX9E | i5-12450HX | 8GB DDR5 | 512GB NVMe | 15.6 144Hz | RTX 4050 6GB | LUNA GREY</h4>
+                    <p class="product-description">Budget-friendly gaming laptop featuring Intel i5, RTX 4050, and 144Hz screen for entry-level gaming.</p>
+                    <p class="price">Rs. 295,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="216300">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154346_1.webp" alt="Acer A315-59G-55Z2" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER A315-59G-55Z2 CORE i5 12GN | 8GB | 1TB | MX550 2GB | W11 | SILVER (2Y)</h4>
+                    <p class="product-description">Acer laptop with Core i5 12th gen, MX550 dedicated graphics, and 1TB storage for gaming and work.</p>
+                    <p class="price">Rs. 216,300.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.cart-btn')) return;
+                card.classList.toggle('expanded');
+            });
+        });
+    </script>
+    <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
+    <script src="/dropdown-fix.js"></script>
+<script src="../navbar.js"></body>
+</html>

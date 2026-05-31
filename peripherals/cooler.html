@@ -2,47 +2,35 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unet Solutions | Coolers</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%); color: #0f172a; min-height: 100vh; }
-        .navbar { position: relative; width: min(1400px, calc(100% - 48px)); min-height: 90px; margin: 24px auto 32px; padding: 0 36px; background: rgba(255, 255, 255, 0.82); display: flex; align-items: center; justify-content: space-between; border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px; box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08); backdrop-filter: blur(20px); z-index: 100; }
-        .navbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: nowrap; }
-        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; padding-right: 20px; margin-right: 8px; border-right: 1px solid rgba(148, 163, 184, 0.2); }
-        .brand-name { font-size: 20px; font-weight: 900; background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s; }
-        .nav-link:hover { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
-        .navbar-right { display: flex; align-items: center; gap: 10px; flex-wrap: nowrap; }
-        .icon-btn { display: inline-flex; align-items: center; justify-content: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; }
-        .page-header { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; text-align: center; }
-        .page-header h2 { font-size: 36px; font-weight: 800; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; }
-        .card { background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px; padding: 20px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08); display: flex; flex-direction: column; }
-        .product-image { width: 100%; height: 200px; object-fit: contain; border-radius: 14px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); }
-        .product-name { margin: 16px 0 8px; font-size: 15px; font-weight: 700; color: #1e293b; }
-        .product-description { margin: 0 0 12px; font-size: 13px; color: #64748b; }
-        .price { margin: 0 0 12px; color: #2563eb; font-size: 20px; font-weight: 800; }
-        .In-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
-        .cart-btn { width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 12px; padding: 12px 16px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; font-size: 14px; font-weight: 600; cursor: pointer; }
+        .page-wrapper { position: relative; z-index: 1; }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; } }
     </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+<link rel="stylesheet" href="/futuristic-core.css">
+<script defer src="/particles.js"></script>
 </head>
 <body>
     <div class="navbar">
         <div class="navbar-left">
-            <a href="../index.html" class="brand-mark">
+            <a href="/index.html" class="brand-mark">
                 <img src="../logo.png" alt="Logo" style="height:48px;">
                 <span class="brand-name">Unet Solutions</span>
             </a>
-            <a href="../home" class="nav-link">Home</a>
-            <a href="../peripherals" class="nav-link" style="background: rgba(59, 130, 246, 0.08); color: #1e40af;">Peripherals</a>
+            <a href="/index.html" class="nav-link">Home</a>
+            <a href="/peripherals" class="nav-link" style="background: rgba(59, 130, 246, 0.08); color: #1e40af;">Peripherals</a>
             <a href="../index.html#contact" class="nav-link">Contact</a>
         </div>
         <div class="navbar-right">
             <span class="icon-btn">Search</span>
-            <a href="../login" class="icon-btn">Account</a>
+            <a href="/login" class="icon-btn">Account</a>
             <span class="icon-btn">Cart</span>
         </div>
     </div>
@@ -52,32 +40,32 @@
     </div>
     
      <div class="products-row">
-         <div class="card" data-brand="corsair" data-cat="cooler" data-price="8500">
-             <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060043-WW/Gallery/HS60-H100-WT.png" alt="Corsair H60" class="product-image">
+         <div class="card" data-brand="corsair" data-cat="cooler" data-price="8500"><div class="product-image-container"><img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060043-WW/Gallery/HS60-H100-WT.png" alt="Corsair H60" class="product-image"></div><div class="product-info">
              <h4 class="product-name">Corsair H60 120mm AIO Liquid CPU Cooler</h4>
              <p class="product-description">Compact 120mm liquid cooler with PWM fan for efficient CPU cooling and quiet operation.</p>
              <p class="price">Rs. 8,500.00</p>
              <p class="In-stock">In Stock</p>
              <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
          </div>
-         <div class="card" data-brand="corsair" data-cat="cooler" data-price="14500">
-             <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060058-WW/Gallery/HS100-240-WT.png" alt="Corsair H100i" class="product-image">
+         </div><div class="card" data-brand="corsair" data-cat="cooler" data-price="14500"><div class="product-image-container"><img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060058-WW/Gallery/HS100-240-WT.png" alt="Corsair H100i" class="product-image"></div><div class="product-info">
              <h4 class="product-name">Corsair H100i 240mm AIO Liquid CPU Cooler</h4>
              <p class="product-description">240mm dual-fan liquid cooler with RGB pump head for superior thermal performance.</p>
              <p class="price">Rs. 14,500.00</p>
              <p class="In-stock">In Stock</p>
              <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
          </div>
-         <div class="card" data-brand="corsair" data-cat="cooler" data-price="6200">
+         </div><div class="card" data-brand="corsair" data-cat="cooler" data-price="6200">
              <img src="https://www.corsair.com/cdn-cgi/image/quality=90,format=auto,width=380,height=380,fit=contain/cms/products/CW-9060069-WW/Gallery/A500-WT.png" alt="Corsair A500" class="product-image">
              <h4 class="product-name">Corsair A500 Dual Fan CPU Air Cooler</h4>
              <p class="product-description">High-performance air cooler with dual 120mm fans and 4 copper heat pipes for efficient heat dissipation.</p>
              <p class="price">Rs. 6,200.00</p>
              <p class="In-stock">In Stock</p>
-             <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
-         </div>
-     </div>
-</body>
+              <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+          </div>
+      </div>
+      <script src="/clear-forms.js"></script>
+      <script src="/cart.js"></script>
+    <script src="/dropdown-fix.js"></script>\n<script src="../navbar.js"></body>
 </html>
 
 

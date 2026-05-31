@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unet Solutions | Office Laptops</title>
+    <link rel="icon" type="image/png" href="../favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
+    <style>
+        .page-wrapper { padding-top: 100px; }
+        .card.expanded .product-description { max-height: 200px; opacity: 1; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
+        .category-hero { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; border-radius: 24px; overflow: hidden; position: relative; min-height: 280px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glow); background: linear-gradient(135deg, #0a1a30, #0a0a2a, #051a30); box-shadow: 0 0 60px rgba(0, 240, 255, 0.15), inset 0 0 80px rgba(0, 240, 255, 0.05); }
+        .category-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(0, 240, 255, 0.03) 30px, rgba(0, 240, 255, 0.03) 31px); }
+        .category-hero-content { text-align: center; z-index: 1; padding: 60px 40px; }
+        .category-hero-content h1 { font-size: 52px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 12px; background: linear-gradient(135deg, #2a7fff, #00f0ff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.4)); }
+        .category-hero-content p { font-size: 18px; color: var(--text-secondary); font-weight: 500; }
+        .category-nav { display: flex; justify-content: center; gap: 12px; margin: 30px auto; flex-wrap: wrap; max-width: 800px; }
+        .category-nav a { padding: 12px 24px; border: 1px solid var(--border-glow); border-radius: 50px; background: var(--bg-glass); color: var(--text-secondary); font-size: 13px; font-weight: 600; cursor: pointer; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); backdrop-filter: blur(10px); letter-spacing: 0.04em; text-transform: uppercase; text-decoration: none; display: inline-flex; align-items: center; }
+        .category-nav a:hover { background: rgba(0, 240, 255, 0.1); border-color: var(--neon-cyan); color: var(--neon-cyan); transform: translateY(-2px); box-shadow: 0 0 20px rgba(0, 240, 255, 0.2); }
+        .category-nav a.active { background: linear-gradient(135deg, var(--neon-cyan), var(--neon-blue)); color: #0a0a1a; border-color: var(--neon-cyan); box-shadow: 0 0 20px rgba(0, 240, 255, 0.3); }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } .category-hero-content h1 { font-size: 36px; } }
+        @media (max-width: 860px) { .products-row, .category-hero { width: calc(100% - 32px); } .category-hero { min-height: 200px; } .category-hero-content h1 { font-size: 28px; } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
+        @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
+    </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+<link rel="stylesheet" href="/futuristic-core.css">
+<script defer src="/particles.js"></script>
+</head>
+<body>
+    <div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="/index.html" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="/index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <div class="dropdown">
+                            <a href="/peripherals">Peripherals</a>
+                            <div class="dropdown-content">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
+                        <a href="/build-pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
+            </div>
+        </div>
+
+        <div class="category-hero">
+            <div class="category-hero-content">
+                <h1>Laptops</h1>
+                <p>Reliable, professional machines built for productivity, business, and everyday performance</p>
+            </div>
+        </div>
+
+        <div class="category-nav">
+            <a href="index.html">All Laptops</a>
+            <a href="gaming-laptops.html">Gaming</a>
+            <a href="office-laptops.html" class="active">Office</a>
+            <a href="lenovo.html">Lenovo</a>
+            <a href="dell.html">Dell</a>
+            <a href="acer.html">Acer</a>
+            <a href="hp.html">HP</a>
+            <a href="asus.html">ASUS</a>
+        </div>
+
+        <div class="products-row">
+            <div class="card" data-price="306500">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327163646_3.webp" alt="HP 15-FD0834TU" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">HP 15-FD0834TU i7-1355U | 16GB | 1TB SSD | 15.6"FHD | W11 (3Y)</h4>
+                    <p class="product-description">High-performance HP laptop with Intel i7-1355U, 16GB RAM, and 1TB SSD for demanding office tasks.</p>
+                    <p class="price">Rs. 306,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="310000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406094023_3.webp" alt="Dell 15 DC15250" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">DELL 15 DC15250 i7-1355U | 16GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                    <p class="product-description">Dell laptop with Intel i7-1355U, 16GB RAM, and FHD display for serious business productivity.</p>
+                    <p class="price">Rs. 310,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="296900">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/03/20260331091818_3.webp" alt="Lenovo IdeaPad Slim 3" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO IDEPAD SLIM 3 15IRH10 i7-13620H | 16GB | 512SSD | 15.3" WUXGA | DOS (2Y)</h4>
+                    <p class="product-description">Lenovo IdeaPad with i7-13620H, 16GB RAM, and WUXGA display for maximum productivity.</p>
+                    <p class="price">Rs. 296,900.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="280500">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260217135946_2.webp" alt="Lenovo SLIM 3" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">LENOVO SLIM 3 15ALC6 RYZEN7 5700U | 8GB | 512SSD | W11 | GREY (3Y)</h4>
+                    <p class="product-description">Slim and powerful laptop with Ryzen 7 5700U processor, 8GB RAM, and 512GB SSD for smooth office performance.</p>
+                    <p class="price">Rs. 280,500.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="250000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/01/20260106104451_2.webp" alt="HP Probook 440 G8" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">HP PROBOOK 440 G8 CORE i7 11GN / 8GB / 512SSD / 14" / W10 (1Y)</h4>
+                    <p class="product-description">Business laptop with Intel Core i7 11th gen, 8GB RAM, and 512GB SSD for professional use.</p>
+                    <p class="price">Rs. 250,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="247200">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154901_2.webp" alt="Acer TMP 215" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ACER TMP 215 | RYZEN 5-5650U | 8GB | 512GB | WIN 10 PRO (3Y)</h4>
+                    <p class="product-description">Acer TravelMate with Ryzen 5, 8GB RAM, and 512GB SSD built for business reliability.</p>
+                    <p class="price">Rs. 247,200.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="235000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406093820_3.webp" alt="Dell 15 DC15250" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">DELL 15 DC15250 i5-1355U | 8GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                    <p class="product-description">Dell laptop with Intel i5-1355U, 8GB RAM, and FHD display for everyday office tasks.</p>
+                    <p class="price">Rs. 235,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="224000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213152100_2.webp" alt="ASUS Expertbook" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">ASUS EXPERTBOOK B1 B1502CVA i5 | 13GN | 8GB | 512SSD | 15.6" FHD | DOS (3Y)</h4>
+                    <p class="product-description">ASUS ExpertBook with Intel i5 13th gen, 8GB RAM, and 512GB SSD for business productivity.</p>
+                    <p class="price">Rs. 224,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+            <div class="card" data-price="185000">
+                <div class="product-image-container">
+                    <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213150202_3.webp" alt="Dell 3511" class="product-image">
+                </div>
+                <div class="product-info">
+                    <h4 class="product-name">DELL 3511 CORE i5 | 11GN | 8GB | 512SSD | MX350 | W11 | SIL (1Y)</h4>
+                    <p class="product-description">Dell laptop with Intel Core i5 11th gen, MX350 graphics, and 512GB SSD for work and study.</p>
+                    <p class="price">Rs. 185,000.00</p>
+                    <p class="In-stock">In Stock</p>
+                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.cart-btn')) return;
+                card.classList.toggle('expanded');
+            });
+        });
+    </script>
+    <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
+    <script src="/dropdown-fix.js"></script>
+<script src="../navbar.js"></body>
+</html>

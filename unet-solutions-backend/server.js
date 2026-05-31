@@ -86,13 +86,13 @@ const https = require('https');
 app.post('/generate-pc-image', async (req, res) => {
   try {
     const { prompt } = req.body;
-    
+
     if (!prompt) {
       return res.status(400).json({ error: 'No prompt provided' });
     }
 
     const apiKey = process.env.TOGETHER_API_KEY;
-    
+
     if (!apiKey || apiKey === 'sk-proj-YOUR_KEY_HERE') {
       return res.status(500).json({ error: 'API key not configured' });
     }

@@ -1,4 +1,26 @@
 {
   "cleanUrls": true,
-  "trailingSlash": true
+  "trailingSlash": true,
+  "redirects": [
+    {
+      "source": "/home",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/home/",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/sense-shop.html",
+      "destination": "/index.html",
+      "permanent": true
+    },
+    {
+      "source": "/sense-shop",
+      "destination": "/index.html",
+      "permanent": true
+    }
+  ]
 }

@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Unet Solutions | Build Your PC</title>
+    <link rel="icon" type="image/png" href="/favicon.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
+    <style>
+        .page-wrapper { padding-top: 100px; }
+        .builder-container { max-width: 1400px; margin: 0 auto; padding: 0 24px 40px; display: grid; grid-template-columns: 1fr 380px; gap: 28px; }
+        @media (max-width: 1000px) { .builder-container { grid-template-columns: 1fr; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } }
+        @media (max-width: 600px) { .component-grid { grid-template-columns: 1fr; } }
+        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 240px; background: rgba(10,10,35,0.95); border: 1px solid var(--border-glow); border-radius: 12px; box-shadow: 0 20px 60px rgba(0,0,0,0.5), 0 0 30px rgba(0,240,255,0.1); padding: 12px; z-index: 9999; backdrop-filter: blur(20px); transition: all 0.3s cubic-bezier(0.16,1,0.3,1); }
+        .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
+        .dropdown-content a { display: flex; align-items: center; gap: 10px; padding: 12px 16px; border-radius: 12px; text-decoration: none; color: var(--text-secondary); font-weight: 600; font-size: 14px; transition: all 0.25s cubic-bezier(0.4,0,0.2,1); position: relative; }
+        .dropdown-content a::before { content: ''; position: absolute; left: 0; top: 50%; transform: translateY(-50%) scaleY(0); width: 3px; height: 20px; background: var(--neon-cyan); border-radius: 3px; box-shadow: 0 0 10px var(--neon-cyan); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); }
+        .dropdown-content a:hover { background: rgba(0,240,255,0.06); color: var(--neon-cyan); padding-left: 24px; }
+        .dropdown-content a:hover::before { transform: translateY(-50%) scaleY(1); }
+        .dropdown-content a::after { content: '→'; position: absolute; right: 16px; opacity: 0; transform: translateX(-8px); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); color: var(--neon-cyan); font-size: 16px; font-weight: 700; }
+        .dropdown-content a:hover::after { opacity: 1; transform: translateX(0); }
+        .dropdown:hover > .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
+        .dropdown-content .dropdown { position: relative; width: 100%; }
+        .dropdown-content .dropdown > a::after { content: '▶'; position: absolute; right: 12px; font-size: 10px; opacity: 0.7; color: var(--neon-cyan); }
+        .dropdown-content .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateX(-4px); position: absolute; top: -12px; left: calc(100% + 8px); min-width: 200px; background: rgba(10,10,35,0.95); border: 1px solid var(--border-glow); border-radius: 12px; box-shadow: 0 20px 50px rgba(0,0,0,0.5), 0 0 30px rgba(0,240,255,0.08); padding: 8px; z-index: 10000; backdrop-filter: blur(20px); transition: all 0.25s cubic-bezier(0.16,1,0.3,1); }
+        .dropdown-content .dropdown::after { content: ''; position: absolute; top: 0; left: 100%; width: 12px; height: 100%; background: transparent; }
+        .dropdown-content .dropdown:hover > .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateX(0); transition-delay: 0s; }
+    </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+    <link rel="stylesheet" href="/futuristic-core.css">
+    <script defer src="/particles.js"></script>
+<body>
+    <button class="nav-sidebar-toggle" id="builderSidebarToggle" aria-label="Toggle builder navigation">
+        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+        </svg>
+    </button>
+    <div class="nav-sidebar-overlay" id="builderSidebarOverlay"></div><div class="page-wrapper">
+        <div class="navbar">
+            <div class="navbar-left">
+                <a href="/index.html" class="brand-mark">
+                    <img src="/logo.png" alt="Logo">
+                    <span class="brand-name">Unet Solutions</span>
+                </a>
+                <a href="/index.html" class="nav-link">Home</a>
+                <div class="dropdown">
+                    <button type="button" class="nav-link">Categories ▼</button>
+                    <div class="dropdown-content">
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
+                        <div class="dropdown">
+                            <a href="/peripherals">Peripherals</a>
+                            <div class="dropdown-content">
+                                <a href="/peripherals/webcam.html">Webcam</a>
+                                <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
+                                <a href="/peripherals/psu.html">Power Supply</a>
+                                <a href="/peripherals/casing.html">Casings</a>
+                                <a href="/peripherals/cooler.html">Coolers</a>
+                                <a href="/peripherals/processor.html">Processors</a>
+                                <a href="/peripherals/mobo.html">Motherboard</a>
+                                <a href="/peripherals/ram.html">Desktop RAM</a>
+                                <a href="/peripherals/vga.html">VGA Card</a>
+                                <a href="/peripherals/sound.html">Sound Card</a>
+                            </div>
+                        </div>
+                        <a href="/build-pc">Build PC</a>
+                    </div>
+                </div>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <div class="navbar-right">
+                <span class="icon-btn">Search</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
+            </div>
+        </div>
+
+        <div class="builder-container">
+            <div class="builder-main">
+                <div class="component-section">
+                    <h2><span>🖥️</span> Processor (CPU)</h2>
+                    <div class="component-grid" data-category="cpu">
+                        <div class="component-card" data-id="cpu1" data-name="AMD Ryzen 5 9600X" data-price="115000">
+                            <div class="name">AMD Ryzen 5 9600X</div>
+                            <div class="specs">6 Cores, 12 Threads, 4.3GHz Base, 5.4GHz Boost, AM5 Socket</div>
+                            <div class="price">Rs. 115,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cpu2" data-name="AMD Ryzen 7 9700X" data-price="145000">
+                            <div class="name">AMD Ryzen 7 9700X</div>
+                            <div class="specs">8 Cores, 16 Threads, 3.8GHz Base, 5.5GHz Boost, AM5 Socket</div>
+                            <div class="price">Rs. 145,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cpu3" data-name="AMD Ryzen 9 9900X" data-price="210000">
+                            <div class="name">AMD Ryzen 9 9900X</div>
+                            <div class="specs">12 Cores, 24 Threads, 4.4GHz Base, 5.6GHz Boost, AM5 Socket</div>
+                            <div class="price">Rs. 210,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cpu4" data-name="Intel Core i5-14600K" data-price="125000">
+                            <div class="name">Intel Core i5-14600K</div>
+                            <div class="specs">14 Cores, 20 Threads, 3.5GHz Base, 5.3GHz Boost, LGA 1700</div>
+                            <div class="price">Rs. 125,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cpu5" data-name="Intel Core i7-14700K" data-price="185000">
+                            <div class="name">Intel Core i7-14700K</div>
+                            <div class="specs">20 Cores, 28 Threads, 3.4GHz Base, 5.6GHz Boost, LGA 1700</div>
+                            <div class="price">Rs. 185,000</div>
+                            <div class="status out-stock">Out of Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>🎮</span> Graphics Card (GPU)</h2>
+                    <div class="component-grid" data-category="gpu">
+                        <div class="component-card" data-id="gpu1" data-name="NVIDIA RTX 4060 8GB" data-price="95000">
+                            <div class="name">NVIDIA RTX 4060 8GB</div>
+                            <div class="specs">8GB GDDR6, 3072 CUDA Cores, 128-bit, Ray Tracing, DLSS 3</div>
+                            <div class="price">Rs. 95,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="gpu2" data-name="NVIDIA RTX 4060 Ti 8GB" data-price="130000">
+                            <div class="name">NVIDIA RTX 4060 Ti 8GB</div>
+                            <div class="specs">8GB GDDR6, 4352 CUDA Cores, 128-bit, Ray Tracing, DLSS 3</div>
+                            <div class="price">Rs. 130,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="gpu3" data-name="NVIDIA RTX 4070 Super 12GB" data-price="185000">
+                            <div class="name">NVIDIA RTX 4070 Super 12GB</div>
+                            <div class="specs">12GB GDDR6X, 7168 CUDA Cores, 192-bit, Ray Tracing, DLSS 3</div>
+                            <div class="price">Rs. 185,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="gpu4" data-name="NVIDIA RTX 4080 Super 16GB" data-price="340000">
+                            <div class="name">NVIDIA RTX 4080 Super 16GB</div>
+                            <div class="specs">16GB GDDR6X, 10240 CUDA Cores, 256-bit, Ray Tracing, DLSS 3</div>
+                            <div class="price">Rs. 340,000</div>
+                            <div class="status out-stock">Out of Stock</div>
+                        </div>
+                        <div class="component-card" data-id="gpu5" data-name="AMD RX 7700 XT 12GB" data-price="160000">
+                            <div class="name">AMD RX 7700 XT 12GB</div>
+                            <div class="specs">12GB GDDR6, 3456 CUs, 192-bit, Ray Acceleration, FSR 3</div>
+                            <div class="price">Rs. 160,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>💾</span> Memory (RAM)</h2>
+                    <div class="component-grid" data-category="ram">
+                        <div class="component-card" data-id="ram1" data-name="Corsair Vengeance 16GB DDR5" data-price="18000">
+                            <div class="name">Corsair Vengeance 16GB DDR5</div>
+                            <div class="specs">2x8GB, 5600MHz, CL36, DDR5-5600</div>
+                            <div class="price">Rs. 18,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="ram2" data-name="Corsair Vengeance 32GB DDR5" data-price="32000">
+                            <div class="name">Corsair Vengeance 32GB DDR5</div>
+                            <div class="specs">2x16GB, 6000MHz, CL36, DDR5-6000</div>
+                            <div class="price">Rs. 32,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="ram3" data-name="G.Skill Trident Z5 64GB DDR5" data-price="58000">
+                            <div class="name">G.Skill Trident Z5 64GB DDR5</div>
+                            <div class="specs">2x32GB, 6400MHz, CL32, DDR5-6400</div>
+                            <div class="price">Rs. 58,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>🗄️</span> Storage (SSD/HDD)</h2>
+                    <div class="component-grid" data-category="storage">
+                        <div class="component-card" data-id="ssd1" data-name="Samsung 970 EVO Plus 1TB" data-price="35000">
+                            <div class="name">Samsung 970 EVO Plus 1TB</div>
+                            <div class="specs">1TB, NVMe M.2, 3500MB/s Read, 3300MB/s Write</div>
+                            <div class="price">Rs. 35,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="ssd2" data-name="Samsung 990 Pro 2TB" data-price="65000">
+                            <div class="name">Samsung 990 Pro 2TB</div>
+                            <div class="specs">2TB, NVMe M.2, 7450MB/s Read, 6900MB/s Write</div>
+                            <div class="price">Rs. 65,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="ssd3" data-name="WD Black SN850X 2TB" data-price="58000">
+                            <div class="name">WD Black SN850X 2TB</div>
+                            <div class="specs">2TB, NVMe M.2, 7300MB/s Read, 6600MB/s Write</div>
+                            <div class="price">Rs. 58,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>🔌</span> Motherboard</h2>
+                    <div class="component-grid" data-category="motherboard">
+                        <div class="component-card" data-id="mb1" data-name="MSI B650M Gaming Plus" data-price="45000">
+                            <div class="name">MSI B650M Gaming Plus</div>
+                            <div class="specs">AM5 Socket, DDR5, M.2, USB 3.2, mATX</div>
+                            <div class="price">Rs. 45,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="mb2" data-name="ASUS ROG Strix B650E-F" data-price="85000">
+                            <div class="name">ASUS ROG Strix B650E-F</div>
+                            <div class="specs">AM5 Socket, DDR5, PCIe 5.0, M.2, ATX</div>
+                            <div class="price">Rs. 85,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="mb3" data-name="MSI Z790 Tomahawk DDR5" data-price="78000">
+                            <div class="name">MSI Z790 Tomahawk DDR5</div>
+                            <div class="specs">LGA 1700, DDR5, PCIe 5.0, M.2, ATX</div>
+                            <div class="price">Rs. 78,000</div>
+                            <div class="status out-stock">Out of Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>⚡</span> Power Supply (PSU)</h2>
+                    <div class="component-grid" data-category="psu">
+                        <div class="component-card" data-id="psu1" data-name="Corsair RM750x 750W" data-price="28000">
+                            <div class="name">Corsair RM750x 750W</div>
+                            <div class="specs">750W, 80+ Gold, Fully Modular, ATX</div>
+                            <div class="price">Rs. 28,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="psu2" data-name="Corsair RM850x 850W" data-price="38000">
+                            <div class="name">Corsair RM850x 850W</div>
+                            <div class="specs">850W, 80+ Gold, Fully Modular, ATX</div>
+                            <div class="price">Rs. 38,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="psu3" data-name="Seasonic Focus 1000W" data-price="55000">
+                            <div class="name">Seasonic Focus 1000W</div>
+                            <div class="specs">1000W, 80+ Platinum, Fully Modular, ATX</div>
+                            <div class="price">Rs. 55,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>📦</span> PC Case</h2>
+                    <div class="component-grid" data-category="case">
+                        <div class="component-card" data-id="case1" data-name="Corsair 4000D Airflow" data-price="22000">
+                            <div class="name">Corsair 4000D Airflow</div>
+                            <div class="specs">Mid-Tower, ATX, Tempered Glass, 3x120mm Fans</div>
+                            <div class="price">Rs. 22,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="case2" data-name="NZXT H7 Flow" data-price="28000">
+                            <div class="name">NZXT H7 Flow</div>
+                            <div class="specs">Mid-Tower, ATX, Tempered Glass, Excellent Airflow</div>
+                            <div class="price">Rs. 28,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="case3" data-name="Lian Li O11 Dynamic" data-price="45000">
+                            <div class="name">Lian Li O11 Dynamic</div>
+                            <div class="specs">Mid-Tower, ATX/E-ATX, Dual Chamber, Tempered Glass</div>
+                            <div class="price">Rs. 45,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="component-section">
+                    <h2><span>❄️</span> CPU Cooling</h2>
+                    <div class="component-grid" data-category="cooler">
+                        <div class="component-card" data-id="cooler1" data-name="Cooler Master Hyper 212" data-price="12000">
+                            <div class="name">Cooler Master Hyper 212</div>
+                            <div class="specs">Tower Cooler, 120mm Fan, 4 Heat Pipes, Universal</div>
+                            <div class="price">Rs. 12,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cooler2" data-name="NZXT Kraken X63" data-price="35000">
+                            <div class="name">NZXT Kraken X63</div>
+                            <div class="specs">280mm AIO Liquid Cooler, 2x140mm Fans, RGB</div>
+                            <div class="price">Rs. 35,000</div>
+                            <div class="status in-stock">In Stock</div>
+                        </div>
+                        <div class="component-card" data-id="cooler3" data-name="Corsair H150i Elite" data-price="55000">
+                            <div class="name">Corsair H150i Elite</div>
+                            <div class="specs">360mm AIO Liquid Cooler, 3x120mm Fans, LCD Display</div>
+                            <div class="price">Rs. 55,000</div>
+                            <div class="status out-stock">Out of Stock</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div class="summary-card">
+                    <h2>Your Build Summary</h2>
+                    <div class="selected-items" id="selectedItems">
+                        <div class="selected-item empty">No components selected</div>
+                    </div>
+                    <div class="total-section">
+                        <div class="total-label">Estimated Total:</div>
+                        <div class="total-price" id="totalPrice">Rs. 0</div>
+                    </div>
+                    <div class="compatibility-warning" id="compatibilityWarning">
+                        <strong>Compatibility Note:</strong>
+                        <span id="warningText"></span>
+                    </div>
+                    <button class="add-to-cart-btn" id="addToCartBtn" disabled>Select Components to Continue</button>
+                    <button class="clear-btn" id="clearBtn">Clear All</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="/clear-forms.js"></script>
+    <script src="/cart.js"></script>
+    <script src="/build-pc/pc-builder.js"></script>
+    <script>
+        const selectedComponents = {};
+        const categoryLabels = { cpu: 'CPU', gpu: 'GPU', ram: 'RAM', storage: 'Storage', motherboard: 'Motherboard', psu: 'PSU', case: 'Case', cooler: 'Cooler' };
+        document.querySelectorAll('.component-grid').forEach(grid => {
+            const category = grid.dataset.category;
+            grid.querySelectorAll('.component-card').forEach(card => {
+                card.addEventListener('click', () => {
+                    if (card.classList.contains('selected')) {
+                        card.classList.remove('selected');
+                        delete selectedComponents[category];
+                    } else {
+                        grid.querySelectorAll('.component-card').forEach(c => c.classList.remove('selected'));
+                        card.classList.add('selected');
+                        selectedComponents[category] = { id: card.dataset.id, name: card.dataset.name, price: parseInt(card.dataset.price), category: category };
+                    }
+                    updateSummary();
+                    checkCompatibility();
+                });
+            });
+        });
+        function updateSummary() {
+            const container = document.getElementById('selectedItems');
+            const totalEl = document.getElementById('totalPrice');
+            const addToCartBtn = document.getElementById('addToCartBtn');
+            const entries = Object.entries(selectedComponents);
+            if (entries.length === 0) {
+                container.innerHTML = '<div class="selected-item empty">No components selected</div>';
+                totalEl.textContent = 'Rs. 0';
+                addToCartBtn.disabled = true;
+                addToCartBtn.textContent = 'Select Components to Continue';
+                return;
+            }
+            container.innerHTML = entries.map(([cat, item]) => `<div class="selected-item"><span class="label">${categoryLabels[cat]}</span><span class="value">${item.name}</span><span class="item-price">Rs. ${item.price.toLocaleString()}</span></div>`).join('');
+            const total = entries.reduce((sum, [, item]) => sum + item.price, 0);
+            totalEl.textContent = `Rs. ${total.toLocaleString()}`;
+            addToCartBtn.disabled = false;
+            addToCartBtn.textContent = 'Add Build to Cart';
+        }
+        function checkCompatibility() {
+            const warning = document.getElementById('compatibilityWarning');
+            const warningText = document.getElementById('warningText');
+            let warnings = [];
+            if (selectedComponents.cpu && selectedComponents.motherboard) {
+                const cpu = selectedComponents.cpu.id;
+                const mb = selectedComponents.motherboard.id;
+                if ((cpu.startsWith('cpu4') || cpu.startsWith('cpu5')) && !mb.startsWith('mb3')) warnings.push('Intel CPU requires LGA 1700 motherboard');
+                if (cpu.startsWith('cpu') && !cpu.startsWith('cpu4') && !cpu.startsWith('cpu5') && !mb.startsWith('mb1') && !mb.startsWith('mb2')) warnings.push('AMD CPU requires AM5 socket motherboard');
+            }
+            if (selectedComponents.psu && selectedComponents.gpu) {
+                const psu = selectedComponents.psu.price;
+                const gpu = selectedComponents.gpu.price;
+                if (gpu > 200000 && psu < 35000) warnings.push('Consider upgrading to 850W+ PSU for high-end GPU');
+            }
+            if (warnings.length > 0) { warningText.textContent = warnings.join('. '); warning.classList.add('show'); } else { warning.classList.remove('show'); }
+        }
+        document.getElementById('addToCartBtn').addEventListener('click', () => {
+            const entries = Object.entries(selectedComponents);
+            if (entries.length === 0) return;
+            const buildName = 'Custom PC Build - ' + entries.map(([cat]) => categoryLabels[cat]).join(' + ');
+            const total = entries.reduce((sum, [, item]) => sum + item.price, 0);
+            const customBuild = { id: 'custom-build-' + Date.now(), name: buildName, price: total, image: '/pc-images/pc1.png', quantity: 1, components: entries.map(([cat, item]) => ({ category: categoryLabels[cat], name: item.name, price: item.price })) };
+            addToCart(customBuild);
+        });
+        document.getElementById('clearBtn').addEventListener('click', () => {
+            document.querySelectorAll('.component-card.selected').forEach(card => card.classList.remove('selected'));
+            Object.keys(selectedComponents).forEach(key => delete selectedComponents[key]);
+            updateSummary();
+            checkCompatibility();
+        });
+    </script>
+    <script src="/dropdown-fix.js"></script>\n<script src="../navbar.js"></body>
+</html>
+
+
+
+
+
+
+
+
+

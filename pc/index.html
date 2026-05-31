@@ -1,250 +1,63 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unet Solutions | PC</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
     <style>
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { scroll-behavior: smooth; }
-        body {
-            margin: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
-            color: #0f172a;
-            min-height: 100vh;
-        }
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                        radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
-            pointer-events: none; z-index: 0;
-        }
-        .page-wrapper { position: relative; z-index: 1; }
-        .navbar {
-            position: relative; width: min(1400px, calc(100% - 48px));
-            min-height: 80px; margin: 24px auto 32px; padding: 0 28px;
-            background: rgba(255, 255, 255, 0.82);
-            display: flex; align-items: center; justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px) saturate(180%); box-sizing: border-box; z-index: 100;
-            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        @keyframes slideDown { from { opacity: 0; transform: translateY(-20px); } to { opacity: 1; transform: translateY(0); } }
-        .navbar-left { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
-        .brand-mark { display: flex; align-items: center; gap: 14px; text-decoration: none; padding-right: 20px; margin-right: 8px; border-right: 1px solid rgba(148, 163, 184, 0.2); }
-        .brand-mark img { height: 48px; width: auto; transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1); }
-        .brand-mark:hover img { transform: scale(1.05) rotate(-2deg); }
-        .brand-name {
-            font-size: 20px; font-weight: 900; letter-spacing: -0.02em; text-transform: uppercase;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-        }
-        .nav-link { color: #334155; text-decoration: none; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); background: transparent; position: relative; letter-spacing: -0.01em; }
-        .nav-link::before { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scaleX(0); width: 20px; height: 2px; background: linear-gradient(90deg, #3b82f6, #06b6d4); border-radius: 2px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-        .nav-link:hover { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
-        .nav-link:hover::before { transform: translateX(-50%) scaleX(1); }
-        .dropdown { position: relative; display: inline-flex; align-items: center; }
-        .dropdown > button { display: inline-flex; align-items: center; justify-content: center; gap: 6px; border: none; cursor: pointer; font: inherit; background: transparent; color: #334155; font-size: 15px; font-weight: 600; padding: 10px 18px; border-radius: 12px; transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); letter-spacing: -0.01em; }
-        .dropdown > button::before { content: ''; position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%) scaleX(0); width: 20px; height: 2px; background: linear-gradient(90deg, #3b82f6, #06b6d4); border-radius: 2px; transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-        .dropdown:hover > button { color: #1e40af; background: rgba(59, 130, 246, 0.06); }
-        .dropdown:hover > button::before { transform: translateX(-50%) scaleX(1); }
-        .dropdown-content { opacity: 0; visibility: hidden; pointer-events: none; transform: translateY(-8px); position: absolute; top: calc(100% + 12px); left: 0; min-width: 200px; background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6); border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12); padding: 8px; z-index: 9999; backdrop-filter: blur(20px); transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease; }
-        .dropdown-content::before { content: ''; position: absolute; top: -20px; left: 0; width: 100%; height: 20px; background: transparent; }
-        .dropdown-content a { display: block; padding: 12px 16px; border-radius: 10px; text-decoration: none; color: #1e293b; font-weight: 600; font-size: 14px; transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); position: relative; }
-        .dropdown-content a:hover { background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06)); color: #1e40af; padding-left: 20px; }
-        .dropdown:hover > .dropdown-content { opacity: 1; visibility: visible; pointer-events: auto; transform: translateY(0); transition-delay: 0s; }
-
-        .dropdown-content .dropdown { position: relative; }
-
-        .dropdown-content .dropdown-content {
-            opacity: 0; visibility: hidden; transform: translateX(-8px);
-            position: absolute; top: 0; left: calc(100% + 8px); min-width: 200px;
-            background: rgba(255, 255, 255, 0.95); border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 16px; box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12);
-            padding: 8px; z-index: 9999; backdrop-filter: blur(20px);
-            transition: none;
-        }
-        .dropdown-content .dropdown::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 8px;
-            height: 100%;
-            background: transparent;
-        }
-
-        .dropdown-content .dropdown:hover > .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateX(0);
-            transition-delay: 0s;
-        }
-        .navbar-right { display: flex; align-items: center; gap: 10px; }
-        .icon-btn { display: inline-flex; justify-content: center; align-items: center; min-width: 42px; height: 42px; padding: 0 20px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; border-radius: 12px; cursor: pointer; font-size: 14px; font-weight: 600; text-decoration: none; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-        .icon-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3); }
-        .page-header { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; text-align: center; animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        @keyframes fadeInUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        .page-header h2 { font-size: 36px; font-weight: 800; letter-spacing: -0.03em; background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
         .product-page { display: none; }
-        .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1); }
-        .products-row { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 28px; }
-        .card {
-            background: rgba(255, 255, 255, 0.85); border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 20px; padding: 20px; box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
-            backdrop-filter: blur(12px); transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden; position: relative; display: flex; flex-direction: column;
-        }
-        .card::before { content: ''; position: absolute; inset: 0; border-radius: 20px; background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(6, 182, 212, 0.02)); opacity: 0; transition: opacity 0.35s ease; }
-        .card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(30, 58, 138, 0.14), 0 4px 12px rgba(30, 58, 138, 0.08); }
-        .card:hover::before { opacity: 1; }
-        .product-image { width: 100%; height: 200px; object-fit: contain; border-radius: 14px; background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-        .card:hover .product-image { transform: scale(1.03); }
-        .product-name { margin: 16px 0 8px; font-size: 15px; font-weight: 700; line-height: 1.45; color: #1e293b; overflow: hidden; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; }
-        .product-description { margin: 0 0 12px; font-size: 13px; font-weight: 400; line-height: 1.5; color: #64748b; max-height: 0; overflow: hidden; opacity: 0; transition: max-height 0.3s ease, opacity 0.3s ease; }
-        .price { margin: 0 0 12px; color: #2563eb; font-size: 20px; font-weight: 800; letter-spacing: -0.02em; }
-        .In-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #10b981; background: rgba(16, 185, 129, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
-        .Out-stock { margin: 0 0 14px; font-size: 13px; font-weight: 700; color: #ef4444; background: rgba(239, 68, 68, 0.1); display: inline-block; padding: 4px 12px; border-radius: 20px; }
-        .cart-btn { width: 100%; margin-top: auto; display: flex; align-items: center; justify-content: center; gap: 8px; border: none; border-radius: 12px; padding: 12px 16px; background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; font-size: 14px; font-weight: 600; cursor: pointer; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); position: relative; z-index: 1; }
-        .cart-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35); }
-        .pagination { display: flex; justify-content: center; gap: 12px; margin: 20px 0 60px; }
-        .pagination button { border: none; padding: 12px 20px; border-radius: 12px; background: rgba(255, 255, 255, 0.7); border: 1px solid rgba(255, 255, 255, 0.6); color: #334155; cursor: pointer; font-weight: 600; font-size: 15px; backdrop-filter: blur(10px); transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1); }
-        .pagination button:hover { background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%); color: white; transform: translateY(-2px); box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3); }
-        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 20px; } }
-        @media (max-width: 860px) {
-            .navbar { flex-direction: column; padding: 20px; gap: 16px; margin: 16px auto 24px; width: calc(100% - 32px); }
-            .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; }
-            .brand-mark { border-right: none; padding-right: 0; margin-right: 0; }
-            .brand-name { font-size: 18px; }
-            .page-header, .products-row { width: calc(100% - 32px); }
-            .page-header h2 { font-size: 28px; }
-        }
+        .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .card.expanded .product-description { max-height: 200px; opacity: 1; }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .page-header, .products-row { width: calc(100% - 32px); } .page-header h2 { font-size: 28px; } }
         @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
-        .filter-sidebar {
-            position: fixed;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            width: 240px;
-            z-index: 200;
-            padding: 20px 16px;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-left: none;
-            border-radius: 0 16px 16px 0;
-            box-shadow: 8px 0 32px rgba(30, 58, 138, 0.1), inset 1px 0 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateY(-50%) translateX(-20px); }
-            to { opacity: 1; transform: translateY(-50%) translateX(0); }
-        }
-        .filter-sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 250;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.15);
-            backdrop-filter: blur(12px);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s ease;
-        }
-        .filter-sidebar-toggle:hover { transform: scale(1.05); }
-        .filter-sidebar-toggle svg { width: 22px; height: 22px; color: #334155; }
-        .filter-sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 190;
-            backdrop-filter: blur(4px);
-        }
-        @media (max-width: 1024px) {
-            .filter-sidebar { transform: translateY(-50%) translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-            .filter-sidebar.open { transform: translateY(-50%) translateX(0); }
-            .filter-sidebar-toggle { display: flex; }
-            .filter-sidebar-overlay.active { display: block; }
-        }
-        .filter-sidebar h2 { font-size: 16px; font-weight: 800; color: #1e293b; margin: 0 0 18px; letter-spacing: -0.02em; display: flex; align-items: center; justify-content: space-between; }
-        .filter-section { margin-bottom: 18px; border-bottom: 1px solid rgba(148, 163, 184, 0.12); padding-bottom: 14px; }
+        .filter-sidebar-toggle { display: none; position: fixed; top: 20px; left: 20px; z-index: 250; width: 44px; height: 44px; background: var(--bg-glass); border: 1px solid var(--border-glow); border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); backdrop-filter: blur(12px); cursor: pointer; align-items: center; justify-content: center; transition: all 0.25s ease; }
+        .filter-sidebar-toggle:hover { transform: scale(1.05); border-color: var(--neon-cyan); }
+        .filter-sidebar-toggle svg { width: 22px; height: 22px; color: var(--text-secondary); }
+        .filter-sidebar-overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.5); z-index: 190; backdrop-filter: blur(4px); }
+        @media (max-width: 1024px) { .filter-sidebar { transform: translateY(-50%) translateX(-100%); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); } .filter-sidebar.open { transform: translateY(-50%) translateX(0); } .filter-sidebar-toggle { display: flex; } .filter-sidebar-overlay.active { display: block; } }
+        .filter-sidebar h2 { font-size: 16px; font-weight: 800; color: var(--text-primary); margin: 0 0 18px; letter-spacing: 0.03em; display: flex; align-items: center; justify-content: space-between; }
+        .filter-section { margin-bottom: 18px; border-bottom: 1px solid rgba(0,240,255,0.1); padding-bottom: 14px; }
         .filter-section:last-of-type { border-bottom: none; }
-        .filter-section h3 { font-size: 12px; font-weight: 700; color: #64748b; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
+        .filter-section h3 { font-size: 12px; font-weight: 700; color: var(--neon-cyan); margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.08em; }
         .filter-option { display: flex; align-items: center; gap: 8px; padding: 5px 0; cursor: pointer; }
-        .filter-option input[type="checkbox"] { accent-color: #3b82f6; width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
-        .filter-option label { font-size: 13px; color: #475569; cursor: pointer; font-weight: 500; }
-        .clear-filters-btn { padding: 5px 12px; border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; background: transparent; color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
-        .clear-filters-btn:hover { border-color: #ef4444; color: #ef4444; }
-        .results-count { font-size: 11px; color: #94a3b8; font-weight: 500; }
-        .no-results { text-align: center; padding: 80px 20px; color: #64748b; display: none; }
+        .filter-option input[type="checkbox"] { accent-color: var(--neon-cyan); width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
+        .filter-option label { font-size: 13px; color: var(--text-secondary); cursor: pointer; font-weight: 500; }
+        .clear-filters-btn { padding: 5px 12px; border: 1px solid rgba(0,240,255,0.2); border-radius: 8px; background: transparent; color: var(--text-secondary); font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
+        .clear-filters-btn:hover { border-color: var(--neon-magenta); color: var(--neon-magenta); }
+        .results-count { font-size: 11px; color: var(--text-dim); font-weight: 500; }
+        .no-results { text-align: center; padding: 80px 20px; color: var(--text-secondary); display: none; }
         .no-results p { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
         .no-results span { font-size: 14px; font-weight: 400; }
     </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+    <link rel="stylesheet" href="/futuristic-core.css">
+    <script defer src="/particles.js"></script>
 </head>
 <body>
-    <button class="filter-sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/>
-        </svg>
-    </button>
-    <div class="filter-sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="filter-sidebar" id="sidebar">
-        <h2>Filters <span class="results-count" id="resultsCount"></span><button type="button" class="clear-filters-btn" id="clearFilters">Clear All</button></h2>
-        <div class="filter-section">
-            <h3>Brand</h3>
-            <div class="filter-option"><input type="checkbox" id="brand-amd" data-filter="brand" value="amd"><label for="brand-amd">AMD</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-intel" data-filter="brand" value="intel"><label for="brand-intel">Intel</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-lenovo" data-filter="brand" value="lenovo"><label for="brand-lenovo">Lenovo</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Price Range</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="0" data-max="300000"><label>Under Rs. 300K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="300000" data-max="500000"><label>Rs. 300K - 500K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="500000" data-max="700000"><label>Rs. 500K - 700K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="700000" data-max="9999999"><label>Rs. 700K+</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Availability</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="in"><label>In Stock</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="out"><label>Out of Stock</label></div>
-        </div>
-    </aside>
     <div class="page-wrapper">
         <div class="navbar">
             <div class="navbar-left">
-                <a href="../index.html" class="brand-mark">
+                <a href="/index.html" class="brand-mark">
                     <img src="/logo.png" alt="Logo">
                     <span class="brand-name">Unet Solutions</span>
                 </a>
-                <a href="../home" class="nav-link">Home</a>
+                <a href="/index.html" class="nav-link">Home</a>
                 <div class="dropdown">
                     <button type="button" class="nav-link">Categories ▼</button>
                     <div class="dropdown-content">
-                        <a href="../laptops">Laptops</a>
-                        <a href="../pc">PC</a>
-                        <a href="../gaming">Gaming</a>
-                        <a href="../monitor">Monitor</a>
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
                         <div class="dropdown">
-                            <a href="../peripherals">Peripherals ▶</a>
+                            <a href="/peripherals">Peripherals</a>
                             <div class="dropdown-content">
                                 <a href="/peripherals/webcam.html">Webcam</a>
                                 <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
@@ -258,15 +71,15 @@
                                 <a href="/peripherals/sound.html">Sound Card</a>
                             </div>
                         </div>
-                        <a href="../build%20pc/index.html">Build PC</a>
+                        <a href="/build-pc">Build PC</a>
                     </div>
                 </div>
-                <a href="../index.html#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="navbar-right">
                 <span class="icon-btn">Search</span>
-                <a href="../login" class="icon-btn">Account</a>
-                <span class="icon-btn">Cart</span>
+                <a href="/login/index.html" class="icon-btn">Account</a>
+                <span class="icon-btn" id="cartToggle">Cart</span>
             </div>
         </div>
 
@@ -274,32 +87,28 @@
 
         <div class="product-page active" id="page1">
             <div class="products-row">
-                <div class="card" data-brand="amd" data-price="771000">
-                    <img src="../pc-images/pc2.png" alt="Ryzen 9600X" class="product-image">
+                <div class="card" data-brand="amd" data-price="771000"><div class="product-image-container"><img src="../pc-images/pc2.png" alt="Ryzen 9600X" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">RYZEN 9600X HIGH-END BUILD</h4>
                     <p class="product-description">Top-tier desktop build featuring the latest Ryzen 9600X processor for ultimate performance.</p>
                     <p class="price">Rs. 771,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="335000">
-                    <img src="../pc-images/pc1.png" alt="pc1" class="product-image">
+                </div><div class="card" data-brand="lenovo" data-price="335000"><div class="product-image-container"><img src="../pc-images/pc1.png" alt="pc1" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB | WIN11</h4>
                     <p class="product-description">Compact desktop solution with Ryzen 5 and RTX 4050 for gaming and productivity.</p>
                     <p class="price">Rs. 335,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="335000">
-                    <img src="../pc-images/pc3.png" alt="Lenovo Ryzen 5" class="product-image">
+                </div><div class="card" data-brand="lenovo" data-price="335000"><div class="product-image-container"><img src="../pc-images/pc3.png" alt="Lenovo Ryzen 5" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB | WIN11</h4>
                     <p class="product-description">Reliable Ryzen 5 desktop with RTX 4050 graphics, ideal for everyday computing and gaming.</p>
                     <p class="price">Rs. 335,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="470000">
-                    <img src="../product-card-images/legion pro.png" alt="Legion PRO" class="product-image">
+                </div><div class="card" data-brand="lenovo" data-price="470000"><div class="product-image-container"><img src="../product-card-images/legion pro.png" alt="Legion PRO" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Lenovo Legion Pro 5 16IRX9 | i7-14650HX | 16GB DDR5 | 1TB NVMe | RTX4060 | 16'' WQXGA | DOS</h4>
                     <p class="product-description">High-performance desktop with i7-14650HX, RTX 4060, and premium build quality.</p>
                     <p class="price">Rs. 470,000.00</p>
@@ -315,72 +124,63 @@
         </div>
         <div class="product-page" id="page2">
             <div class="products-row">
-                <div class="card" data-brand="intel" data-price="124000">
-                    <img src="https://www.nanotek.lk/storage/products/2110/pEsLndKRzrQOAZ3tkp2sC7eiwR1ztlevMyzQcdPa.webp" alt="Intel Core Ultra 7" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="124000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/2110/pEsLndKRzrQOAZ3tkp2sC7eiwR1ztlevMyzQcdPa.webp" alt="Intel Core Ultra 7" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Intel® Core™ Ultra 7 processor 270K Plus (36M Cache, up to 5.50 GHz)</h4>
                     <p class="product-description">Latest Intel Ultra 7 processor with AI capabilities and 36M cache for high-performance computing.</p>
                     <p class="price">Rs. 124,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="amd" data-price="32500">
-                    <img src="https://www.nanotek.lk/storage/products/1933/DWgd0BFBL2FtUghfUgHlh5gNw6U682mHrNwN0Icd.webp" alt="AMD Ryzen 5 5500" class="product-image">
+                </div><div class="card" data-brand="amd" data-price="32500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1933/DWgd0BFBL2FtUghfUgHlh5gNw6U682mHrNwN0Icd.webp" alt="AMD Ryzen 5 5500" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">AMD Ryzen 5 5500 (up to 4.2GHz 6-cores 12-threads) 16M Cache</h4>
                     <p class="product-description">Budget-friendly 6-core processor with 16M cache, ideal for everyday computing and light gaming.</p>
                     <p class="price">Rs. 32,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="amd" data-price="24500">
-                    <img src="https://www.nanotek.lk/storage/products/2016/DmzxmukVmjGKiKMmtPO0eaIT69nYyAwrha213pAD.webp" alt="AMD Ryzen 5 3400G" class="product-image">
+                </div><div class="card" data-brand="amd" data-price="24500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/2016/DmzxmukVmjGKiKMmtPO0eaIT69nYyAwrha213pAD.webp" alt="AMD Ryzen 5 3400G" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">AMD Ryzen™ 5 3400G (Up To 4.2GHz Cores 4 - Threads 8) 4M Cache</h4>
                     <p class="product-description">Entry-level APU with integrated graphics, perfect for budget builds without dedicated GPU.</p>
                     <p class="price">Rs. 24,500.00</p>
                     <p class="Out-stock">Out Of Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="amd" data-price="62000">
-                    <img src="https://www.nanotek.lk/storage/products/62/XxAjExy1N6EHS78lsXbajkaYbVkARAly72js7THe.webp" alt="AMD Ryzen 7 5700X" class="product-image">
+                </div><div class="card" data-brand="amd" data-price="62000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/62/XxAjExy1N6EHS78lsXbajkaYbVkARAly72js7THe.webp" alt="AMD Ryzen 7 5700X" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">AMD RYZEN 7 5700X (UP TO 4.6GHZ 8-CORES 16-THREADS) 36M CACHE</h4>
                     <p class="product-description">8-core powerhouse with 36M cache, excellent for gaming and content creation.</p>
                     <p class="price">Rs. 62,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="intel" data-price="52000">
-                    <img src="https://www.nanotek.lk/storage/products/65/b1Pk52jXOU3wCN0m6RN0O8uL05DXYU1B228EwPZy.webp" alt="Intel i5-12400F" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="52000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/65/b1Pk52jXOU3wCN0m6RN0O8uL05DXYU1B228EwPZy.webp" alt="Intel i5-12400F" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">INTEL CORE I5-12400F (18M CACHE, UP TO 4.40 GHZ)</h4>
                     <p class="product-description">6-core Intel processor with 18M cache, great for mid-range gaming builds.</p>
                     <p class="price">Rs. 52,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="intel" data-price="57500">
-                    <img src="https://www.nanotek.lk/storage/products/64/XA6rwUlEHBoyoAxHQLNrddDuc727CKUQDS00STAT.webp" alt="Intel i5-12400" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="57500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/64/XA6rwUlEHBoyoAxHQLNrddDuc727CKUQDS00STAT.webp" alt="Intel i5-12400" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">INTEL CORE I5-12400 (18M CACHE, UP TO 4.40 GHZ)</h4>
                     <p class="product-description">Non-F variant with integrated graphics, suitable for office work and light tasks.</p>
                     <p class="price">Rs. 57,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="intel" data-price="53500">
-                    <img src="https://www.nanotek.lk/storage/products/69/lVM0vrbvqAdvUzJ7FBnsTlppJR7wZAMsUyGfKd8T.webp" alt="Intel i5-14400F" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="53500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/69/lVM0vrbvqAdvUzJ7FBnsTlppJR7wZAMsUyGfKd8T.webp" alt="Intel i5-14400F" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">INTEL CORE I5 14400F (20M CACHE, UP TO 4.70 GHZ)</h4>
                     <p class="product-description">14th gen Intel processor with 20M cache and improved single-core performance.</p>
                     <p class="price">Rs. 53,500.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="intel" data-price="75000">
-                    <img src="https://www.nanotek.lk/storage/products/70/ob8AQfjGAAupmVqHkJ9Fq86jz7kjUr4jtMAi10o.webp" alt="Intel i5-14400" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="75000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/70/ob8AQfjGAAupmVqHkJ9Fq86jz7kjUr4jtMAi10o.webp" alt="Intel i5-14400" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">INTEL CORE I5 14400 (20M CACHE, UP TO 4.70 GHZ)</h4>
                     <p class="product-description">14th gen with integrated graphics, perfect for productivity and multitasking.</p>
                     <p class="price">Rs. 75,000.00</p>
                     <p class="In-stock">In Stock</p>
                     <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
                 </div>
-                <div class="card" data-brand="intel" data-price="99500">
-                    <img src="https://www.nanotek.lk/storage/products/75/mXkfdDeiKM2PAkyX7ZmhBZhZXzgX1ZJIUTtjyBR9.webp" alt="Intel i7-14700F" class="product-image">
+                </div><div class="card" data-brand="intel" data-price="99500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/75/mXkfdDeiKM2PAkyX7ZmhBZhZXzgX1ZJIUTtjyBR9.webp" alt="Intel i7-14700F" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">INTEL CORE I7 14700F (33M CACHE, UP TO 5.40 GHZ)</h4>
                     <p class="product-description">High-performance 14th gen processor with 33M cache for demanding workloads.</p>
                     <p class="price">Rs. 99,500.00</p>
@@ -394,8 +194,7 @@
             <p>No products found</p>
             <span>Try adjusting your filters or clear all to see all products.</span>
         </div>
-    </div>
-
+    
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
     <script>
@@ -403,22 +202,10 @@
             var cards = document.querySelectorAll('.card');
             var checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
             var clearBtn = document.getElementById('clearFilters');
-            var sidebar = document.getElementById('sidebar');
-            var sidebarToggle = document.getElementById('sidebarToggle');
-            var sidebarOverlay = document.getElementById('sidebarOverlay');
             var resultsCount = document.getElementById('resultsCount');
             var noResults = document.getElementById('noResults');
             var pagination = document.querySelector('.pagination');
             var filtersActive = false;
-
-            sidebarToggle && sidebarToggle.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-                sidebarOverlay.classList.toggle('active');
-            });
-            sidebarOverlay && sidebarOverlay.addEventListener('click', function() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('active');
-            });
 
             function showPage(pageId) {
                 if (filtersActive) return;
@@ -500,7 +287,7 @@
             applyFilters();
         })();
     </script>
-</body>
+    <script src="/dropdown-fix.js"></script>\n<script src="../navbar.js"></script>\n</body>
 </html>
 
 

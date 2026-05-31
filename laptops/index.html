@@ -2,755 +2,50 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Unet Solutions | Laptops</title>
     <link rel="icon" type="image/png" href="../favicon.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="/gamer-theme.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            margin: 0;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            background: linear-gradient(135deg, #e8f4f8 0%, #d1e8f5 25%, #c5dff0 50%, #b8d4eb 75%, #a8cae6 100%);
-            color: #0f172a;
-            min-height: 100vh;
-        }
-
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: 
-                radial-gradient(ellipse at 20% 20%, rgba(59, 130, 246, 0.08) 0%, transparent 50%),
-                radial-gradient(ellipse at 80% 80%, rgba(139, 92, 246, 0.06) 0%, transparent 50%);
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        .page-wrapper {
-            position: relative;
-            z-index: 1;
-        }
-
-        .navbar {
-            position: relative;
-            width: min(1400px, calc(100% - 48px));
-            min-height: 80px;
-            margin: 24px auto 32px;
-            padding: 0 28px;
-            background: rgba(255, 255, 255, 0.82);
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
-            box-shadow: 0 8px 32px rgba(30, 58, 138, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px) saturate(180%);
-            box-sizing: border-box;
-            z-index: 100;
-            animation: slideDown 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .navbar-left {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            flex-wrap: wrap;
-        }
-
-        .brand-mark {
-            display: flex;
-            align-items: center;
-            gap: 14px;
-            text-decoration: none;
-            padding-right: 20px;
-            margin-right: 8px;
-            border-right: 1px solid rgba(148, 163, 184, 0.2);
-        }
-
-        .brand-mark img {
-            height: 48px;
-            width: auto;
-            transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
-        }
-
-        .brand-mark:hover img {
-            transform: scale(1.05) rotate(-2deg);
-        }
-
-        .brand-name {
-            font-size: 20px;
-            font-weight: 900;
-            letter-spacing: -0.02em;
-            text-transform: uppercase;
-            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 50%, #06b6d4 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .nav-link {
-            color: #334155;
-            text-decoration: none;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 12px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            background: transparent;
-            position: relative;
-            letter-spacing: -0.01em;
-        }
-        .nav-link::before {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 20px;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #06b6d4);
-            border-radius: 2px;
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .nav-link:hover {
-            color: #1e40af;
-            background: rgba(59, 130, 246, 0.06);
-        }
-        .nav-link:hover::before {
-            transform: translateX(-50%) scaleX(1);
-        }
-        .dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-        .dropdown > button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            border: none;
-            cursor: pointer;
-            font: inherit;
-            background: transparent;
-            color: #334155;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 12px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            letter-spacing: -0.01em;
-        }
-        .dropdown > button::before {
-            content: '';
-            position: absolute;
-            bottom: 4px;
-            left: 50%;
-            transform: translateX(-50%) scaleX(0);
-            width: 20px;
-            height: 2px;
-            background: linear-gradient(90deg, #3b82f6, #06b6d4);
-            border-radius: 2px;
-            transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .dropdown:hover > button {
-            color: #1e40af;
-            background: rgba(59, 130, 246, 0.06);
-        }
-        .dropdown:hover > button::before {
-            transform: translateX(-50%) scaleX(1);
-        }
-
-        .nav-link:hover {
-            color: #1e40af;
-            background: rgba(59, 130, 246, 0.06);
-        }
-
-        .dropdown {
-            position: relative;
-            display: inline-flex;
-            align-items: center;
-        }
-
-        .dropdown > button {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            border: none;
-            cursor: pointer;
-            font: inherit;
-            background: transparent;
-            color: #334155;
-            font-size: 15px;
-            font-weight: 600;
-            padding: 10px 18px;
-            border-radius: 12px;
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dropdown:hover > button {
-            color: #1e40af;
-            background: rgba(59, 130, 246, 0.06);
-        }
-
-        .dropdown-content {
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-            transform: translateY(-8px);
-            position: absolute;
-            top: calc(100% + 12px);
-            left: 0;
-            min-width: 200px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12), 0 4px 16px rgba(30, 58, 138, 0.06);
-            padding: 8px;
-            z-index: 9999;
-            backdrop-filter: blur(20px);
-            transition: opacity 0.05s ease, visibility 0.05s ease, transform 0.05s ease;
-        }
-        .dropdown-content::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: transparent;
-        }
-        .dropdown-content a {
-            display: block;
-            padding: 12px 16px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #1e293b;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-        }
-        .dropdown-content a::after {
-            content: '→';
-            position: absolute;
-            right: 16px;
-            opacity: 0;
-            transform: translateX(-8px);
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .dropdown-content a:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06));
-            color: #1e40af;
-            padding-left: 20px;
-        }
-        .dropdown-content a:hover::after {
-            opacity: 1;
-            transform: translateX(0);
-        }
-        .dropdown:hover > .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
-            transition-delay: 0s;
-        }
-        .dropdown-content .dropdown {
-            position: relative;
-        }
-
-        .dropdown-content .dropdown-content {
-            opacity: 0;
-            visibility: hidden;
-            transform: translateX(-8px);
-            position: absolute;
-            top: 0;
-            left: 100%;
-            min-width: 200px;
-            background: rgba(255, 255, 255, 0.95);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 16px;
-            box-shadow: 0 20px 50px rgba(30, 58, 138, 0.12), 0 4px 16px rgba(30, 58, 138, 0.06);
-            padding: 8px;
-            z-index: 9999;
-            backdrop-filter: blur(20px);
-            transition: none;
-        }
-
-        .dropdown-content .dropdown::after {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 100%;
-            width: 8px;
-            height: 100%;
-            background: transparent;
-        }
-
-        .dropdown-content .dropdown:hover > .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateX(0);
-            transition-delay: 0s;
-        }
-
-        .dropdown-content::before {
-            content: '';
-            position: absolute;
-            top: -20px;
-            left: 0;
-            width: 100%;
-            height: 20px;
-            background: transparent;
-        }
-
-        .dropdown-content a {
-            display: block;
-            padding: 12px 16px;
-            border-radius: 10px;
-            text-decoration: none;
-            color: #1e293b;
-            font-weight: 600;
-            font-size: 14px;
-            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .dropdown-content a:hover {
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.08), rgba(6, 182, 212, 0.06));
-            color: #1e40af;
-            padding-left: 20px;
-        }
-
-        .dropdown:hover .dropdown-content {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-            transform: translateY(0);
-            transition-delay: 0s;
-        }
-
-        .navbar-right {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .icon-btn {
-            display: inline-flex;
-            justify-content: center;
-            align-items: center;
-            min-width: 42px;
-            height: 42px;
-            padding: 0 20px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            border-radius: 12px;
-            cursor: pointer;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .icon-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
-        }
-
-        .page-header {
-            width: min(1400px, calc(100% - 48px));
-            margin: 0 auto 40px;
-            text-align: center;
-            animation: fadeInUp 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .page-header h2 {
-            font-size: 36px;
-            font-weight: 800;
-            letter-spacing: -0.03em;
-            background: linear-gradient(135deg, #0f172a 0%, #1e40af 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .product-page {
-            display: none;
-        }
-
-        .product-page.active {
-            display: block;
-            animation: fadeInUp 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .products-row {
-            width: min(1400px, calc(100% - 48px));
-            margin: 0 auto 40px;
-            display: grid;
-            grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 28px;
-        }
-
-        .card {
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 20px;
-            padding: 20px;
-            box-shadow: 0 8px 24px rgba(30, 58, 138, 0.08);
-            backdrop-filter: blur(12px);
-            transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-            overflow: hidden;
-            position: relative;
-            display: flex;
-            flex-direction: column;
-            cursor: pointer;
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            border-radius: 20px;
-            background: linear-gradient(135deg, rgba(59, 130, 246, 0.03), rgba(6, 182, 212, 0.02));
-            opacity: 0;
-            transition: opacity 0.35s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 16px 40px rgba(30, 58, 138, 0.14), 0 4px 12px rgba(30, 58, 138, 0.08);
-        }
-
-        .card:hover::before {
-            opacity: 1;
-        }
-
-        .product-image {
-            width: 100%;
-            height: 200px;
-            object-fit: contain;
-            border-radius: 14px;
-            background: linear-gradient(135deg, #f8fafc 0%, #f1f5f9 100%);
-            transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card:hover .product-image {
-            transform: scale(1.03);
-        }
-
-        .product-name {
-            margin: 16px 0 8px;
-            font-size: 15px;
-            font-weight: 700;
-            line-height: 1.45;
-            color: #1e293b;
-            overflow: hidden;
-            display: -webkit-box;
-            -webkit-line-clamp: 2;
-            -webkit-box-orient: vertical;
-        }
-        .product-name::after {
-            content: ' ▼';
-            font-size: 10px;
-            color: #94a3b8;
-            transition: transform 0.3s ease;
-        }
-        .card.expanded .product-name::after {
-            content: ' ▲';
-        }
-
-        .product-description {
-            margin: 0 0 12px;
-            font-size: 13px;
-            font-weight: 400;
-            line-height: 1.5;
-            color: #64748b;
-            max-height: 0;
-            overflow: hidden;
-            opacity: 0;
-            transition: max-height 0.3s ease, opacity 0.3s ease;
-        }
-
-        .card.expanded .product-description {
-            max-height: 200px;
-            opacity: 1;
-        }
-
-        .price {
-            margin: 0 0 12px;
-            color: #2563eb;
-            font-size: 20px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-        }
-
-        .In-stock {
-            margin: 0 0 14px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #10b981;
-            background: rgba(16, 185, 129, 0.1);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .Out-stock {
-            margin: 0 0 14px;
-            font-size: 13px;
-            font-weight: 700;
-            color: #ef4444;
-            background: rgba(239, 68, 68, 0.1);
-            display: inline-block;
-            padding: 4px 12px;
-            border-radius: 20px;
-        }
-
-        .cart-btn {
-            width: 100%;
-            margin-top: auto;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 8px;
-            border: none;
-            border-radius: 12px;
-            padding: 12px 16px;
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            font-size: 14px;
-            font-weight: 600;
-            cursor: pointer;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-            position: relative;
-            z-index: 1;
-        }
-
-        .cart-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(59, 130, 246, 0.35);
-        }
-
-        .pagination {
-            display: flex;
-            justify-content: center;
-            gap: 12px;
-            margin: 20px 0 60px;
-        }
-
-        .pagination button {
-            border: none;
-            padding: 12px 20px;
-            border-radius: 12px;
-            background: rgba(255, 255, 255, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            color: #334155;
-            cursor: pointer;
-            font-weight: 600;
-            font-size: 15px;
-            backdrop-filter: blur(10px);
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .pagination button:hover {
-            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
-            color: white;
-            transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(59, 130, 246, 0.3);
-        }
-
-        @media (max-width: 1000px) {
-            .products-row {
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                gap: 20px;
-            }
-        }
-
-        @media (max-width: 860px) {
-            .navbar {
-                flex-direction: column;
-                padding: 20px;
-                gap: 16px;
-                margin: 16px auto 24px;
-                width: calc(100% - 32px);
-            }
-            .navbar-left,
-            .navbar-right {
-                gap: 8px;
-                justify-content: center;
-                flex-wrap: wrap;
-            }
-            .brand-mark {
-                border-right: none;
-                padding-right: 0;
-                margin-right: 0;
-            }
-            .brand-name {
-                font-size: 18px;
-            }
-            .page-header,
-            .products-row {
-                width: calc(100% - 32px);
-            }
-            .page-header h2 {
-                font-size: 28px;
-            }
-        }
-
-        @media (max-width: 600px) {
-            .products-row {
-                grid-template-columns: 1fr;
-                gap: 16px;
-            }
-        }
-        .filter-sidebar {
-            position: fixed;
-            top: 50%;
-            left: 0;
-            transform: translateY(-50%);
-            z-index: 200;
-            width: 240px;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.85);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-left: none;
-            border-radius: 0 16px 16px 0;
-            box-shadow: 8px 0 32px rgba(30, 58, 138, 0.1), inset 1px 0 0 rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(20px);
-            animation: slideInLeft 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
-            height: fit-content;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-        @keyframes slideInLeft {
-            from { opacity: 0; transform: translateY(-50%) translateX(-20px); }
-            to { opacity: 1; transform: translateY(-50%) translateX(0); }
-        }
-        .filter-sidebar-toggle {
-            display: none;
-            position: fixed;
-            top: 20px;
-            left: 20px;
-            z-index: 250;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid rgba(255, 255, 255, 0.6);
-            border-radius: 12px;
-            box-shadow: 0 4px 16px rgba(30, 58, 138, 0.15);
-            backdrop-filter: blur(12px);
-            cursor: pointer;
-            align-items: center;
-            justify-content: center;
-            transition: all 0.25s ease;
-        }
-        .filter-sidebar-toggle:hover { transform: scale(1.05); }
-        .filter-sidebar-toggle svg { width: 22px; height: 22px; color: #334155; }
-        .filter-sidebar-overlay {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.3);
-            z-index: 190;
-            backdrop-filter: blur(4px);
-        }
-        @media (max-width: 1024px) {
-            .filter-sidebar { transform: translateY(-50%) translateX(-100%); transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1); }
-            .filter-sidebar.open { transform: translateY(-50%) translateX(0); }
-            .filter-sidebar-toggle { display: flex; }
-            .filter-sidebar-overlay.active { display: block; }
-        }
-        .filter-sidebar h2 { font-size: 16px; font-weight: 800; color: #1e293b; margin: 0 0 18px; letter-spacing: -0.02em; display: flex; align-items: center; justify-content: space-between; }
-        .filter-section { margin-bottom: 18px; border-bottom: 1px solid rgba(148, 163, 184, 0.12); padding-bottom: 14px; }
-        .filter-section:last-of-type { border-bottom: none; }
-        .filter-section h3 { font-size: 12px; font-weight: 700; color: #64748b; margin: 0 0 8px; text-transform: uppercase; letter-spacing: 0.06em; }
-        .filter-option { display: flex; align-items: center; gap: 8px; padding: 5px 0; cursor: pointer; }
-        .filter-option input[type="checkbox"] { accent-color: #3b82f6; width: 15px; height: 15px; cursor: pointer; flex-shrink: 0; }
-        .filter-option label { font-size: 13px; color: #475569; cursor: pointer; font-weight: 500; }
-        .clear-filters-btn { padding: 5px 12px; border: 1px solid rgba(148, 163, 184, 0.2); border-radius: 8px; background: transparent; color: #64748b; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.25s ease; }
-        .clear-filters-btn:hover { border-color: #ef4444; color: #ef4444; }
-        .results-count { font-size: 11px; color: #94a3b8; font-weight: 500; }
-        .no-results { text-align: center; padding: 80px 20px; color: #64748b; display: none; }
-        .no-results p { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
-        .no-results span { font-size: 14px; font-weight: 400; }
+        .product-page { display: none; }
+        .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1); }
+        .card.expanded .product-description { max-height: 200px; opacity: 1; }
+        .category-hero { width: min(1400px, calc(100% - 48px)); margin: 0 auto 40px; border-radius: 24px; overflow: hidden; position: relative; min-height: 240px; display: flex; align-items: center; justify-content: center; border: 1px solid var(--border-glow); background: linear-gradient(135deg, #0a1a2a, #0a0a30, #102030); box-shadow: 0 0 60px rgba(0, 240, 255, 0.12), inset 0 0 80px rgba(0, 240, 255, 0.04); }
+        .category-hero::before { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(45deg, transparent, transparent 30px, rgba(0, 240, 255, 0.02) 30px, rgba(0, 240, 255, 0.02) 31px); }
+        .category-hero-content { text-align: center; z-index: 1; padding: 50px 40px; }
+        .category-hero-content h1 { font-size: 44px; font-weight: 900; letter-spacing: 0.06em; text-transform: uppercase; margin-bottom: 10px; background: linear-gradient(135deg, #00f0ff, #2a7fff, #7b2ff7); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; filter: drop-shadow(0 0 30px rgba(0, 240, 255, 0.35)); }
+        .category-hero-content p { font-size: 16px; color: var(--text-secondary); font-weight: 500; }
+        @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } .category-hero-content h1 { font-size: 32px; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .products-row, .category-hero { width: calc(100% - 32px); } .category-hero { min-height: 180px; } .category-hero-content h1 { font-size: 26px; } }
+        @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
+        @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
     </style>
+    <link rel="stylesheet" href="/product-cards-modern.css">
+    <link rel="stylesheet" href="/dropdown-fix.css">
+    <link rel="stylesheet" href="/futuristic-core.css">
+    <script defer src="/particles.js"></script>
 </head>
 <body>
-    <button class="filter-sidebar-toggle" id="sidebarToggle" aria-label="Toggle filters">
-        <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 1 1-3 0m3 0a1.5 1.5 0 1 0-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 0 1-3 0m3 0a1.5 1.5 0 0 0-3 0m-9.75 0h9.75"/>
-        </svg>
-    </button>
-    <div class="filter-sidebar-overlay" id="sidebarOverlay"></div>
-    <aside class="filter-sidebar" id="sidebar">
-        <h2>Filters <span class="results-count" id="resultsCount"></span><button type="button" class="clear-filters-btn" id="clearFilters">Clear All</button></h2>
-        <div class="filter-section">
-            <h3>Brand</h3>
-            <div class="filter-option"><input type="checkbox" id="brand-lenovo" data-filter="brand" value="lenovo"><label for="brand-lenovo">Lenovo</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-msi" data-filter="brand" value="msi"><label for="brand-msi">MSI</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-asus" data-filter="brand" value="asus"><label for="brand-asus">Asus</label></div>
-            <div class="filter-option"><input type="checkbox" id="brand-hp" data-filter="brand" value="hp"><label for="brand-hp">HP</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Price Range</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="0" data-max="150000"><label>Under Rs. 150K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="150000" data-max="250000"><label>Rs. 150K - 250K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="250000" data-max="350000"><label>Rs. 250K - 350K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="350000" data-max="450000"><label>Rs. 350K - 450K</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="price" data-min="450000" data-max="9999999"><label>Rs. 450K+</label></div>
-        </div>
-        <div class="filter-section">
-            <h3>Availability</h3>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="in"><label>In Stock</label></div>
-            <div class="filter-option"><input type="checkbox" data-filter="stock" value="out"><label>Out of Stock</label></div>
-        </div>
-    </aside>
     <div class="page-wrapper">
         <div class="navbar">
             <div class="navbar-left">
-                <a href="../index.html" class="brand-mark">
+                <a href="/index.html" class="brand-mark">
                     <img src="/logo.png" alt="Logo">
                     <span class="brand-name">Unet Solutions</span>
                 </a>
-                <a href="../home" class="nav-link">Home</a>
+                <a href="/index.html" class="nav-link">Home</a>
                 <div class="dropdown">
                     <button type="button" class="nav-link">Categories ▼</button>
                     <div class="dropdown-content">
-                        <a href="../laptops">Laptops</a>
-                        <a href="../pc">PC</a>
-                        <a href="../gaming">Gaming</a>
-                        <a href="../monitor">Monitor</a>
+                        <a href="/laptops">Laptops</a>
+                        <a href="/pc">PC</a>
+                        <a href="/gaming">Gaming</a>
+                        <a href="/monitor">Monitor</a>
                         <div class="dropdown">
-                            <a href="../peripherals">Peripherals ▶</a>
+                            <a href="/peripherals">Peripherals</a>
                             <div class="dropdown-content">
                                 <a href="/peripherals/webcam.html">Webcam</a>
                                 <a href="/peripherals/mousekb.html">Mouse & Keyboard</a>
@@ -764,311 +59,485 @@
                                 <a href="/peripherals/sound.html">Sound Card</a>
                             </div>
                         </div>
-                        <a href="../build%20pc/index.html">Build PC</a>
+                        <a href="/build-pc">Build PC</a>
                     </div>
                 </div>
-                <a href="../index.html#contact" class="nav-link">Contact</a>
+                <a href="#contact" class="nav-link">Contact</a>
             </div>
             <div class="navbar-right">
                 <span class="icon-btn">Search</span>
-                <a href="../login" class="icon-btn">Account</a>
+                <a href="/login/index.html" class="icon-btn">Account</a>
                 <span class="icon-btn" id="cartToggle">Cart</span>
             </div>
         </div>
 
-        <div class="product-page" id="page1">
-            <div class="page-header">
-                <h2>Lenovo Laptops</h2>
+        <div class="product-page active" id="page1">
+            <div class="category-hero">
+                <div class="category-hero-content">
+                    <h1>Laptops</h1>
+                    <p>Explore our complete collection of laptops from top brands</p>
+                </div>
+            </div>
+
+            <div class="brand-nav">
+                <a href="gaming-laptops.html" class="brand-btn">🎮 Gaming</a>
+                <a href="office-laptops.html" class="brand-btn">💼 Office</a>
+                <a href="lenovo.html" class="brand-btn">Lenovo</a>
+                <a href="dell.html" class="brand-btn">Dell</a>
+                <a href="acer.html" class="brand-btn">Acer</a>
+                <a href="hp.html" class="brand-btn">HP</a>
+                <a href="asus.html" class="brand-btn">ASUS</a>
             </div>
 
             <div class="products-row">
-                <div class="card" data-brand="lenovo" data-price="410000">
-                    <img src="../product-card-images/lenove loq 7-250.png" alt="Lenovo LOQ" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ 15AHP10 RYZEN 7-250 | 16GB DDR5 | 512GB NVMe | RTX 5050 8GB | 15.6 FHD IPS 144HZ | WIN11 | LUNA GREY</h4>
-                    <p class="product-description">Powerful gaming laptop with Ryzen 7 processor, RTX 5050 graphics, and 144Hz display for smooth gameplay.</p>
-                    <p class="price">Rs. 410,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="lenovo" data-price="99000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213160831_1.webp" alt="Lenovo IP 1-15AMN7" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">LENOVO IP1-15AMN7 RYZEN 3 7320U | 4GB | 128SSD | W11 (1Y)</h4>
+                        <p class="product-description">Budget-friendly Lenovo laptop with Ryzen 3 processor, 4GB RAM, and 128GB SSD for basic computing tasks.</p>
+                        <p class="price">Rs. 99,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="295000">
-                    <img src="../product-card-images/i5 loq.png" alt="Lenovo LOQ i5" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ 15IAX9E | i5-12450HX | 8GB DDR5 | 512GB NVMe | 15.6 144Hz | RTX 4050 6GB | LUNA GREY | WIN11</h4>
-                    <p class="product-description">Budget-friendly gaming laptop featuring Intel i5, RTX 4050, and 144Hz screen for entry-level gaming.</p>
-                    <p class="price">Rs. 295,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="lenovo" data-price="280500">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260217135946_2.webp" alt="Lenovo SLIM 3" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">LENOVO SLIM 3 15ALC6 RYZEN7 5700U | 8GB | 512SSD | W11 | GREY (3Y)</h4>
+                        <p class="product-description">Slim and powerful laptop with Ryzen 7 5700U processor, 8GB RAM, and 512GB SSD for smooth performance.</p>
+                        <p class="price">Rs. 280,500.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="335000">
-                    <img src="../product-card-images/leg r5.jpg" alt="Lenovo Ryzen 5" class="product-image">
-                    <h4 class="product-name">LENOVO LOQ AMD RYZEN 5 - 7235HS / 12GB RAM / 512GB NVME SSD / RTX4050 6GB / LUNA GREY | WIN11</h4>
-                    <p class="product-description">Mid-range gaming laptop with Ryzen 5, RTX 4050, and 12GB RAM for reliable performance.</p>
-                    <p class="price">Rs. 335,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="dell" data-price="185000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213150202_3.webp" alt="Dell 3511" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">DELL 3511 CORE i5 | 11GN | 8GB | 512SSD | MX350 | W11 | SIL (1Y)</h4>
+                        <p class="product-description">Dell laptop with Intel Core i5 11th gen, MX350 graphics, and 512GB SSD for work and study.</p>
+                        <p class="price">Rs. 185,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="470000">
-                    <img src="../product-card-images/legion pro.png" alt="Legion PRO" class="product-image">
-                    <h4 class="product-name">Lenovo Legion Pro 5 16IRX9 | i7-14650HX | 16GB DDR5 | 1TB NVMe | RTX4060 | 16'' WQXGA | DOS</h4>
-                    <p class="product-description">Premium gaming laptop with i7-14650HX, RTX 4060, and stunning 16-inch WQXGA display.</p>
-                    <p class="price">Rs. 470,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="211150">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213150440_3.webp" alt="Acer A515-56-53LE" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER A515-56-53LE CORE i5 11GN | 4GB | 1TB | W10 | SIL (2Y)</h4>
+                        <p class="product-description">Acer Aspire laptop with Core i5 11th gen, 4GB RAM, and 1TB HDD for everyday computing.</p>
+                        <p class="price">Rs. 211,150.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="208000">
-                    <img src="../product-card-images/Ideapad1.png" alt="Idea PAD" class="product-image">
-                    <h4 class="product-name">Lenovo Ideapad Slim 3-15IRH8 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Thin and light everyday laptop with i5-13420H, perfect for work and study.</p>
-                    <p class="price">Rs. 208,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="hp" data-price="250000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/01/20260106104451_2.webp" alt="HP Probook 440 G8" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP PROBOOK 440 G8 CORE i7 11GN / 8GB / 512SSD / 14" / W10 (1Y)</h4>
+                        <p class="product-description">Business laptop with Intel Core i7 11th gen, 8GB RAM, and 512GB SSD for professional use.</p>
+                        <p class="price">Rs. 250,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="180000">
-                    <img src="../product-card-images/ideapad2.png" alt="H10" class="product-image">
-                    <h4 class="product-name">Lenovo IdeaPad Slim 3 15IRH10 | i5-13420H | 8GB DDR5 | 512GB NVMe | 15.3'' WUXGA | UHD Graphics | DOS | Luna Grey</h4>
-                    <p class="product-description">Ultra-portable laptop with 15.3-inch WUXGA display and all-day battery life.</p>
-                    <p class="price">Rs. 180,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="236900">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213151242_2.webp" alt="Acer A515-56G-58LQ" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER A515-56G-58LQ CORE i5 11GN | 8GB | 1TB | 2GV | W (2Y)</h4>
+                        <p class="product-description">Acer laptop with Core i5, dedicated 2GB graphics, and 1TB storage for multimedia tasks.</p>
+                        <p class="price">Rs. 236,900.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="189000">
-                    <img src="../product-card-images/4731cb21eb18cb7b1e7c14ec06531d273a2b2416-500x500.png" alt="Lenovo LOQ" class="product-image">
-                    <h4 class="product-name">Lenovo Ideapad Slim 3-15ABR8 | Ryzen 7-7730U | 8GB DDR4 | 512GB NVMe | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Efficient Ryzen 7 laptop with DDR4 memory, ideal for multitasking and productivity.</p>
-                    <p class="price">Rs. 189,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="dell" data-price="146500">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260318165859_3.webp" alt="Dell Vostro 3520" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">DELL VOSTRO 3520 i3-1215U | 8GB | 512SSD | 15.6" FHD | DOS (1Y)</h4>
+                        <p class="product-description">Dell Vostro with Intel i3 12th gen, 8GB RAM, and 512GB SSD for small business needs.</p>
+                        <p class="price">Rs. 146,500.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="105000">
-                    <img src="../product-card-images/Lenovo v15.png" alt="Lenovo v15" class="product-image">
-                    <h4 class="product-name">Lenovo V15 G2 IJL | Intel Celeron N4500 | 4GB DDR4 | 256GB NVMe | DOS</h4>
-                    <p class="product-description">Entry-level laptop with Intel Celeron, great for basic computing and web browsing.</p>
-                    <p class="price">Rs. 105,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="asus" data-price="224000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213152100_2.webp" alt="ASUS Expertbook" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ASUS EXPERTBOOK B1 B1502CVA i5 | 13GN | 8GB | 512SSD | 15.6" FHD | DOS (3Y)</h4>
+                        <p class="product-description">ASUS ExpertBook with Intel i5 13th gen, 8GB RAM, and 512GB SSD for business productivity.</p>
+                        <p class="price">Rs. 224,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="112000">
-                    <img src="../product-card-images/Lenovo-IdeaPad-Slim-3-15IAN8-Intel-N100.jpg" alt="Lenovo N100" class="product-image">
-                    <h4 class="product-name">Lenovo IdeaPad Slim 3 15IAN8 – Intel N100</h4>
-                    <p class="product-description">Affordable Intel N100 laptop for everyday tasks and light productivity.</p>
-                    <p class="price">Rs. 112,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="216300">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154346_1.webp" alt="Acer A315-59G-55Z2" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER A315-59G-55Z2 CORE i5 12GN | 8GB | 1TB | MX550 2GB | W11 | SILVER (2Y)</h4>
+                        <p class="product-description">Acer laptop with Core i5 12th gen, MX550 graphics, and 1TB storage for work and play.</p>
+                        <p class="price">Rs. 216,300.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="product-page" id="page2">
-            <div class="page-header">
-                <h2>MSI Laptops</h2>
+            <div class="category-hero">
+                <div class="category-hero-content">
+                    <h1>Laptops</h1>
+                    <p>Explore our complete collection of laptops from top brands</p>
+                </div>
             </div>
+
+            <div class="brand-nav">
+                <a href="gaming-laptops.html" class="brand-btn">🎮 Gaming</a>
+                <a href="office-laptops.html" class="brand-btn">💼 Office</a>
+                <a href="lenovo.html" class="brand-btn">Lenovo</a>
+                <a href="dell.html" class="brand-btn">Dell</a>
+                <a href="acer.html" class="brand-btn">Acer</a>
+                <a href="hp.html" class="brand-btn">HP</a>
+                <a href="asus.html" class="brand-btn">ASUS</a>
+            </div>
+
             <div class="products-row">
-                <div class="card" data-brand="msi" data-price="405000">
-                    <img src="../product-card-images/MSI Cyborg.jpg" alt="MSI Cyborg" class="product-image">
-                    <h4 class="product-name">MSI CYBORG 15 A13UC I7 RTX3050</h4>
-                    <p class="product-description">Futuristic gaming laptop with i7 processor and RTX 3050 graphics for immersive gaming.</p>
-                    <p class="price">Rs. 405,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="210000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154603_2.webp" alt="Acer A515-56-734Q" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER A515-56-734Q CORE i7 11GN | 8GB | 1TB | MX350 | WIN11 (1Y)</h4>
+                        <p class="product-description">Acer Aspire 5 with Core i7 11th gen, MX350 graphics, and 1TB storage for powerful performance.</p>
+                        <p class="price">Rs. 210,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="asus" data-price="389000">
-                    <img src="../product-card-images/MSI Cyborg B13.jpg" alt="MSI Cyborg B13" class="product-image">
-                    <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
-                    <p class="product-description">Rugged gaming laptop with Ryzen 7, built to handle intense gaming sessions.</p>
-                    <p class="price">Rs. 389,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="247200">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213154901_2.webp" alt="Acer TMP 215" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER TMP 215 | RYZEN 5-5650U | 8GB | 512GB | WIN 10 PRO (3Y)</h4>
+                        <p class="product-description">Acer TravelMate with Ryzen 5, 8GB RAM, and 512GB SSD for business use.</p>
+                        <p class="price">Rs. 247,200.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="msi" data-price="412000">
-                    <img src="../product-card-images/Katana.jpg" alt="MSI Katana" class="product-image">
-                    <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
-                    <p class="product-description">Sleek gaming laptop with i7 processor and dedicated graphics for content creation.</p>
-                    <p class="price">Rs. 412,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="hp" data-price="165000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260213155822_2.webp" alt="HP 15-FC0264AU" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP 15-FC0264AU RYZEN 5-7520U | 8GB | 512SSD | 15.6" FHD | W11 (2Y)</h4>
+                        <p class="product-description">HP laptop with Ryzen 5 7520U, 8GB RAM, and 15.6-inch FHD display for everyday use.</p>
+                        <p class="price">Rs. 165,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="msi" data-price="365000">
-                    <img src="../product-card-images/Thin15.png" alt="Thin15" class="product-image">
-                    <h4 class="product-name">MSI Thin 15 B13UC i7-13620H | 8GB DDR4 | 512GB NVMe | RTX 3050 4GB GDDR6 | 15.6'' FHD | DOS</h4>
-                    <p class="product-description">Ultra-slim gaming laptop with i7-13620H and RTX 3050 for portability and power.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="Out-stock">Out Of Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="acer" data-price="172000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212093722_2.webp" alt="Acer A15-51P-39HQ" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER A15-51P-39HQ CORE 3-100U | 8GB | 512SSD | 15.6" IPS | W11 (2Y)</h4>
+                        <p class="product-description">Acer laptop with Intel Core 3, 8GB RAM, and 15.6-inch IPS display for basic tasks.</p>
+                        <p class="price">Rs. 172,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="msi" data-price="365000">
-                    <img src="../product-card-images/Thin15B2.png" alt="Thin15B2" class="product-image">
-                    <h4 class="product-name">MSI Thin 15 B2RVE | Core 7 240H | 16GB DDR5 | 512GB NVMe | RTX 4050 6GB | 15.6" FHD 144Hz IPS | DOS</h4>
-                    <p class="product-description">Next-gen thin gaming laptop with Core 7 240H, RTX 4050, and 144Hz IPS display.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="Out-stock">Out Of Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="asus" data-price="398520">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212091334_3.webp" alt="ASUS FA607NUG-RL186WS" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ASUS FA607NUG-RL186WS RYZEN 7-7445HS | 16GB | 512SSD | RTX4050 6GB | 16" IPS 144Hz | W11+MS (2Y)</h4>
+                        <p class="product-description">ASUS TUF Gaming laptop with Ryzen 7, RTX 4050, and 144Hz display for gaming.</p>
+                        <p class="price">Rs. 398,520.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="hp" data-price="365000">
-                    <img src="../product-card-images/lenove loq 7-250.png" alt="HP Victus" class="product-image">
-                    <h4 class="product-name">HP VICTUS 15 RTX 4050</h4>
-                    <p class="product-description">Versatile gaming laptop with RTX 4050, balancing performance and value.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+                <div class="card" data-brand="hp" data-price="184000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212085802_3.webp" alt="HP 15-FD0681TU" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP 15-FD0681TU i3-1315U | 8GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                        <p class="product-description">HP laptop with Intel i3 13th gen, 8GB RAM, and FHD display for everyday computing.</p>
+                        <p class="price">Rs. 184,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card" data-brand="acer" data-price="326000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260212092405_2.webp" alt="Acer NL16-71G-76SE" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER NL16-71G-76SE i7-13620H | 16GB | 512SSD | RTX4050 6GB | 16" WUXGA IPS 165Hz | DOS (1Y)</h4>
+                        <p class="product-description">Acer Nitro laptop with i7-13620H, RTX 4050, and 165Hz display for gaming.</p>
+                        <p class="price">Rs. 326,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card" data-brand="asus" data-price="215000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/02/20260220150008_3.webp" alt="ASUS Vivobook Go 15" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ASUS VIVOBOOK GO 15 E1504FA-BQ5652W RYZEN 5-7520U | 16GB | 512SSD | 15.6" FHD | W11 (2Y)</h4>
+                        <p class="product-description">ASUS Vivobook with Ryzen 5, 16GB RAM, and FHD display for productivity.</p>
+                        <p class="price">Rs. 215,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
+                </div>
+                <div class="card" data-brand="acer" data-price="232000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260313095022_2.webp" alt="Acer Aspire Go 14" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ACER ASPIRE GO 14 AG14-71M-55LO ULTRA 5-115U | 16GB | 512SSD | 14" FHD | W11 (2Y)</h4>
+                        <p class="product-description">Acer Aspire Go with Intel Ultra 5, 16GB RAM, and 14-inch FHD display for portability.</p>
+                        <p class="price">Rs. 232,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
 
         <div class="product-page" id="page3">
-            <div class="page-header">
-                <h2>Asus Laptops</h2>
-            </div>
-            <div class="products-row">
-                <div class="card" data-brand="msi" data-price="405000">
-                    <img src="../product-card-images/MSI Cyborg.jpg" alt="MSI Cyborg" class="product-image">
-                    <h4 class="product-name">MSI CYBORG 15 A13UC I7 RTX3050</h4>
-                    <p class="product-description">Futuristic gaming laptop with i7 processor and RTX 3050 graphics for immersive gaming.</p>
-                    <p class="price">Rs. 405,000.00</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
-                </div>
-                <div class="card" data-brand="asus" data-price="389000">
-                    <img src="../product-card-images/MSI Cyborg B13.jpg" alt="MSI Cyborg B13" class="product-image">
-                    <h4 class="product-name">ASUS TUF GAMING A15 RYZEN 7</h4>
-                    <p class="product-description">Rugged gaming laptop with Ryzen 7, built to handle intense gaming sessions.</p>
-                    <p class="price">Rs. 389,000.00</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
-                </div>
-                <div class="card" data-brand="msi" data-price="412000">
-                    <img src="../product-card-images/Katana.jpg" alt="MSI Katana" class="product-image">
-                    <h4 class="product-name">MSI KATANA 15 CORE I7</h4>
-                    <p class="product-description">Sleek gaming laptop with i7 processor and dedicated graphics for content creation.</p>
-                    <p class="price">Rs. 412,000.00</p>
-                    <button class="cart-btn">
-                        <span>🛒</span>
-                        <span>Add to Cart</span>
-                    </button>
+            <div class="category-hero">
+                <div class="category-hero-content">
+                    <h1>Laptops</h1>
+                    <p>Explore our complete collection of laptops from top brands</p>
                 </div>
             </div>
-        </div>
 
-        <div class="product-page" id="page4">
+            <div class="brand-nav">
+                <a href="gaming-laptops.html" class="brand-btn">🎮 Gaming</a>
+                <a href="office-laptops.html" class="brand-btn">💼 Office</a>
+                <a href="lenovo.html" class="brand-btn">Lenovo</a>
+                <a href="dell.html" class="brand-btn">Dell</a>
+                <a href="acer.html" class="brand-btn">Acer</a>
+                <a href="hp.html" class="brand-btn">HP</a>
+                <a href="asus.html" class="brand-btn">ASUS</a>
+            </div>
+
             <div class="products-row">
-                <div class="card" data-brand="lenovo" data-price="349000">
-                    <img src="https://www.nanotek.lk/storage/products/2105/UQKesIp4EhD5TLlJMihoOO5HextutBrKHq58nl56.webp" alt="Lenovo ThinkBook 16 G8" class="product-image">
-                    <h4 class="product-name">Lenovo ThinkBook 16 G8 IRL Core 5 210H</h4>
-                    <p class="product-description">Professional laptop with Intel Core 5 processor, 16-inch display, and premium build quality.</p>
-                    <p class="price">Rs. 349,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="lenovo" data-price="379500">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327153620_3.webp" alt="Lenovo LOQ 15ARP10E" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">LENOVO LOQ 15ARP10E RYZEN 7-7735HS | 16GB | 512SSD | RTX4050 | 15.6" FHD | W11 (2Y)</h4>
+                        <p class="product-description">Lenovo LOQ gaming laptop with Ryzen 7-7735HS, RTX 4050 graphics, and 15.6-inch FHD display.</p>
+                        <p class="price">Rs. 379,500.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="chuwi" data-price="97000">
-                    <img src="https://www.nanotek.lk/storage/products/2083/M0BIdcX1iZYyJvO4bV52rSVkecrJY8Ji96O2mjge.webp" alt="Chuwi CoreBook i3" class="product-image">
-                    <h4 class="product-name">Chuwi CoreBook i3 10th GEN</h4>
-                    <p class="product-description">Budget-friendly laptop with Intel i3 10th gen processor, perfect for students and office work.</p>
-                    <p class="price">Rs. 97,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="lenovo" data-price="346000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327154520_3.webp" alt="Lenovo LOQ 15ARP10E" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">LENOVO LOQ 15ARP10E RYZEN 7-7735HS | 16GB | 512SSD | RTX3050 | 15.6" FHD | W11 (2Y)</h4>
+                        <p class="product-description">Lenovo LOQ with Ryzen 7-7735HS, RTX 3050 graphics for gaming on a budget.</p>
+                        <p class="price">Rs. 346,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="chuwi" data-price="178000">
-                    <img src="https://www.nanotek.lk/storage/products/2084/Kq1suWpef2lfK93h2MwYM2RenoURXFIJwc8TaAEa.webp" alt="Chuwi CoreBook X" class="product-image">
-                    <h4 class="product-name">Chuwi CoreBook X Ryzen 5</h4>
-                    <p class="product-description">Slim laptop with AMD Ryzen 5 processor, ideal for productivity and light gaming.</p>
-                    <p class="price">Rs. 178,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="hp" data-price="306500">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260327163646_3.webp" alt="HP 15-FD0834TU" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP 15-FD0834TU i7-1355U | 16GB | 1TB SSD | 15.6"FHD | W11 (3Y)</h4>
+                        <p class="product-description">HP laptop with Intel i7-1355U, 16GB RAM, and 1TB SSD for high-performance tasks.</p>
+                        <p class="price">Rs. 306,500.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="chuwi" data-price="160000">
-                    <img src="https://www.nanotek.lk/storage/products/2085/FroMBwy0G1BFncxeLIzAQ8bhnb3BC7FlyDwsV9zQ.webp" alt="Chuwi CoreBook Air" class="product-image">
-                    <h4 class="product-name">Chuwi CoreBook Air Ryzen 5</h4>
-                    <p class="product-description">Ultra-portable laptop with Ryzen 5, lightweight design and long battery life.</p>
-                    <p class="price">Rs. 160,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="lenovo" data-price="296900">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/03/20260331091818_3.webp" alt="Lenovo IdeaPad Slim 3" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">LENOVO IDEPAD SLIM 3 15IRH10 i7-13620H | 16GB | 512SSD | 15.3" WUXGA | DOS (2Y)</h4>
+                        <p class="product-description">Lenovo IdeaPad with i7-13620H, 16GB RAM, and WUXGA display for productivity.</p>
+                        <p class="price">Rs. 296,900.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="asus" data-price="224000">
-                    <img src="https://www.nanotek.lk/storage/products/2080/zdm8WtQYyDsYSfPreGORapZGJCRjZX0zGWyyoyii.webp" alt="Asus ExpertBook" class="product-image">
-                    <h4 class="product-name">Asus ExpertBook B1502CVA i5 13th GEN</h4>
-                    <p class="product-description">Business laptop with Intel i5 13th gen, durable design and security features.</p>
-                    <p class="price">Rs. 224,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="asus" data-price="189000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406113712_2.webp" alt="ASUS Vivobook Go 15" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">ASUS VIVOBOOK GO 15 E1504FA-BQ3852W RYZEN 3-7320U | 8GB | 512SSD | 15.6" FHD | W11 (2Y)</h4>
+                        <p class="product-description">ASUS Vivobook with Ryzen 3-7320U, 8GB RAM, and FHD display for everyday use.</p>
+                        <p class="price">Rs. 189,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="asus" data-price="245000">
-                    <img src="https://www.nanotek.lk/storage/products/2037/QX3a1KuBLZ8z4iOmSFD4HEZ6plADAGRocahgoB8w.webp" alt="Asus Vivobook" class="product-image">
-                    <h4 class="product-name">ASUS Vivobook 15 X1504VAP Core 5 - 16GB DDR5</h4>
-                    <p class="product-description">Versatile laptop with Core 5 processor, 16GB DDR5 RAM for multitasking.</p>
-                    <p class="price">Rs. 245,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="dell" data-price="310000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406094023_3.webp" alt="Dell 15 DC15250" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">DELL 15 DC15250 i7-1355U | 16GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                        <p class="product-description">Dell laptop with Intel i7-1355U, 16GB RAM, and FHD display for business use.</p>
+                        <p class="price">Rs. 310,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="299000">
-                    <img src="https://www.nanotek.lk/storage/products/2048/CQtDD6uwL5RTeQBX5uoDugmv4PunwIAv1g84txnb.webp" alt="Lenovo LOQ" class="product-image">
-                    <h4 class="product-name">Lenovo LOQ Essential 15IAX9E i5 12th GEN HX + RTX 3050 6GB</h4>
-                    <p class="product-description">Gaming laptop with i5 12th gen and RTX 3050 for entry-level gaming.</p>
-                    <p class="price">Rs. 299,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="dell" data-price="235000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406093820_3.webp" alt="Dell 15 DC15250" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">DELL 15 DC15250 i5-1355U | 8GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                        <p class="product-description">Dell laptop with Intel i5-1355U, 8GB RAM, and FHD display for everyday computing.</p>
+                        <p class="price">Rs. 235,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="339000">
-                    <img src="https://www.nanotek.lk/storage/products/2049/qtDHQDTcwjCqseSftVncjMyXH65xCfQlDgUBB7dV.webp" alt="Lenovo LOQ Essential" class="product-image">
-                    <h4 class="product-name">Lenovo LOQ Essential 15ARP10E RYZEN 7 + RTX 3050 6GB</h4>
-                    <p class="product-description">AMD-powered gaming laptop with Ryzen 7 and RTX 3050 graphics.</p>
-                    <p class="price">Rs. 339,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="hp" data-price="195000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406112541_3.webp" alt="HP 15-FD1318TU" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP 15-FD1318TU CORE 3-100U | 8GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                        <p class="product-description">HP laptop with Intel Core 3-100U, 8GB RAM, and FHD display for basic tasks.</p>
+                        <p class="price">Rs. 195,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
-                <div class="card" data-brand="lenovo" data-price="365000">
-                    <img src="https://www.nanotek.lk/storage/products/2056/r42vvq5bjRxJYBpQWNpbVvEi2WZjgyxuyaNeH4sN.webp" alt="Lenovo ThinkBook" class="product-image">
-                    <h4 class="product-name">Lenovo ThinkBook 16 G8 IAL Ultra 5 225H</h4>
-                    <p class="product-description">Latest Intel Ultra 5 processor with AI capabilities and 16-inch display.</p>
-                    <p class="price">Rs. 365,000.00</p>
-                    <p class="In-stock">In Stock</p>
-                    <button class="cart-btn"><span>🛒</span><span>Add to Cart</span></button>
+                <div class="card" data-brand="hp" data-price="195000">
+                    <div class="product-image-container">
+                        <img src="https://www.sense.lk/images/uploads/product/2026/04/20260406111853_3.webp" alt="HP 15-FD1447TU" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <h4 class="product-name">HP 15-FD1447TU CORE 3-100U | 8GB | 512SSD | 15.6" FHD | W11 (3Y)</h4>
+                        <p class="product-description">HP laptop with Intel Core 3-100U, 8GB RAM, and FHD display for students.</p>
+                        <p class="price">Rs. 195,000.00</p>
+                        <p class="In-stock">In Stock</p>
+                        <button class="cart-btn">
+                            <span>🛒</span>
+                            <span>Add to Cart</span>
+                        </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1077,112 +546,25 @@
             <button type="button" onclick="showPage('page1')">1</button>
             <button type="button" onclick="showPage('page2')">2</button>
             <button type="button" onclick="showPage('page3')">3</button>
-            <button type="button" onclick="showPage('page4')">4</button>
-        </div>
-        <div class="no-results" id="noResults">
-            <p>No products found</p>
-            <span>Try adjusting your filters or clear all to see all products.</span>
         </div>
     </div>
 
     <script>
-        (function() {
-            const cards = document.querySelectorAll('.card');
-            const checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
-            const clearBtn = document.getElementById('clearFilters');
-            const sidebar = document.getElementById('sidebar');
-            const sidebarToggle = document.getElementById('sidebarToggle');
-            const sidebarOverlay = document.getElementById('sidebarOverlay');
-            const resultsCount = document.getElementById('resultsCount');
-            const noResults = document.getElementById('noResults');
-            const pagination = document.querySelector('.pagination');
-            let filtersActive = false;
+        function showPage(pageId) {
+            document.querySelectorAll('.product-page').forEach(function(p) { p.classList.remove('active'); });
+            document.getElementById(pageId).classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
 
-            sidebarToggle?.addEventListener('click', function() {
-                sidebar.classList.toggle('open');
-                sidebarOverlay.classList.toggle('active');
+        document.querySelectorAll('.card').forEach(function(card) {
+            card.addEventListener('click', function(e) {
+                if (e.target.closest('.cart-btn')) return;
+                card.classList.toggle('expanded');
             });
-            sidebarOverlay?.addEventListener('click', function() {
-                sidebar.classList.remove('open');
-                sidebarOverlay.classList.remove('active');
-            });
-
-            function showPage(pageId) {
-                if (filtersActive) return;
-                document.querySelectorAll('.product-page').forEach(function(p) { p.classList.remove('active'); });
-                document.getElementById(pageId).classList.add('active');
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-            }
-            window.showPage = showPage;
-
-            function applyFilters() {
-                var activeBrands = [];
-                var priceRanges = [];
-                var activeStock = [];
-
-                document.querySelectorAll('[data-filter="brand"]:checked').forEach(function(cb) { activeBrands.push(cb.value); });
-                document.querySelectorAll('[data-filter="price"]:checked').forEach(function(cb) { priceRanges.push({ min: parseInt(cb.dataset.min), max: parseInt(cb.dataset.max) }); });
-                document.querySelectorAll('[data-filter="stock"]:checked').forEach(function(cb) { activeStock.push(cb.value); });
-
-                filtersActive = activeBrands.length > 0 || priceRanges.length > 0 || activeStock.length > 0;
-
-                var visibleCount = 0;
-                cards.forEach(function(card) {
-                    var brand = card.getAttribute('data-brand');
-                    var price = parseInt(card.getAttribute('data-price'));
-                    var inStock = card.querySelector('.In-stock') !== null;
-                    var show = true;
-
-                    if (activeBrands.length > 0) show = show && activeBrands.indexOf(brand) !== -1;
-                    if (priceRanges.length > 0) show = show && priceRanges.some(function(r) { return price >= r.min && price <= r.max; });
-                    if (activeStock.length > 0) {
-                        var stockMatch = (inStock && activeStock.indexOf('in') !== -1) || (!inStock && activeStock.indexOf('out') !== -1);
-                        show = show && stockMatch;
-                    }
-                    card.style.display = show ? '' : 'none';
-                    if (show) visibleCount++;
-                });
-
-                if (resultsCount) resultsCount.textContent = visibleCount + ' product' + (visibleCount !== 1 ? 's' : '');
-                if (noResults) noResults.style.display = visibleCount === 0 ? 'block' : 'none';
-
-                if (filtersActive) {
-                    document.querySelectorAll('.product-page').forEach(function(p) { p.classList.add('active'); });
-                    if (pagination) pagination.style.display = 'none';
-                } else {
-                    document.querySelectorAll('.product-page').forEach(function(p) { p.classList.remove('active'); });
-                    document.getElementById('page1').classList.add('active');
-                    if (pagination) pagination.style.display = '';
-                }
-            }
-
-            checkboxes.forEach(function(cb) {
-                cb.addEventListener('change', applyFilters);
-                cb.addEventListener('input', applyFilters);
-            });
-
-            cards.forEach(function(card) {
-                card.addEventListener('click', function(e) {
-                    if (e.target.closest('.cart-btn')) return;
-                    card.classList.toggle('expanded');
-                });
-            });
-
-            if (clearBtn) clearBtn.addEventListener('click', function() {
-                checkboxes.forEach(function(cb) { cb.checked = false; });
-                applyFilters();
-            });
-
-            if (resultsCount) resultsCount.textContent = cards.length + ' products';
-            applyFilters();
-        })();
+        });
     </script>
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
-</body>
+    <script src="/dropdown-fix.js"></script>
+<script src="../navbar.js"></body>
 </html>
-
-
-
-
-
