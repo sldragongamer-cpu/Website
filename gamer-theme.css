@@ -1,6 +1,4 @@
-/* ===================== FUTURISTIC GAMER THEME ===================== */
-/* Neon cyberpunk aesthetic for Unet Solutions                       */
-/* ================================================================= */
+
 
 :root {
   --bg-primary: #0a0a1a;
@@ -293,12 +291,7 @@ body {
   filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
 }
 
-.page-header h2 {
-  font-size: 36px; font-weight: 800; letter-spacing: 0.05em; text-transform: uppercase;
-  background: linear-gradient(90deg, var(--neon-cyan), var(--neon-magenta), var(--neon-purple));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
-  filter: drop-shadow(0 0 15px rgba(0, 240, 255, 0.3));
-}
+
 
 /* ===================== HERO / SLIDER ===================== */
 .hero-section {

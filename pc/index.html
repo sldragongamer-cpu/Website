@@ -14,7 +14,7 @@
         .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1); }
         .card.expanded .product-description { max-height: 200px; opacity: 1; }
         @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } }
-        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .page-header, .products-row { width: calc(100% - 32px); } .page-header h2 { font-size: 28px; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .products-row { width: calc(100% - 32px); } }
         @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
         .filter-sidebar-toggle { display: none; position: fixed; top: 20px; left: 20px; z-index: 250; width: 44px; height: 44px; background: var(--bg-glass); border: 1px solid var(--border-glow); border-radius: 12px; box-shadow: 0 4px 16px rgba(0,0,0,0.3); backdrop-filter: blur(12px); cursor: pointer; align-items: center; justify-content: center; transition: all 0.25s ease; }
         .filter-sidebar-toggle:hover { transform: scale(1.05); border-color: var(--neon-cyan); }
@@ -83,8 +83,42 @@
             </div>
         </div>
 
-        <div class="page-header"><h2>Desktop PCs</h2></div>
+        <div class="category-hero">
+                <div class="category-hero-content">
+                    <h1>Desktop PCs</h1>
+                    <p>Powerful pre-built desktop computers for work and play</p>
+                </div>
+            </div>
 
+        <button class="filter-sidebar-toggle" id="filterToggle" aria-label="Toggle filters">
+            <svg fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 3c2.755 0 5.455.232 8.083.678.5.113.717.977.53 1.5l-2.18 6.538a3 3 0 0 1-1.353 1.852L12 21l-5.08-7.832a3 3 0 0 1-1.353-1.852L3.337 5.178c-.188-.523.03-1.387.53-1.5C6.545 3.232 9.245 3 12 3Z"/>
+            </svg>
+        </button>
+        <div class="filter-sidebar-overlay" id="filterOverlay"></div>
+        <aside class="filter-sidebar" id="filterSidebar">
+            <h2>Filters <span class="results-count" id="resultsCount"></span>
+                <button type="button" class="clear-filters-btn" id="clearFilters">Clear All</button>
+            </h2>
+            <div class="filter-section">
+                <h3>Brand</h3>
+                <div class="filter-option"><input type="checkbox" id="brand-amd" data-filter="brand" value="amd"><label for="brand-amd">AMD</label></div>
+                <div class="filter-option"><input type="checkbox" id="brand-intel" data-filter="brand" value="intel"><label for="brand-intel">Intel</label></div>
+                <div class="filter-option"><input type="checkbox" id="brand-lenovo" data-filter="brand" value="lenovo"><label for="brand-lenovo">Lenovo</label></div>
+            </div>
+            <div class="filter-section">
+                <h3>Price Range</h3>
+                <div class="filter-option"><input type="checkbox" id="price1" data-filter="price" data-min="0" data-max="100000"><label for="price1">Under Rs. 100,000</label></div>
+                <div class="filter-option"><input type="checkbox" id="price2" data-filter="price" data-min="100000" data-max="300000"><label for="price2">Rs. 100,000 - 300,000</label></div>
+                <div class="filter-option"><input type="checkbox" id="price3" data-filter="price" data-min="300000" data-max="500000"><label for="price3">Rs. 300,000 - 500,000</label></div>
+                <div class="filter-option"><input type="checkbox" id="price4" data-filter="price" data-min="500000" data-max="9999999"><label for="price4">Above Rs. 500,000</label></div>
+            </div>
+            <div class="filter-section">
+                <h3>Availability</h3>
+                <div class="filter-option"><input type="checkbox" id="stock-in" data-filter="stock" value="in"><label for="stock-in">In Stock</label></div>
+                <div class="filter-option"><input type="checkbox" id="stock-out" data-filter="stock" value="out"><label for="stock-out">Out of Stock</label></div>
+            </div>
+        </aside>
         <div class="product-page active" id="page1">
             <div class="products-row">
                 <div class="card" data-brand="amd" data-price="771000"><div class="product-image-container"><img src="../pc-images/pc2.png" alt="Ryzen 9600X" class="product-image"></div><div class="product-info">
@@ -198,6 +232,16 @@
     <script src="/clear-forms.js"></script>
     <script src="/cart.js"></script>
     <script>
+        document.getElementById('filterToggle')?.addEventListener('click', function() {
+            document.getElementById('filterSidebar')?.classList.toggle('open');
+            document.getElementById('filterOverlay')?.classList.toggle('active');
+        });
+        document.getElementById('filterOverlay')?.addEventListener('click', function() {
+            document.getElementById('filterSidebar')?.classList.remove('open');
+            document.getElementById('filterOverlay')?.classList.remove('active');
+        });
+    </script>
+    <script>
         (function() {
             var cards = document.querySelectorAll('.card');
             var checkboxes = document.querySelectorAll('.filter-sidebar input[type="checkbox"]');
@@ -287,7 +331,8 @@
             applyFilters();
         })();
     </script>
-    <script src="/dropdown-fix.js"></script>\n<script src="../navbar.js"></script>\n</body>
+    <script src="/dropdown-fix.js"></script><script src="../navbar.js"></script>
+</body>
 </html>
 
 

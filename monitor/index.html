@@ -13,7 +13,7 @@
         .product-page { display: none; }
         .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1); }
         @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } }
-        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .page-header, .products-row { width: calc(100% - 32px); } .page-header h2 { font-size: 28px; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 8px auto 4px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .products-row { width: calc(100% - 32px); } }
         @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
         @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
         .filter-sidebar-toggle:hover { transform: scale(1.05); border-color: var(--neon-cyan); }
@@ -116,7 +116,12 @@
             </div>
         </div>
 
-        <div class="page-header"><h2>🖥️ Gaming Monitors</h2></div>
+        <div class="category-hero">
+            <div class="category-hero-content">
+                <h1>Monitors</h1>
+                <p>Professional and gaming monitors for every setup</p>
+            </div>
+        </div>
 
         <div class="product-page active" id="page1">
             <div class="products-row">

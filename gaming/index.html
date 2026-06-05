@@ -36,7 +36,7 @@
         .product-page { display: none; }
         .product-page.active { display: block; animation: fadeInUp 0.5s cubic-bezier(0.16,1,0.3,1); }
         @media (max-width: 1000px) { .products-row { grid-template-columns: repeat(2, minmax(0,1fr)); gap: 20px; } }
-        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 16px auto 24px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .page-header, .products-row { width: calc(100% - 32px); } .page-header h2 { font-size: 28px; } }
+        @media (max-width: 860px) { .navbar { width: calc(100% - 32px); margin: 16px auto 24px; } .navbar-left, .navbar-right { gap: 8px; justify-content: center; flex-wrap: wrap; } .brand-mark { border-right: none; padding-right: 0; margin-right: 0; } .brand-name { font-size: 18px; } .products-row { width: calc(100% - 32px); } }
         @media (max-width: 600px) { .products-row { grid-template-columns: 1fr; gap: 16px; } }
         @media (max-width: 480px) { .nav-link, .dropdown > button { padding: 8px 12px; font-size: 14px; } .icon-btn { padding: 0 16px; font-size: 13px; height: 38px; } }
         .filter-sidebar { position: fixed; top: 50%; right: 0; transform: translateY(-50%); z-index: 200; width: 240px; padding: 20px; background: var(--bg-glass); border: 1px solid var(--border-glow); border-right: none; border-radius: 16px 0 0 16px; box-shadow: -8px 0 32px rgba(0,0,0,0.3), 0 0 20px rgba(0,240,255,0.05); backdrop-filter: blur(20px); height: fit-content; max-height: 80vh; overflow-y: auto; }
@@ -54,6 +54,20 @@
         .no-results { text-align: center; padding: 80px 20px; color: var(--text-secondary); display: none; }
         .no-results p { font-size: 16px; font-weight: 600; margin-bottom: 8px; }
         .no-results span { font-size: 14px; font-weight: 400; }
+        body {
+            background: var(--bg-primary) url('../product-card-images/Background.png') center/cover fixed no-repeat;
+        }
+        body::before {
+            content: '';
+            position: fixed; top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(10, 10, 26, 0.7);
+            pointer-events: none; z-index: 0;
+        }
+        .category-hero {
+            background: linear-gradient(135deg, rgba(10, 26, 42, 0.85), rgba(10, 10, 48, 0.85), rgba(16, 32, 48, 0.85)), url('../images/slide1.jpg') center/cover no-repeat;
+            position: relative;
+        }
     </style>
     <link rel="stylesheet" href="/product-cards-modern.css">
     <link rel="stylesheet" href="/dropdown-fix.css">
@@ -139,8 +153,11 @@
             </div>
         </div>
 
-        <div class="page-header">
-            <h2>Gaming Consoles</h2>
+        <div class="category-hero">
+            <div class="category-hero-content">
+                <h1>Gaming Consoles</h1>
+                <p>Next-gen gaming consoles and accessories</p>
+            </div>
         </div>
 
         <button class="filter-sidebar-toggle" id="sidebarToggle2" aria-label="Toggle filters">
@@ -202,42 +219,42 @@
 
         <div class="product-page active" id="page1">
             <div class="products-row">
-                <div class="card" data-brand="sony" data-price="145000"><div class="product-image-container"><img src="../product-card-images/PS5.jpg" alt="PlayStation 5" class="product-image"></div><div class="product-info">
+                <div class="card" data-brand="sony" data-price="145000"><div class="product-image-container"><img src="../product-card-images/ps5 disc edition.jpg" alt="PlayStation 5" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 (PS5) Disc Edition</h4>
                     <p class="product-description">Next-gen gaming with lightning-fast SSD, 4K visuals, and immersive DualSense controller.</p>
                     <p class="price">Rs. 145,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="115000"><div class="product-image-container"><img src="../product-card-images/PS5 Digital.jpg" alt="PlayStation 5 Digital" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="115000"><div class="product-image-container"><img src="../product-card-images/ps5 digital.jpg" alt="PlayStation 5 Digital" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 Digital Edition</h4>
                     <p class="product-description">All-digital version of PS5 with ultra-high speed SSD and 4K gaming capabilities.</p>
                     <p class="price">Rs. 115,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="microsoft" data-price="135000"><div class="product-image-container"><img src="../product-card-images/Xbox Series X.jpg" alt="Xbox Series X" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="microsoft" data-price="135000"><div class="product-image-container"><img src="../product-card-images/xbox x.jpg" alt="Xbox Series X" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Microsoft Xbox Series X</h4>
                     <p class="product-description">Most powerful Xbox ever with 12 teraflops of processing power and 4K gaming.</p>
                     <p class="price">Rs. 135,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="microsoft" data-price="85000"><div class="product-image-container"><img src="../product-card-images/Xbox Series S.jpg" alt="Xbox Series S" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="microsoft" data-price="85000"><div class="product-image-container"><img src="../product-card-images/xbox s.jpg" alt="Xbox Series S" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Microsoft Xbox Series S</h4>
                     <p class="product-description">Next-gen performance in the smallest Xbox ever, with digital-only gaming.</p>
                     <p class="price">Rs. 85,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="nintendo" data-price="95000"><div class="product-image-container"><img src="../product-card-images/Nintendo Switch OLED.jpg" alt="Nintendo Switch OLED" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="nintendo" data-price="95000"><div class="product-image-container"><img src="../product-card-images/oled switch.jpg" alt="Nintendo Switch OLED" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Nintendo Switch OLED Model</h4>
                     <p class="product-description">7-inch OLED screen, enhanced audio, and 64GB internal storage for portable gaming.</p>
                     <p class="price">Rs. 95,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="nintendo" data-price="65000"><div class="product-image-container"><img src="../product-card-images/Nintendo Switch Lite.jpg" alt="Nintendo Switch Lite" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="nintendo" data-price="65000"><div class="product-image-container"><img src="../product-card-images/oled lite.jpg" alt="Nintendo Switch Lite" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Nintendo Switch Lite</h4>
                     <p class="product-description">Compact, lightweight Nintendo Switch system dedicated to handheld play.</p>
                     <p class="price">Rs. 65,000.00</p>
@@ -251,7 +268,7 @@
                     <p class="Out-stock">Out of Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="microsoft" data-price="155000"><div class="product-image-container"><img src="../product-card-images/Xbox Series X 1TB.jpg" alt="Xbox Series X 1TB" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="microsoft" data-price="155000"><div class="product-image-container"><img src="../product-card-images/xbox galaxy.jpg" alt="Xbox Series X 1TB" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Microsoft Xbox Series X 1TB Galaxy Black</h4>
                     <p class="product-description">Special edition Xbox Series X with 1TB storage in Galaxy Black finish.</p>
                     <p class="price">Rs. 155,000.00</p>
@@ -265,7 +282,7 @@
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="195000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1842/kVLq8Ldar9UMTTodBfbyekiNaQKj3oyf6nt8LM5t.webp" alt="PlayStation 5 Pro" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="195000"><div class="product-image-container"><img src="../product-card-images/PS5 PRO 2TB.jpg" alt="PlayStation 5 Pro" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 Pro 2TB (CFI-7121)</h4>
                     <p class="product-description">PlayStation 5 Pro with 2TB storage, enhanced performance, and ray tracing capabilities for next-gen gaming.</p>
                     <p class="price">Rs. 195,000.00</p>
@@ -276,63 +293,63 @@
 
         <div class="product-page" id="page2">
             <div class="products-row">
-                </div><div class="card" data-brand="sony" data-price="245000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1805/s6O5E4a3FKsUuM8mLUjOvQZXTcCWRhBdF66Cua1f.webp" alt="PlayStation 5 Slim" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="245000"><div class="product-image-container"><img src="../product-card-images/ps5 slim.jpg" alt="PlayStation 5 Slim" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 Slim Disk Edition 1TB - CFI-2116</h4>
                     <p class="product-description">Slimmer PS5 model with 1TB storage, disc drive, and enhanced efficiency.</p>
                     <p class="price">Rs. 245,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="28500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1137/UKkErh1EHntEBapk6MkZ0yY7ivXQ4abIZzlq1F0s.webp" alt="PS5 Controller" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="28500"><div class="product-image-container"><img src="../product-card-images/PS5 DualSense Controller.jpg" alt="PS5 Controller" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">PlayStation 5 DualSense Wireless Controller</h4>
                     <p class="product-description">Official PS5 controller with haptic feedback, adaptive triggers, and built-in microphone.</p>
                     <p class="price">Rs. 28,500.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="14500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1612/4kQLQwaClXf66IBpDFY9D3RJ88ZXWA4KqWgYOcJ5.webp" alt="PS5 Cooling Station" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="14500"><div class="product-image-container"><img src="../product-card-images/PS5 Cooling Station.jpg" alt="PS5 Cooling Station" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Porodo Gaming PS5 Slim Cooling Station + Controller Charging</h4>
                     <p class="product-description">Cooling stand with controller charging dock and headphone stand for PS5.</p>
                     <p class="price">Rs. 14,500.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="microsoft" data-price="25000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1156/v14A99NjY8ocOlfTv87V3NkcVB6uSCPVnDgSNCTC.webp" alt="Xbox Controller" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="microsoft" data-price="25000"><div class="product-image-container"><img src="../product-card-images/Xbox Controller.jpg" alt="Xbox Controller" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Xbox Wireless Controller</h4>
                     <p class="product-description">Official Xbox wireless controller with textured grip and Bluetooth connectivity.</p>
                     <p class="price">Rs. 25,000.00</p>
                     <p class="In-stock">In Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="nintendo" data-price="105000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/3/itgPs6NEaMTCI5FWDun1kscGsLXnELIQqFrNOoqn.webp" alt="Nintendo Switch OLED Neon" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="nintendo" data-price="105000"><div class="product-image-container"><img src="../product-card-images/Nintendo Switch OLED Neon.jpg" alt="Nintendo Switch OLED Neon" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Nintendo Switch OLED Model - Neon</h4>
                     <p class="product-description">Vibrant neon edition with 7-inch OLED screen and enhanced audio.</p>
                     <p class="price">Rs. 105,000.00</p>
                     <p class="Out-stock">Out of Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="265000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/953/WpyOoUVajLbZkGYfC3yrYWo22G7NNhYHmvLknwvt.webp" alt="PS5 Pro 7021" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="265000"><div class="product-image-container"><img src="../product-card-images/PS5 PRO 2TB v2.jpg" alt="PS5 Pro 7021" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 Pro 2TB - CFI 7021</h4>
                     <p class="product-description">High-end PS5 Pro with 2TB storage and enhanced ray tracing capabilities.</p>
                     <p class="price">Rs. 265,000.00</p>
                     <p class="Out-stock">Out of Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="180000"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/759/1ybc53P5ZbX90MNipjYgLeHMNqVjKRIHbaL9OTPl.webp" alt="PS5 Slim 2016" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="180000"><div class="product-image-container"><img src="../product-card-images/PS5 Slim CFI-2016.jpg" alt="PS5 Slim 2016" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Sony PlayStation 5 Slim Disk Edition 1TB - CFI-2016A01Y</h4>
                     <p class="product-description">Compact PS5 Slim with 1TB storage and detachable disc drive.</p>
                     <p class="price">Rs. 180,000.00</p>
                     <p class="Out-stock">Out of Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="sony" data-price="65500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/1824/JwdjsyReKSYJ56erLsc2jjKoJmKERcxuQYRlUK04.webp" alt="PS5 Edge Controller" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="sony" data-price="65500"><div class="product-image-container"><img src="../product-card-images/PS5 DualSense Edge.jpg" alt="PS5 Edge Controller" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">PlayStation 5 DualSense Edge Controller</h4>
                     <p class="product-description">Pro controller with customizable controls, trigger stops, and braided cable.</p>
                     <p class="price">Rs. 65,500.00</p>
                     <p class="Out-stock">Out of Stock</p>
 
                 </div>
-                </div><div class="card" data-brand="microsoft" data-price="38500"><div class="product-image-container"><img src="https://www.nanotek.lk/storage/products/621/T1RtCm6hc4GNM840R8BBtaZJD9zWo1m29b8CJ32C.webp" alt="Xbox Headset" class="product-image"></div><div class="product-info">
+                </div><div class="card" data-brand="microsoft" data-price="38500"><div class="product-image-container"><img src="../product-card-images/Xbox Wireless Headset.jpg" alt="Xbox Headset" class="product-image"></div><div class="product-info">
                     <h4 class="product-name">Xbox Wireless Headset</h4>
                     <p class="product-description">Official Xbox wireless headset with spatial sound and noise isolation.</p>
                     <p class="price">Rs. 38,500.00</p>
